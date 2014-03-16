@@ -1,0 +1,205 @@
+\documentclass[a4paper,12pt]{article} % 14 точечный шрифт, пока черновик, формат бумаги А4
+% до полного релиза надо оставить режим draft, чтоб видеть bad boxes
+% если используем пакет cmap то fontenc не нужен
+%\usepackage[T2A]{fontenc} % мега важная опция позволяет делать букмарки в PDF на русском 
+% на самом деле просто подключает шрифты с русским. Автоматически подключается при подключении cmap 
+\usepackage[cp1251]{inputenc} % inputenc всегда включается ДО babel
+\usepackage[english,russian]{babel} % подключаем русский язык
+% для нормальной работы так же необходимо настроить перенос русских слов. Запускаем MiKTex options в нем закладка
+% languages - тут надо выбрать russian и для него выбрать файл переносов из пакета ruhyphen. 
+% Сам пакет ruhyphen надо до этого установить.
+
+\usepackage{makeidx} % пакет для создания алфавитного указателя
+\usepackage{amssymb,amsmath} % эти пакеты необходимы для набора формул
+
+%\usepackage[sort,compress]{natbib}%для отображения ссылок на библиографию в виде [1-9]
+%sort,compress - для того чтобы ссылки вида [4,3,5,6] превращались в [3-6]
+%\setcitestyle{square,comma}%{natbib} % - разделитель между ссылками будет "," а не ";" как по умолчанию (semicolon)
+%ссылки на литературу будут в квадратных скобках
+%\usepackage{cite}%не совместим hyperref и natbib
+
+\usepackage{graphics}  % пакет для включения графики pdf jpg png gif, eps не работает при выводе в pdf
+% для графики использую пакет graphicx. С Х на конце
+\usepackage{ifpdf} % позволяет условные блоки при сборке в PDF
+
+
+\ifpdf
+\usepackage[pdftex,unicode=true,bookmarksnumbered=true,
+colorlinks,linkcolor=black,anchorcolor=black,citecolor=black,urlcolor=black,
+bookmarksopen=true,pdfstartview={FitH},pdfpagemode={UseNone},
+pdfdisplaydoctitle=true, % в заголовке окна показывает заголовок, а не имя файла
+pdfstartpage={1}]{hyperref}
+%
+\hypersetup{pdfauthor={Люпа Анастасия}, pdfsubject={Дипломная работа},
+pdftitle={Моделирование течения двухфазной жидкости в неоднородной пористой среде с учетом капиллярных сил и слабой сжимаемости}}
+% атрибуты PDF надо задавать через команду hypersetup, т.к. в противном случае
+%(через необязательные опции пакета)
+% нельзя в атрибуты записать русские слова, только латиницу
+\usepackage[pdftex,final]{graphicx} %пакет для включения графики pdf jpg png gif, eps не работает при выводе в pdf
+% отключаем draft когда делаем pdf
+%\usepackage{cmap} % возможность копировать из PDF и искать в нем, нужна ли она?
+% такая возможность нужна мне, но наружу лучше отдавать текст без возможности copy+paste
+% временно отключаем
+%\usepackage{literat} % векторные кириллические шрифты для PDF - с ними выглядит лучше
+% пакет literat не нужен, если установлен пакет cm-super, который подменяет многие шрифты ТеХа и совместим с cmap
+\newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
+%
+\else
+\usepackage{graphicx}
+%\usepackage[demo]{graphicx} %пакет для включения графики pdf jpg png gif, eps не работает при выводе в pdf
+% demo - вместо картинок будет черный квадрат
+\usepackage[dvips,unicode]{hyperref}
+\newcommand{\includepic}[2][]
+	{\includegraphics[#1]{#2.png}}
+%
+\fi
+%
+\linespread{1.3} % печать через полтора интервала
+% \linespread{2.2} - двойной интервал, если когда понадобиться
+% взято у OSA http://www.opticsexpress.org/submit/templates/
+%\graphicspath{{tiff/}{pics/}}
+\graphicspath{{fig/}}
+%\usepackage{cmap} % возможность копировать из PDF и искать в нем, нужна ли она?
+%% если это : убрать то нужно \usepackage[T2A]{fontenc}
+
+% Мои окружения
+\newenvironment{descr}
+{\begin{description}}
+{\end{description}}
+
+\newenvironment{citate}
+{\begin{quote}\begin{flushright}}
+{\end{flushright}\end{quote}}
+
+\makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
+\frenchspacing %пробел после запятой не увеличивается - так принято в России
+\righthyphenmin=2 % можно оставлять два символа на строке при переносе
+
+\usepackage{indentfirst}% Красная строка в первом абзаце
+
+% Задаем данные об авторах и название
+\author{Люпа А.А.}
+\title{Моделирование течения двухфазной жидкости в неоднородной пористой среде с учетом капиллярных сил и слабой сжимаемости}
+\date{}
+
+% Включаем только те файлы, с которыми работаем чтоб не отвлекаться и шефа не отвлекать
+%\includeonly{05-Results-Nonlinear,06-Discussion}
+
+% Параметры страницы 
+\usepackage[
+	a4paper,% includehead, %если добавить эти строки колонтитул наезжает на самый верхний текст страницы
+	%includefoot, mag=1000,
+	%headsep=0mm, 
+	headheight=15pt,
+	left=30mm, right=25mm, top=30mm, bottom=30mm
+	]{geometry}%для задания геометрии страницы так все работает
+
+\newlength{\picturewidth}
+\picturewidth=10cm % ширина всех рисунков
+%\oddsidemargin=5mm %левый отступ равен 1дюйм+5мм=30.4мм болеее 30мм как и требуется
+%\textwidth=15 cm % ширина текста
+%\hoffset=0 cm % горизонтальное смещение
+%\voffset=0 cm % вертикальное смещение 
+
+%%==========================================================================================
+\usepackage{tabularx}
+\usepackage[labelsep=period]{caption} % пакет для управления заголовка рисунков и таблиц
+% устанавливаем разделитель в заголовка в точку
+\usepackage{subfig} % пакет для расположения нескольких под рисунков в одном окружении figure
+
+\usepackage{amsmath}
+
+% Цитата стандарта 010400:
+% "<Нумерация глав по порядку арабскими цифрами. Нумерация разделов внутри 
+% глав состоит из двух цифр разделенных точкой: ...">
+%\usepackage{fancyhdr} % пакет для работы с колонтитулами не нужен
+\pagestyle{headings} % стандартные колонтитулы из пакета
+% все что ниже не нужно
+%\renewcommand{\thesection}{\Roman{chapter}}
+%\renewcommand{\thesection}{\arabic{section}.}
+%\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+%\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+% установили как писать номер раздела и подразделов - через точку
+%
+
+%%==========================================================================================
+\begin{document}
+\pagenumbering{arabic}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\clearpage
+\begin{titlepage}
+\linespread{1}
+\centering
+%\begin{center}
+МИНИСТЕРСТВО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ \newline  \newline  \newline
+МОСКОВСКИЙ ФИЗИКО-ТЕХНИЧЕСКИЙ ИНСТИТУТ \newline 
+(государственный университет)
+\underline{\hspace{\textwidth}}
+ФАКУЛЬТЕТ УПРАВЛЕНИЯ И ПРИКЛАДНОЙ МАТЕМАТИКИ \\
+КАФЕДРА МАТЕМАТИЧЕСКОГО МОДЕЛИРОВАНИЯ \\
+%
+\vspace{20ex}
+\large{ВЫПУСКНАЯ РАБОТА БАКАЛАВРА} \\
+\vspace{2ex}
+Математическое моделирование течения трехфазной жидкости в пористых средах с использованием гибридных суперкомпьютеров
+\vspace{20ex}
+
+\begin{tabularx}{\textwidth}{XX} %{YW}
+	  % \newline
+	&   %\newline
+	Студент гр.871  \newline
+	Люпа А.А.
+	  \\
+	\mbox{ } & \mbox{ } \\
+%
+	&   Научный руководитель,  \newline
+	к.ф.-м.н. Чурбанова Н.Г.
+\end{tabularx}
+
+\vspace{\fill}
+МОСКВА 
+
+2012
+%\end{center}
+\clearpage
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+%\include{} - так надо включать файлы глав
+% далее включаем файлы разделов
+%\pagenumbering{arabic}
+%\listoftodos
+
+\include{intro}
+\include{physics}
+\include{math}
+\include{algorithm}
+\include{tests}
+\include{calculations}
+\include{concl}
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfil}
+\makeatother
+\addto\captionsrussian{\def\refname{Список литературы}}
+\addcontentsline{toc}{section}{Список литературы}
+\nocite{*}
+%\bibliographystyle{gost780s}
+%\bibliographystyle{unsrt}
+\bibliographystyle{gost71u}%правильные ссылки по ГОСТ 7.1-84 7.80-00
+\bibliography{kbib-1251}
+
+% \cleardoublepage % так надо подробности http://www.tex.ac.uk/cgi-bin/texfaq2html?label=tocbibind
+% \phantomsection % эта команда дает hyperref место куда "<прицепиться">
+% \addcontentsline{toc}{section}{\refname}
+% \begin{thebibliography}{0}
+% \bibitem{Basniev}
+% Басниев~К.С., Кочина~И.Н., Максимов~В.М. Подземная гидромеханика. --- М.:Недра, 1993
+% \end{thebibliography}
+% \cleardoublepage % так надо подробности http://www.tex.ac.uk/cgi-bin/texfaq2html?label=tocbibind
+% \phantomsection % эта команда дает hyperref место куда "<прицепиться">
+
+\end{document}
