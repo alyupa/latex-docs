@@ -597,14 +597,14 @@ FUNCTION {format.names.rev}
 FUNCTION {format.authors}
 { author empty$
     { "" }
-    { author format.names}
+    { author format.names.rev}
   if$
 }
 
 FUNCTION {format.bookauthors}
 { bookauthor empty$
     { "" }
-    { bookauthor format.names}
+    { bookauthor format.names.rev}
   if$
 }
 
