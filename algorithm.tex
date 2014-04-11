@@ -4,21 +4,26 @@
 применения начальных условий на каждом шаге по времени выполняется следующая
 последовательность действий: 
 \begin{enumerate} 
+\item Применение граничных условий.
 \item Вычисление давлений $P_n$,
 $P_g$ через $P_w$ и капиллярные давления. 
 \item Вычисление плотностей фаз. 
 \item
-Нахождение относительных фазовых проницаемостей фаз. 
-\item Вычисление скоростей
-фаз независимо по всем измерениям. 
+Нахождение относительных фазовых проницаемостей фаз и вязкости.
+\item Определение
+коэффициентов в законе Дарси для фаз. 
 \item 
 \label{roS} 
 Нахождение ${\rho}_iS_i$ на
-следующем шаге по времени из уравнения неразрывности явным численным методом.
+следующем шаге по времени из уравнения неразрывности (\ref{mass}) явным численным методом.
+\item 
+\label{roE} 
+Нахождение внутренней энергии системы на
+следующем шаге по времени из уравнения сохранения энергии (\ref{Energy_law}) явным численным методом.
 \item 
 \label
-{Newton} Решение системы трех нелинейных уравнений методом Ньютона,
-в результате чего находим $P_w$, $S_w$, $S_n$ на следующем шаге по времени.
+{Newton} Решение нелинейной системы из пяти уравнений методом Ньютона,
+в результате чего находим $P_w$, $S_w$, $S_n$, $S_g$, $T$ на следующем шаге по времени.
 \item Применение граничных условий. 
 \item Сохранение полученных значений переменных в текстовый файл
 в формате, подходящем для визуализации (если нужно).
@@ -27,90 +32,100 @@ $P_g$ через $P_w$ и капиллярные давления.
 
 \subsection{Численный метод}
 Остановимся подробнее на численном методе, используемом на шаге \ref{roS}
-описанного выше алгоритма. С целью наилучшего распараллеливания действий при
-решении рассматриваемого класса задач выбрана явная двухслойная схема с направленными разностями. 
-В данном случае он может быть записан следующим
-образом:
+описанного выше алгоритма. С целью наилучшего распараллеливания решения 
+выбран класс явных двухслойных схем на равномерных декартовых сетках.
+Рассмотрены две различные схемы:
+\begin{itemize}
+\item с направленными разностями;
+\item с центральными разностями и дополнительным членом в правой части уравнения.
+\end{itemize}
+Для описания схем используем обозначения из \cite{Kalitkin}:
 \begin{equation*}
   \begin{aligned}
-    &\text{Пусть } k, l, m \text{-- текущие индексы по осям $x$, $y$, $z$, соответственно,}\\
-    &j \text{-- текущий индекс слоя по времени,}\\
-    &i=w,n,g, \Delta t \text{-- шаг по времени,}\\
-    &h_x, h_y, h_z \text{-- шаги по пространству по 
-    направлениями осей $x$, $y$, $z$};\\
+    &\text{Пусть } n, m, k \text{ -- текущие индексы по осям $x$, $y$, $z$, соответственно,}\\
+    &\widehat{\qquad} \text{ -- обозначает значение величины на следующем слое по времени,}\\
+    &\tau \text{ -- шаг по времени,}\\
+    &h_x, h_y, h_z \text{ -- шаги по пространству по 
+    вдоль направлений осей $x$, $y$, $z$};\\
   \end{aligned}
-\end{equation*}
-\begin{equation*}
-  \begin{aligned}
-    &x_{1i}= - \frac{P_{i_{k,l,m}}-P_{i_{k-1,l,m}}}{h_x} , \;
-    x_{2i}= - \frac{P_{i_{k+1,l,m}}-P_{i_{k,l,m}}}{h_x} ;\\
-    &y_{1i}= - \frac{P_{i_{k,l,m}}-P_{i_{k,l-1,m}}}{h_y} + \rho_{i_{k,l,m}} g,\;
-    y_{2i}= - \frac{P_{i_{k,l+1,m}}-P_{i_{k,l,m}}}{h_y} + \rho_{i_{k,l,m}} g;\\
-    &\text{если задача двумерная, то} \\
-    &z_{1i}= 0 ,\;
-    z_{2i}= 0 ;\\
-    &\text{если задача трехмерная, то} \\
-    &z_{1i}= - \frac{P_{i_{k,l,m}}-P_{i_{k,l,m-1}}}{h_z} ,\;
-    z_{2i}= - \frac{P_{i_{k,l,m+1}}-P_{i_{k,l,m}}}{h_z} ;\\
-    &\chi_{i_{k,l,m}}=-K\frac{k_i(S_{i_{k,l,m}})}{\mu_i} ;\\
-  \end{aligned}
-\end{equation*}
-\begin{eqnarray*}
-    &f_{xi}= \left( \dfrac{x_{2i}+|x_{2i}|}{2} - \dfrac{x_{1i}+|x_{1i}|}{2} \right)(-\chi_{i_{k,l,m}} \rho_{i_{k,l,m}}) / h_x
-    - \dfrac{x_{1i}+|x_{1i}|}{2} (-\chi_{i_{k-1,l,m}} \rho_{i_{k-1,l,m}}) / h_x \\
-    & +  \dfrac{x_{2i}-|x_{2i}|}{2} (-\chi_{i_{k+1,l,m}} \rho_{i_{k+1,l,m}}) / h_x;
-\end{eqnarray*}
-\begin{eqnarray*}
-    &f_{yi}= \left( \dfrac{y_{2i}+|y_{2i}|}{2} - \dfrac{y_{1i}+|y_{1i}|}{2} \right)(-\chi_{i_{k,l,m}} \rho_{i_{k,l,m}}) / h_y
-    - \dfrac{y_{1i}+|y_{1i}|}{2} (-\chi_{i_{k,l-1,m}} \rho_{i_{k,l-1,m}}) / h_y \\
-    & +  \dfrac{y_{2i}-|y_{2i}|}{2} (-\chi_{i_{k,l+1,m}} \rho_{i_{k,l+1,m}}) / h_y;
-\end{eqnarray*}
-\begin{eqnarray*}
-    &f_{zi}= \left( \dfrac{z_{2i}+|z_{2i}|}{2} - \dfrac{z_{1i}+|z_{1i}|}{2} \right)(-\chi_{i_{k,l,m}} \rho_{i_{k,l,m}}) / h_z
-    - \dfrac{z_{1i}+|z_{1i}|}{2} (-\chi_{i_{k,l,m-1}} \rho_{i_{k,l,m-1}}) / h_z \\
-    & +  \dfrac{z_{2i}-|z_{2i}|}{2} (-\chi_{i_{k,l,m+1}} \rho_{i_{k,l,m+1}}) / h_z;
-\end{eqnarray*}
-\begin{equation*}
-    (\rho_i S_i)^{j+1}_{k,l,m}=(\rho_i S_i)^{j}_{k,l,m}-\frac{\Delta t}{m}(-q_i+f_{xi}+f_{yi}+f_{zi}).
 \end{equation*}
 
-Данный метод обладает первым порядком аппроксимации по времени и пространству, 
-является монотонным и устойчив при $\Delta t < h_{min}^2$. 
+
+\subsubsection{Схема с направленными разностями}
+Представим уравнение (\ref{mass}) в виде:
+ \begin{equation}
+ 	 m \frac{\partial (\rho_i S_i)}{\partial t}+ div(\rho_i \chi_i (grad P_i - {\rho}_i\overrightarrow{g})) = \rho_i q_i,
+ \end{equation}
+ $$\chi_i=-K\frac{k_i}{\mu_i}.$$
+Разностная схема для этого уравнения может быть записана следующим
+образом:
+
+\begin{equation*}
+  \begin{aligned}
+    &x_{li}= \frac{P_{i_{n,m,k}}-P_{i_{n-1,m,k}}}{h_x} , \;
+    x_{ri}=  \frac{P_{i_{n+1,m,k}}-P_{i_{n,m,k}}}{h_x} ;\\
+    &y_{li}= \frac{P_{i_{n,m,k}}-P_{i_{n,m-1,k}}}{h_y} - \rho_{i_{n,m,k}} g,\;
+    y_{ri}=  \frac{P_{i_{n,m+1,k}}-P_{i_{n,m,k}}}{h_y} - \rho_{i_{n,m,k}} g;\\
+    &z_{li}= \frac{P_{i_{n,m,k}}-P_{i_{n,m,k-1}}}{h_x} , \;
+    z_{ri}=  \frac{P_{i_{n,m,k+1}}-P_{i_{n,m,k}}}{h_x} ;
+  \end{aligned}
+\end{equation*}
+\begin{eqnarray*}
+    &f_{xi} = \frac{1}{2h_x} \big{(} (x_{ri} - |x_{ri}| - x_{li} - |x_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+    &- (x_{li} - |x_{li}|) \chi_{i_{n-1,m,k}} \rho_{i_{n-1,m,k}} \\
+    &+ (x_{ri} - |x_{ri}|) \chi_{i_{n+1,m,k}} \rho_{i_{n+1,m,k}} \big{)};
+\end{eqnarray*}
+\begin{eqnarray*}
+    &f_{yi} = \frac{1}{2h_y} \big{(} (y_{ri} - |y_{ri}| - y_{li} - |y_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+    &- (y_{li} - |y_{li}|) \chi_{i_{n,m-1,k}} \rho_{i_{n,m-1,k}} \\
+    &+ (y_{ri} - |y_{ri}|) \chi_{i_{n,m+1,k}} \rho_{i_{n,m+1,k}} \big{)};
+\end{eqnarray*}
+\begin{eqnarray*}
+    &f_{zi} = \frac{1}{2h_z} \big{(} (z_{ri} - |z_{ri}| - z_{li} - |z_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+    &- (z_{li} - |z_{li}|) \chi_{i_{n,m,k-1}} \rho_{i_{n,m,k-1}} \\
+    &+ (z_{ri} - |z_{ri}|) \chi_{i_{n,m,k+1}} \rho_{i_{n,m,k+1}} \big{)};
+\end{eqnarray*}
+\begin{equation*}
+    (\widehat{\rho_i S_i})_{k,l,m}=(\rho_i S_i)_{k,l,m}+\frac{\tau}{m}(\rho_i q_i - f_{xi} - f_{yi} - f_{zi}).
+\end{equation*}
+
+Если рассматривается меньшее количество измерений,
+соответствующее слагаемое $f_i$ обнуляется.
+
+Данный метод обладает первым порядком аппроксимации по времени
+и пространству и устойчив при $\tau < h_{min}^2$.
+
+Аналогично строится схема для нахождения $\widehat{E}$.
 
 \newpage
 \subsection{Решение системы методом Ньютона} На шаге \ref{Newton}
-предложенного алгоритма в каждом узле расчетной сетки возникает следующая система 
-уравнений: 
-\begin{equation}
-\left\{
-  \begin{aligned}
-    &\rho_{0w}[1+\beta_w (P_w-P_0)]\, S_w=(\rho_w S_w) \\
-    &\rho_{0n}[1+\beta_n (P_w+P_{cnw}(S_w)-P_0)]\, S_n=(\rho_n S_n) \\
-    &\rho_{0g}\frac{(P_w+P_{cnw}(S_w)+P_{cgn}(1-S_w-S_n))}{P_0}\, (1-S_w-S_n)=(\rho_g S_g) \\
-  \end{aligned}
-\right.
-\end{equation}
-$(\rho_i S_i)$,\; $i=w,n,g$ -- известные на данном этапе значения, полученные на
-предыдущем шаге алгоритма.
-
-Ее решение проводится методом Ньютона.
+предложенного алгоритма в каждом узле расчетной сетки возникает 
+нелинейная система уравнений.
+Ее решение проводится методом Ньютона\cite{Kalitkin}.
 До достижения заданной точности выполняем требуемое число итераций метода. Каждая итерация 
 состоит из следующей последовательности действий:
 
-Пусть
-\begin{equation}
+\begin{eqnarray*}
   \begin{aligned}
-    F_1=&\rho_{0w}[1+\beta_w (P_w-P_0)]\, S_w-(\rho_w S_w) \\
-    F_2=&\rho_{0n}[1+\beta_n (P_w+P_{cnw}(S_w)-P_0)]\, S_n-(\rho_n S_n) \\
-    F_3=&\rho_{0g}(P_w+P_{cnw}(S_w)+P_{cgn}(1-S_w-S_n))\, (1-S_w-S_n)/P_0-(\rho_g S_g) \\
+    F_1=\ &\rho_w(P_w, T) S_w - (\widehat{\rho_w S_w}) \\
+    F_2=\ &\rho_n(P_w+P_{cnw}(S_w)) S_n - (\widehat{\rho_n S_n}) \\
+    F_3=\ &\rho_g(P_w+P_{cnw}(S_w)+P_{cgn}(S_g)) S_g - (\widehat{\rho_g S_g}) \\
+    F_4=\ & m \Big{(}S_w \big{(}\rho_w(P_w, T) H_w(T) - P_w\big{)} \\
+	 &+ S_n \big{(}\rho_n(P_w+P_{cnw}(S_w), T) H_n(T) - P_w - P_{cnw}(S_w)\big{)} \\
+	 &+ S_g \big{(}\rho_g(P_w+P_{cnw}(S_w)+P_{cgn}(S_g), T) H_g(T) - P_w - P_{cnw}(S_w) - P_{cgn}(S_g)\big{)}
+	 \Big{)}\\
+	 &+ (1-m) (\rho_r H_r - P_w) - \widehat{E} \\
+    F_5=\ &S_w+S_n+S_g - 1
   \end{aligned}
-\end{equation}
+\end{eqnarray*}
 \begin{equation}
 A=
 \begin{pmatrix}
-\dfrac{\partial{F_1}}{\partial{P_w}} & \dfrac{\partial{F_1}}{\partial{S_w}} & \dfrac{\partial{F_1}}{\partial{S_n}}\\[3mm]
-\dfrac{\partial{F_2}}{\partial{P_w}} & \dfrac{\partial{F_2}}{\partial{S_w}} & \dfrac{\partial{F_2}}{\partial{S_n}}\\[3mm]
-\dfrac{\partial{F_3}}{\partial{P_w}} & \dfrac{\partial{F_3}}{\partial{S_w}} & \dfrac{\partial{F_3}}{\partial{S_n}}\\[3mm]
+\dfrac{\partial{F_1}}{\partial{P_w}} & \dfrac{\partial{F_1}}{\partial{S_w}} & \dfrac{\partial{F_1}}{\partial{S_n}} & \dfrac{\partial{F_1}}{\partial{S_g}} & \dfrac{\partial{F_1}}{\partial{T}}\\[3mm]
+\dfrac{\partial{F_2}}{\partial{P_w}} & \dfrac{\partial{F_2}}{\partial{S_w}} & \dfrac{\partial{F_2}}{\partial{S_n}} & \dfrac{\partial{F_2}}{\partial{S_g}} & \dfrac{\partial{F_2}}{\partial{T}}\\[3mm]
+\dfrac{\partial{F_3}}{\partial{P_w}} & \dfrac{\partial{F_3}}{\partial{S_w}} & \dfrac{\partial{F_3}}{\partial{S_n}} & \dfrac{\partial{F_3}}{\partial{S_g}} & \dfrac{\partial{F_3}}{\partial{T}}\\[3mm]
+\dfrac{\partial{F_4}}{\partial{P_w}} & \dfrac{\partial{F_4}}{\partial{S_w}} & \dfrac{\partial{F_4}}{\partial{S_n}} & \dfrac{\partial{F_4}}{\partial{S_g}} & \dfrac{\partial{F_4}}{\partial{T}}\\[3mm]
+\dfrac{\partial{F_5}}{\partial{P_w}} & \dfrac{\partial{F_5}}{\partial{S_w}} & \dfrac{\partial{F_5}}{\partial{S_n}} & \dfrac{\partial{F_5}}{\partial{S_g}} & \dfrac{\partial{F_5}}{\partial{T}}\\[3mm]
 \end{pmatrix}
 \end{equation}
 
@@ -120,23 +135,27 @@ A=
 \begin{pmatrix}
 P_w\\
 S_w\\
+S_n\\
 S_g\\
+T
 \end{pmatrix}^{new}
 =
 \begin{pmatrix}
 P_w\\
 S_w\\
+S_n\\
 S_g\\
+T
 \end{pmatrix}
 -A^{-1}
 \begin{pmatrix}
 F_1\\
 F_2\\
 F_3\\
+F_4\\
+F_5
 \end{pmatrix}
 \end{equation}\\
 
-При необходимости сохраняем полученные значения переменных в текстовый файл
-в формате, подходящем для визуализации, делаем все необходимые обмены при 
-многопроцессорных вычислениях, переходим к расчетам на следующем шаге по 
-времени.
+Для обращения матрицы $A$ используется метод Гаусса с выбором
+главного элемента\cite{Kalitkin}.
