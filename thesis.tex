@@ -13,7 +13,8 @@
 \usepackage{subfig} % пакет для расположения нескольких под рисунков в одном окружении figure
 \usepackage{longtable}
 \usepackage{cite}
-
+\usepackage{pgfplots}
+\usepackage{wrapfig}
 \usepackage{geometry} % Меняем поля страницы
 \geometry{left=3cm}% левое поле
 \geometry{right=2cm}% правое поле
@@ -23,6 +24,7 @@
 \clubpenalty=10000 % Запрещаем разрыв страницы после первой строки абзаца
 \widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
 \newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
 %
 \linespread{1.3} % интервал
 \graphicspath{{fig/}}
@@ -30,6 +32,8 @@
 \makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
 \frenchspacing %пробел после запятой не увеличивается - так принято в России
 \righthyphenmin=2 % можно оставлять два символа на строке при переносе
+
+\include{pgf_plots}
 
 %%==========================================================================================
 \begin{document}
