@@ -14,7 +14,9 @@
 \usepackage{longtable}
 \usepackage{cite}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepackage{wrapfig}
+\usepackage{minted}
 \usepackage{geometry} % Меняем поля страницы
 \geometry{left=3cm}% левое поле
 \geometry{right=2cm}% правое поле
@@ -32,6 +34,10 @@
 \makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
 \frenchspacing %пробел после запятой не увеличивается - так принято в России
 \righthyphenmin=2 % можно оставлять два символа на строке при переносе
+
+\definecolor{bg}{rgb}{0.97,0.97,0.97}
+\usemintedstyle{colorful}
+\renewcommand\listingscaption{Листинг}
 
 \include{pgf_plots}
 
