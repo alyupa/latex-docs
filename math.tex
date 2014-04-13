@@ -15,7 +15,7 @@
 используемые зависимости физических свойств фаз.
 
 Пусть трехфазная система представляет собой две жидкие фазы -- вода и легкий
-нефтяной продукт(LNAPL -- от английского Light Non-Aqueous Phase Liquids,
+нефтяной продукт (LNAPL -- от английского Light Non-Aqueous Phase Liquids,
 плотность меньше плотности воды), и одну газообразную.
 Для удобства введем индексные обозначения для разных фаз: $w$ -- вода, $n$ --
 легкая нефть, $g$ -- газ.
@@ -39,9 +39,8 @@ $$P_{cgn}(\overline{S_g})=P_g-P_n={\frac{1}{\gamma \delta_{gn}}}
 соответственно, $n$ и $\gamma $ -- пареметры породы Ван Генухтена из соответствующего приближения
 Ван Генухтена\cite{Genuchten}, $\delta_{nw}$, $\delta_{gn}$ -- коэффициенты, определяемые поверхностным натяжением 
 жидкостей). В работе используются следующие значения параметров: $n$ = 3.25, $\gamma $ = 0.00048Па$^{-1}$,
-$\delta_{nw}$ = 0.67, $\delta_{gn}$ = 2. На участках, где эффективные насыщенности перестают удовлетворять
-указанному интервалу, гладко продалжаем указанные функции капиллярных давлений. Изобразим полученные зависимости
-на Рис.~\ref{tikz_P_cnw}, Рис.~\ref{tikz_P_cgn}.
+$\delta_{nw}$ = 0.67, $\delta_{gn}$ = 2. Зависимости капиллярных давлений от насыщенностей фазовой
+изображены на Рис.~\ref{tikz_P_cnw}, Рис.~\ref{tikz_P_cgn}.
 
 \begin{figure}[h]
 \begin{minipage}[h]{0.49\linewidth}
@@ -149,7 +148,7 @@ $P_{cgn}$ от эффективной насыщенности газовой ф
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[xtick={0.0,0.2,...,1.0}, ytick={0.0,0.2,...,1.0}, ztick={0.0,0.2,...,1.0}, grid=major, xlabel={$\overline{S_w}$}, ylabel={$\overline{S_n}$}, zlabel={$k_n$}]
-    \addplot3[surf, samples=20, domain=0.00:0.99,y domain=0.00:0.99]{kn(x,y)};
+    \addplot3[surf, samples=10, domain=0.00:0.99,y domain=0.00:0.99]{kn(x,y)};
   \end{axis}
 \end{tikzpicture}
 \caption{Зависимость относительной фазовой проницаемости нефти $k_n$ 
@@ -238,20 +237,20 @@ $\beta_w=4.4\cdot10^{-7}$ 1/Па, $\beta_n=10^{-6}$ 1/Па,
 $\alpha_w=1.32\cdot10^{-7}$ 1/К, $\alpha_n=9.2\cdot10^{-7}$ 1/К.
 
 Таким образом, полная система уравнений для описания трехфазной системы
-принимает вид:
+имеет вид:
 \begin{equation}
 \left\{
   \begin{aligned}
-    &\frac{\partial \left(m {\sum\limits_{i}{\rho_i S_i E_i(P_i, T)}} + (1-m){\rho_r E_r(P_w, T)}\right)}{\partial t}
-      + div(\sum_{i}{\rho_i H_i(T) \overrightarrow{u_i}}) = div(\lambda_{eff} grad T) \\
-    &\frac{\partial (m \rho_i S_i)}{\partial t}+ div(\rho_i \overrightarrow{u_i}) = \rho_i q_i \\
-    &\overrightarrow{u_i}=-K \frac{k_i}{{\mu_i(T)}}(grad P_i - {\rho}_i\overrightarrow{g})\\
-    &i=w,n,g\\
-    &P_n=P_w+P_{cnw}(\overline{S_w})\\
-    &P_g=P_w+P_{cnw}(\overline{S_w})+P_{cgn}(\overline{S_g})\\
-    &S_w + S_n + S_g=1\\
-    &k_w=k_w(\overline{S_w}),\quad k_g=k_g(\overline{S_g}),\quad k_n=k_n(\overline{S_w},\overline{S_n})\\
-    &\rho_i=\rho_i(P_i,T)
+    &\frac{\partial \left(m {\sum\limits_{i}{\rho_i S_i E_i(P_i, T)}} + (1-m){\rho_r E_r(P_w, T)}\right)}{\partial t} + \\
+    & \qquad + div(\sum_{i}{\rho_i H_i(T) \overrightarrow{u_i}}) = div(\lambda_{eff} grad T), \\
+    &\frac{\partial (m \rho_i S_i)}{\partial t}+ div(\rho_i \overrightarrow{u_i}) = \rho_i q_i, \\
+    &\overrightarrow{u_i}=-K \frac{k_i}{{\mu_i(T)}}(grad P_i - {\rho}_i\overrightarrow{g}), \\
+    &i=w,n,g, \\
+    &P_n=P_w+P_{cnw}(\overline{S_w}), \\
+    &P_g=P_w+P_{cnw}(\overline{S_w})+P_{cgn}(\overline{S_g}), \\
+    &S_w + S_n + S_g=1, \\
+    &k_w=k_w(\overline{S_w}),\quad k_g=k_g(\overline{S_g}),\quad k_n=k_n(\overline{S_w},\overline{S_n}), \\
+    &\rho_i=\rho_i(P_i,T).
   \end{aligned}
 \right.
 \end{equation}
@@ -263,10 +262,10 @@ $\alpha_w=1.32\cdot10^{-7}$ 1/К, $\alpha_n=9.2\cdot10^{-7}$ 1/К.
 В зависимости от конкретной постановки задачи в работе используются различные
 граничные условия. На границе поддерживается постоянное давление, или же оно
 определяется из условия непротекания фазы (нормальная компонента скорости
-фазы на границе равна 0, $\overrightarrow{u_i}_{n} = 0$).
+фазы на границе равна 0, ($\overrightarrow{u_i} \cdot \overrightarrow{n}) = 0$).
 Для насыщенности ставится условие равенства нулю потока через граничную 
 поверхность или же задается поток насыщенности в виде известной функции через 
-$ \dfrac{\partial S_i}{\partial n}, \; i=w,n, \;  n \text{-- нормаль к границе} $.
+$ \dfrac{\partial S_i}{\partial \overrightarrow{n}}, \; i=w,n, \; \overrightarrow{n} \text{-- нормаль к границе} $.
 Также для насыщенности может быть задано некоторое постоянное значение на границе.
 Для температуры тоже ставятся граничные условия первого или второго рода. 
 
