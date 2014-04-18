@@ -6,35 +6,99 @@
 рассматриваемые явления. Проверить согласованность результатов расчетов с
 экспериментом пока не представляется возможным.
 
-\subsection{Задача о перераспределении фаз}
-Рассматриваем область пористой среды, имеющую форму параллелепипеда. Пористость и
+\subsection{Задача о закачке газа под давлением}
+Рассмотрим одномерную модельную задачу фильтрации. Пористость и
 абсолютная проницаемость породы постоянны во всем объеме:  $m$=0.4,\; $K=6.64\cdot 10^{-11}$ м$^2$.
-Плотности фаз при давлении $P=P_\text{атм}$:\; $\rho_{w0}=1000 \text{кг}/\text{м}^3$,\; 
-$\rho_{n0}=850 \text{кг}/\text{м}^3$,\;
-$\rho_{g0}=1.4 \text{кг}/\text{м}^3$. 
-Коэффициенты вязкости:\; $\mu_w=0.001 \text{Па}\cdot \text{с}$,\;
-$\mu_n=0.001 \text{Па}\cdot \text{с}$,\; $\mu_g=1.84\cdot 10^{-5} \text{Па}\cdot \text{с}$.
-Коэффициенты сжимаемости жидкостей:\; $\beta_w=4.4\cdot 10^{-7} \text{Па}^{-1}$,\;
-$\beta_n=10^{-6} \text{Па}^{-1}$. Во всей области задаем следующее 
-начальное распределение:\; $S_w=0.4$,\; $S_n=0.35$,\; $S_g=0.25$, 
-$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от верхнего края области). 
-Граничную поверхность считаем непроницаемой, что может быть интерпретировано так,
-что среда огорожена непроницаемым резервуаром. 
+Начальные условия:\; $S_w=0.4$,\; $S_n=0.3$,\; $S_g=0.3$, 
+$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от верхнего края области);
+$T=285K$. Граничные условия:
 
-Под действием силы тяжести происходит перераспределение фаз.
+Сравним, как проходит процесс при двух различных граничных
+условиях на температуру:
+\begin{enumerate}
+ \item \label{noT} $\left.T\right|_{x=0}=\left.T\right|_{x=1}=285K$;
+ \item \label{T} $\left.T\right|_{x=0}=320K,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=1}=0$.
+\end{enumerate}
 
-Поставленная задача является квазиодномерной. Таким образом, результаты расчетов
-могут быть представлены в виде зависимости профилей насыщенностей фаз от времени.
+
+Результаты расчетов представлены в виде зависимостей профилей насыщенностей фаз,
+распределения давления и температуры от времени.
 
 По оси $x$ отложено расстояние по вертикали от дна резервуара. По оси $y$--
 значения насыщенностей каждой из фаз на расстоянии $x$ от дна резервуара
-в определенный момент расчетного времени. 
+в определенный момент расчетного времени.
 
-Таким образом, под действием силы тяжести водная фаза занимает
-преимущественно нижнюю часть резервуара, нефтяная -- в основном среднюю
-и немного нижнюю, а газовая -- почти целиком верхнюю. Такое распределение
-вызвано разницей плотностей фаз и заданными зависимостями относительных
-проницаемостей фаз от насыщенностей.
+\begin{figure}
+\begin{center}
+\begin{minipage}[h]{0.6\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, legend entries={$S_w$,$S_n$,$S_g$}, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$S$}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000001000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=1] {\mytable};
+    \addplot [red, ultra thick] table [x expr=1-\thisrow{0}, y=2] {\mytable};
+    \addplot [black, ultra thick] table [x expr=1-\thisrow{0}, y=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение насыщенностей в момент времени $t=1000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$P$, Па}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000001000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение давления $P_w$ в момент времени $t=1000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$T$, К}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000001000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение температуры в момент времени $t=1000$с}
+\end{minipage}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\begin{minipage}[h]{0.6\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, legend entries={$S_w$,$S_n$,$S_g$}, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$S$}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=1] {\mytable};
+    \addplot [red, ultra thick] table [x expr=1-\thisrow{0}, y=2] {\mytable};
+    \addplot [black, ultra thick] table [x expr=1-\thisrow{0}, y=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение насыщенностей в момент времени $t=4000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$P$, Па}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение давления $P_w$ в момент времени $t=4000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend pos=outer north east, axis lines=left, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$T$, К}]
+    \pgfplotstableread[skip first n=3]{data/test1/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Распределение температуры в момент времени $t=4000$с}
+\end{minipage}
+\end{center}
+\end{figure}
 
 \subsection{Задача просачивания с источником на границе}
 Расматриваем двумерную область пористой среды, имеющую форму
@@ -58,12 +122,3 @@ $ \dfrac{\partial S_w}{\partial t}=
 \end{cases}
 $,
 $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
-
-На последующих рисунках изображена динамика изменения насыщенностей 
-фаз. Слева направо цветом изображены значения насыщенностей $S_w$, $S_n$, $S_g$, соответственно, 
-в зависимости от координат в разное время.
-
-Из представленных графиков видно, что вода проникает через отверстие в область и накапливается 
-у дна резервуара, газ скапливается у непроницаемой части верхней границы и выходит через отверстие 
-наружу, нефть частично концентрируется у нижнего края области, но, вытесняемая водой,
- понемногу поднимается к отверстию из средних слоев.
