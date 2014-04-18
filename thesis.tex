@@ -1,7 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{cmap} % поиск русских слов в полученном pdf-файле
 \usepackage[T2A]{fontenc} % Поддержка русских букв
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{ucs}
 \usepackage[english,russian]{babel}
 \usepackage{makeidx} % пакет для создания алфавитного указателя
@@ -17,6 +17,8 @@
 \usepackage{pgfplotstable}
 \usepackage{wrapfig}
 \usepackage{minted}
+\usepackage{multibib}
+\newcites{my}{Список публикаций}
 \usepackage{geometry} % Меняем поля страницы
 \geometry{left=3cm}% левое поле
 \geometry{right=2cm}% правое поле
@@ -47,6 +49,10 @@
 \numberwithin{equation}{section}
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
 
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfil}
+\makeatother
+
 \include{title}
 
 \tableofcontents
@@ -60,13 +66,15 @@
 \include{calculations}
 \include{concl}
 
-\makeatletter
-\renewcommand{\@biblabel}[1]{#1.\hfil}
-\makeatother
-\addto\captionsrussian{\def\refname{Список литературы}}
 \addcontentsline{toc}{section}{Список литературы}
-\bibliographystyle{utf8gost705u} % ГОСТ + поправка (инициалы, потом фамилии)
-\bibliography{kbib-utf8}
+\continuouslabelsfalse
+\bibliographystyle{utf8gost705u.bst}
+\bibliography{kbib-utf8.bib}
+\newpage
+\addcontentsline{toc}{section}{Список публикаций}
+\bibliographystylemy{utf8gost705u.bst}
+\bibliographymy{mypapers.bib}
+\nocitemy{*}
 
 \newpage
 \addcontentsline{toc}{section}{Благодарности}
