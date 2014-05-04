@@ -36,8 +36,8 @@ $P_g$ через $P_w$ и капиллярные давления.
 допускающих эффективное распараллеливание решения.
 Рассмотрены две различные схемы:
 \begin{itemize}
-\item с направленными разностями;
-\item с центральными разностями и дополнительным членом в правой части уравнения.
+\item с направленными разностями для уравнения неразрывности~\ref{mass};
+\item с центральными разностями для модифицированного уравнения неразрывности~\ref{mass_mod}.
 \end{itemize}
 Для описания схем используем обозначения из \cite{Kalitkin}:
 \begin{equation*}
@@ -71,19 +71,25 @@ $P_g$ через $P_w$ и капиллярные давления.
   \end{aligned}
 \end{equation*}
 \begin{eqnarray*}
-    &f_{xi} = \frac{1}{2h_x} \big{(} (x_{ri} - |x_{ri}| - x_{li} - |x_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+  \begin{aligned}
+    f_{xi} =& \frac{1}{2h_x} \bigl{(} (x_{ri} - |x_{ri}| - x_{li} - |x_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
     &- (x_{li} - |x_{li}|) \chi_{i_{n-1,m,k}} \rho_{i_{n-1,m,k}} \\
-    &+ (x_{ri} - |x_{ri}|) \chi_{i_{n+1,m,k}} \rho_{i_{n+1,m,k}} \big{)};
+    &+ (x_{ri} - |x_{ri}|) \chi_{i_{n+1,m,k}} \rho_{i_{n+1,m,k}} \bigr{)};
+  \end{aligned}
 \end{eqnarray*}
 \begin{eqnarray*}
-    &f_{yi} = \frac{1}{2h_y} \big{(} (y_{ri} - |y_{ri}| - y_{li} - |y_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+  \begin{aligned}
+    f_{yi} =& \frac{1}{2h_y} \bigl{(} (y_{ri} - |y_{ri}| - y_{li} - |y_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
     &- (y_{li} - |y_{li}|) \chi_{i_{n,m-1,k}} \rho_{i_{n,m-1,k}} \\
-    &+ (y_{ri} - |y_{ri}|) \chi_{i_{n,m+1,k}} \rho_{i_{n,m+1,k}} \big{)};
+    &+ (y_{ri} - |y_{ri}|) \chi_{i_{n,m+1,k}} \rho_{i_{n,m+1,k}} \bigr{)};
+  \end{aligned}
 \end{eqnarray*}
 \begin{eqnarray*}
-    &f_{zi} = \frac{1}{2h_z} \big{(} (z_{ri} - |z_{ri}| - z_{li} - |z_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
+  \begin{aligned}
+    f_{zi} =& \frac{1}{2h_z} \bigl{(} (z_{ri} - |z_{ri}| - z_{li} - |z_{li}|) \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \\
     &- (z_{li} - |z_{li}|) \chi_{i_{n,m,k-1}} \rho_{i_{n,m,k-1}} \\
-    &+ (z_{ri} - |z_{ri}|) \chi_{i_{n,m,k+1}} \rho_{i_{n,m,k+1}} \big{)};
+    &+ (z_{ri} - |z_{ri}|) \chi_{i_{n,m,k+1}} \rho_{i_{n,m,k+1}} \bigr{)};
+  \end{aligned}
 \end{eqnarray*}
 \begin{equation*}
     (\widehat{\rho_i S_i})_{k,l,m}=(\rho_i S_i)_{k,l,m}+\frac{\tau}{m}(\rho_i q_i - f_{xi} - f_{yi} - f_{zi}).
@@ -93,15 +99,48 @@ $P_g$ через $P_w$ и капиллярные давления.
 соответствующее слагаемое $f_i$ обнуляется.
 
 Данный метод обладает первым порядком аппроксимации по времени
-и пространству и устойчив при $\tau < h_{min}^2$.
+и пространству и устойчив при $\tau < 0.25 h_{min}^2$.
 
 Аналогично строится схема для нахождения $\widehat{E}$.
 
-\subsubsection*{Схема 2}
-В \cite{Mathmod-2010},\cite{Mathmod-2011} были предложены модели одно- и двухфазной фильтрации, основанные на
-кинетическом подходе и построенные по аналогии с квазигазодинамической системой
-уравнений \cite{Chetverushkin-Mathmod}. Вместо уравнения (\ref{mass}) рассматривается модифицированное
-уравнение:
+\subsubsection*{Схема с центральными разностями}
+
+Представим уравнение (\ref{mass_mod}) в виде:
+ \begin{equation}
+ 	 m \frac{\partial (\rho_i S_i)}{\partial t}+ div(\rho_i \chi_i (grad P_i - {\rho}_i\overrightarrow{g})) = \rho_i q_i + l c_i \cdot div(grad(\rho_i S_i)),
+ \end{equation}
+ $$\chi_i=-K\frac{k_i}{\mu_i}.$$
+Разностная схема для этого уравнения может быть записана следующим
+образом:
+
+\begin{eqnarray*}
+  \begin{aligned}
+    f_{xi} =& \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \dfrac{P_{i_{n+1,m,k}} - 2P_{i_{n,m,k}} + P_{i_{n-1,m,k}}}{h_x^2} \\
+    &+ \dfrac{P_{i_{n+1,m,k}}-P_{i_{n-1,m,k}}}{2h_x} \cdot \dfrac{\chi_{i_{n+1,m,k}} \rho_{i_{n+1,m,k}}-\chi_{i_{n-1,m,k}} \rho_{i_{n-1,m,k}}}{2h_x} \\
+    &- lc_i\dfrac{\rho_{i_{n+1,m,k}}S_{i_{n+1,m,k}} - 2\rho_{i_{n,m,k}}S_{i_{n,m,k}} + \rho_{i_{n-1,m,k}}S_{i_{n-1,m,k}}}{h_x^2};
+  \end{aligned}
+\end{eqnarray*}
+\begin{eqnarray*}
+  \begin{aligned}
+    f_{yi} =& \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \dfrac{P_{i_{n,m+1,k}} - 2P_{i_{n,m,k}} + P_{i_{n,m-1,k}}}{h_y^2} \\
+    &+ \dfrac{P_{i_{n,m+1,k}}-P_{i_{n,m-1,k}}}{2h_y} \cdot \dfrac{\chi_{i_{n,m+1,k}} \rho_{i_{n,m,k}}-\chi_{i_{n,m-1,k}} \rho_{i_{n,m-1,k}}}{2h_y} \\
+    &- lc_i\dfrac{\rho_{i_{n,m+1,k}}S_{i_{n,m+1,k}} - 2\rho_{i_{n,m,k}}S_{i_{n,m,k}} + \rho_{i_{n,m-1,k}}S_{i_{n,m-1,k}}}{h_y^2};
+  \end{aligned}
+    \end{eqnarray*}
+\begin{eqnarray*}
+  \begin{aligned}
+    f_{zi} =& \chi_{i_{n,m,k}} \rho_{i_{n,m,k}} \dfrac{P_{i_{n,m,k+1}} - 2P_{i_{n,m,k}} + P_{i_{n,m,k-1}}}{h_z^2} \\
+    &+ \dfrac{P_{i_{n,m,k+1}}-P_{i_{n,m,k-1}}}{2h_z} \cdot \dfrac{\chi_{i_{n,m,k+1}} \rho_{i_{n,m,k+1}}-\chi_{i_{n,m,k-1}} \rho_{i_{n,m,k-1}}}{2h_z} \\
+    &- lc_i\dfrac{\rho_{i_{n,m,k+1}}S_{i_{n,m,k+1}} - 2\rho_{i_{n,m,k}}S_{i_{n,m,k}} + \rho_{i_{n,m,k-1}}S_{i_{n,m,k-1}}}{h_z^2};
+  \end{aligned}
+\end{eqnarray*}
+\begin{equation*}
+    (\widehat{\rho_i S_i})_{k,l,m}=(\rho_i S_i)_{k,l,m}+\frac{\tau}{m}(\rho_i q_i - f_{xi} - f_{yi} - f_{zi}).
+\end{equation*}
+
+Данный метод позволяет увеличить точность и снизить ограничение
+на шаг по времени. Благодаря наличию дополнительного члена в правой
+части уравнения он является устойчивым.
 
 \newpage
 \subsection{Решение системы методом Ньютона} На шаге \ref{Newton}
