@@ -273,72 +273,9 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 
 \begin{figure}
 \begin{center}
-\begin{minipage}[h]{0.47\textwidth}
+\begin{minipage}[h]{0.48\textwidth}
 \begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.6]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_w$ в момент времени $t=100$с}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.6]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000003000.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_w$ в момент времени $t=3000$с}
-\end{minipage}
-\vfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.5]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_n$ в момент времени $t=100$с}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.5]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000003000.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_n$ в момент времени $t=3000$с}
-\end{minipage}
-\vfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.4]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_g$ в момент времени $t=100$с}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=0.1, point meta max=0.4]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000003000.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Насыщенность $S_g$ в момент времени $t=3000$с}
-\end{minipage}
-\end{center}
-\end{figure}
-\begin{figure}
-\begin{center}
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=100000, point meta max=110000]
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=100000, point meta max=110000]
     \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
     \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
   \end{axis}
@@ -346,34 +283,151 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \caption{Давление $P_w$ в момент времени $t=100$с}
 \end{minipage}
 \hfill
-\begin{minipage}[h]{0.47\textwidth}
+\begin{minipage}[h]{0.48\textwidth}
 \begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=100000, point meta max=110000]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000003000.tec}{\mytable}
-    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
-  \end{axis}
-\end{tikzpicture}
-\caption{Давление $P_w$ в момент времени $t=3000$с}
-\end{minipage}
-\vfill
-\begin{minipage}[h]{0.47\textwidth}
-\begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=285, point meta max=320]
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=285, point meta max=320]
     \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
     \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
   \end{axis}
 \end{tikzpicture}
-\caption{Температура в момент времени $t=100$с}
+\caption{Температура в момент времени $t=1000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=100000, point meta max=110000]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Давление $P_w$ в момент времени $t=1000$с}
 \end{minipage}
 \hfill
-\begin{minipage}[h]{0.47\textwidth}
+\begin{minipage}[h]{0.48\textwidth}
 \begin{tikzpicture}
-  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.9\textwidth, height=0.9\textwidth, point meta min=285, point meta max=320]
-    \pgfplotstableread[skip first n=3]{data/test3/F-000000003000.tec}{\mytable}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=285, point meta max=320]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
     \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
   \end{axis}
 \end{tikzpicture}
-\caption{Температура в момент времени $t=3000$с}
+\caption{Температура в момент времени $t=1000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=100000, point meta max=110000]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Давление $P_w$ в момент времени $t=7000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=285, point meta max=320]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Температура в момент времени $t=7000$с}
+\end{minipage}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.6]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_w$ в момент времени $t=100$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_n$ в момент времени $t=100$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.6]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_w$ в момент времени $t=1000$с}
+\end{minipage}
+\hfill
+\hfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_n$ в момент времени $t=1000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.6]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_w$ в момент времени $t=7000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_n$ в момент времени $t=7000$с}
+\end{minipage}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_g$ в момент времени $t=100$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_g$ в момент времени $t=1000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.48\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, xlabel={$x$, м}, ylabel={$y$, м}, colorbar, width=0.8\textwidth, height=0.8\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенность $S_g$ в момент времени $t=7000$с}
 \end{minipage}
 \end{center}
 \end{figure}
