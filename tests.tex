@@ -384,7 +384,7 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
     \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
   \end{axis}
 \end{tikzpicture}
-\caption{Насыщенность $S_w$ в момент времени $t=7000$с}
+\caption{Насыщенность $S_w$ вТемпература момент времени $t=7000$с}
 \end{minipage}
 \hfill
 \begin{minipage}[h]{0.48\textwidth}
@@ -435,9 +435,130 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 
 \subsection{Трехмерная задача просачивания с источником на границе}
 
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/pw_200.png} 
+       \caption{Давление $P_w$ в момент времени $t=200$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/pw_1000.png} 
+       \caption{Давление $P_w$ в момент времени $t=1000$с}
+    \end{minipage}
+    \vfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/pw_2000.png} 
+       \caption{Давление $P_w$ в момент времени $t=2000$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/pw_6600.png} 
+       \caption{Давление $P_w$ в момент времени $t=6600$с}
+    \end{minipage}
+    \hfill  
+  \end{center}
+\end{figure}
 
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/t_200.png} 
+       \caption{Температура в момент времени $t=200$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/t_1000.png} 
+       \caption{Температура в момент времени $t=1000$с}
+    \end{minipage}
+    \vfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/t_2000.png} 
+       \caption{Температура в момент времени $t=2000$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/t_6600.png} 
+       \caption{Температура в момент времени $t=6600$с}
+    \end{minipage}
+    \hfill  
+  \end{center}
+\end{figure}
 
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sw_200.png} 
+       \caption{Насыщенность $S_w$ в момент времени $t=200$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sw_1000.png} 
+       \caption{Насыщенность $S_w$ в момент времени $t=1000$с}
+    \end{minipage}
+    \vfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sw_2000.png} 
+       \caption{Насыщенность $S_w$ в момент времени $t=2000$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sw_6600.png} 
+       \caption{Насыщенность $S_w$ в момент времени $t=6600$с}
+    \end{minipage}
+    \hfill  
+  \end{center}
+\end{figure}
 
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sn_200.png} 
+       \caption{Насыщенность $S_n$ в момент времени $t=200$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sn_1000.png} 
+       \caption{Насыщенность $S_n$ в момент времени $t=1000$с}
+    \end{minipage}
+    \vfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sn_2000.png} 
+       \caption{Насыщенность $S_n$ в момент времени $t=2000$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sn_6600.png} 
+       \caption{Насыщенность $S_n$ в момент времени $t=6600$с}
+    \end{minipage}
+    \hfill  
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sg_200.png} 
+       \caption{Насыщенность $S_g$ в момент времени $t=200$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sg_1000.png} 
+       \caption{Насыщенность $S_g$ в момент времени $t=1000$с}
+    \end{minipage}
+    \vfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sg_2000.png} 
+       \caption{Насыщенность $S_g$ в момент времени $t=2000$с}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.49\textwidth}
+       \includegraphics[width=1\textwidth]{test4/sg_6600.png} 
+       \caption{Насыщенность $S_g$ в момент времени $t=6600$с}
+    \end{minipage}
+    \hfill  
+  \end{center}
+\end{figure}
 
 
 
