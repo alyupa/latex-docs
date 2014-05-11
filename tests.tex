@@ -1,9 +1,9 @@
 %
 \section{Результаты расчетов тестовых задач}
 %
-В соответствии с описанной математической моделью были проведены расчеты
+В соответствии с~ описанной математической моделью были проведены расчеты
 нескольких тестовых задач, результаты которых качественно верно описывают
-рассматриваемые явления. Проверить согласованность результатов расчетов с
+рассматриваемые явления. Проверить согласованность результатов расчетов с~
 экспериментом пока не представляется возможным.
 
 \subsection{Задача о закачке газа под давлением}
@@ -19,11 +19,11 @@ $T=285K$. Граничные условия:
 \begin{equation} \label{T} \left.T\right|_{x=0}=320K,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=1}=0. \end{equation}
 
 Результаты расчетов представлены в виде зависимостей профилей насыщенностей фаз,
-распределения давления и температуры от времени.
+распределения давления и температуры от~ времени.
 
-По оси $x$ отложено расстояние по вертикали от дна резервуара. По оси $y$--
-значения насыщенностей каждой из фаз на расстоянии $x$ от дна резервуара
-в определенный момент расчетного времени.
+По~ оси $x$ отложено расстояние по вертикали от дна резервуара. По~ оси $y$--
+значения насыщенностей каждой из фаз на расстоянии $x$ от~ дна резервуара
+в~ определенный момент расчетного времени.
 
 \begin{figure}
 \begin{center}
@@ -162,10 +162,10 @@ $T=285K$. Граничные условия:
 \end{figure}
 
 \subsection{Задача о перераспределении фаз под действием силы тяжести}
-Рассмотрим одномерную модельную задачу фильтрации. Пористость и
-абсолютная проницаемость породы постоянны во всем объеме:  $m$=0.4,\; $K=6.64\cdot 10^{-11}$ м$^2$.
+Рассмотрим одномерную модельную задачу фильтрации. Пористость и~
+абсолютная проницаемость породы постоянны во~ всем объеме:  $m$=0.4,\; $K=6.64\cdot 10^{-11}$ м$^2$.
 Начальные условия:\; $S_w=0.4$,\; $S_n=0.3$,\; $S_g=0.3$, 
-$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от верхнего края области);
+$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от~ верхнего края области);
 $T=285K$. Граничные условия:
 
 $\left.T\right|_{x=0}=320K, \left.T\right|_{x=1}=285K;$
@@ -173,12 +173,12 @@ $\left.P\right|_{x=0}=P_{\text{атм}},\quad \Biggl.\dfrac{\partial{P_w}}{\part
 $\left.S_w\right|_{x=0}=0.01,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=1}=0;$
 $\left.S_n\right|_{x=0}=0.01,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{x}}\Biggr|_{x=1}=0;$
 
-Результаты расчетов представлены в виде зависимостей профилей насыщенностей фаз,
-распределения давления и температуры от времени.
+Результаты расчетов представлены в~ виде зависимостей профилей насыщенностей фаз,
+распределения давления и~ температуры от~ времени.
 
-По оси $x$ отложено расстояние по вертикали от дна резервуара. По оси $y$--
-значения насыщенностей каждой из фаз на расстоянии $x$ от дна резервуара
-в определенный момент расчетного времени.
+По~ оси $x$ отложено расстояние по вертикали от дна резервуара. По~ оси $y$--
+значения насыщенностей каждой из~ фаз на~ расстоянии $x$ от~ дна резервуара
+в~ определенный момент расчетного времени.
 
 \begin{figure}
 \begin{center}
@@ -249,7 +249,7 @@ $\left.S_n\right|_{x=0}=0.01,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{x}}\Big
 \end{figure}
 
 \subsection{Двухмерная задача просачивания с источником на границе}
-Расматриваем двумерную область пористой среды, имеющую форму
+Рассмотрим двумерную область пористой среды, имеющую форму
 прямоугольника. Пористость и абсолютная проницаемость породы постоянны во всем
 объеме. Параметры модели такие же, как
 в первой тестовой задаче.
@@ -438,22 +438,27 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \begin{figure}
   \begin{center}
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/pw_200.png} 
+       \includegraphics[width=1\textwidth]{test4/pw_200.png}
+       \vspace{1cm}
        \caption{Давление $P_w$ в момент времени $t=200$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/pw_1000.png} 
+       \includegraphics[width=1\textwidth]{test4/pw_1000.png}
+       \vspace{1cm}
        \caption{Давление $P_w$ в момент времени $t=1000$с}
     \end{minipage}
+    \vspace{3cm}
     \vfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/pw_2000.png} 
+       \includegraphics[width=1\textwidth]{test4/pw_2000.png}
+       \vspace{1cm}
        \caption{Давление $P_w$ в момент времени $t=2000$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/pw_6600.png} 
+       \includegraphics[width=1\textwidth]{test4/pw_6600.png}
+       \vspace{1cm}
        \caption{Давление $P_w$ в момент времени $t=6600$с}
     \end{minipage}
     \hfill  
@@ -463,22 +468,27 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \begin{figure}
   \begin{center}
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/t_200.png} 
+       \includegraphics[width=1\textwidth]{test4/t_200.png}
+       \vspace{1cm}
        \caption{Температура в момент времени $t=200$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/t_1000.png} 
+       \includegraphics[width=1\textwidth]{test4/t_1000.png}
+       \vspace{1cm}
        \caption{Температура в момент времени $t=1000$с}
     \end{minipage}
+    \vspace{3cm}
     \vfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/t_2000.png} 
+       \includegraphics[width=1\textwidth]{test4/t_2000.png}
+       \vspace{1cm}
        \caption{Температура в момент времени $t=2000$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/t_6600.png} 
+       \includegraphics[width=1\textwidth]{test4/t_6600.png}
+       \vspace{1cm}
        \caption{Температура в момент времени $t=6600$с}
     \end{minipage}
     \hfill  
@@ -488,22 +498,27 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \begin{figure}
   \begin{center}
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sw_200.png} 
+       \includegraphics[width=1\textwidth]{test4/sw_200.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_w$ в момент времени $t=200$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sw_1000.png} 
+       \includegraphics[width=1\textwidth]{test4/sw_1000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_w$ в момент времени $t=1000$с}
     \end{minipage}
+    \vspace{3cm}
     \vfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sw_2000.png} 
+       \includegraphics[width=1\textwidth]{test4/sw_2000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_w$ в момент времени $t=2000$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sw_6600.png} 
+       \includegraphics[width=1\textwidth]{test4/sw_6600.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_w$ в момент времени $t=6600$с}
     \end{minipage}
     \hfill  
@@ -513,22 +528,27 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \begin{figure}
   \begin{center}
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sn_200.png} 
+       \includegraphics[width=1\textwidth]{test4/sn_200.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_n$ в момент времени $t=200$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sn_1000.png} 
+       \includegraphics[width=1\textwidth]{test4/sn_1000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_n$ в момент времени $t=1000$с}
     \end{minipage}
+    \vspace{3cm}
     \vfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sn_2000.png} 
+       \includegraphics[width=1\textwidth]{test4/sn_2000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_n$ в момент времени $t=2000$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sn_6600.png} 
+       \includegraphics[width=1\textwidth]{test4/sn_6600.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_n$ в момент времени $t=6600$с}
     \end{minipage}
     \hfill  
@@ -538,22 +558,27 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
 \begin{figure}
   \begin{center}
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sg_200.png} 
+       \includegraphics[width=1\textwidth]{test4/sg_200.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_g$ в момент времени $t=200$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sg_1000.png} 
+       \includegraphics[width=1\textwidth]{test4/sg_1000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_g$ в момент времени $t=1000$с}
     \end{minipage}
+    \vspace{3cm}
     \vfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sg_2000.png} 
+       \includegraphics[width=1\textwidth]{test4/sg_2000.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_g$ в момент времени $t=2000$с}
     \end{minipage}
     \hfill
     \begin{minipage}[h]{0.49\textwidth}
-       \includegraphics[width=1\textwidth]{test4/sg_6600.png} 
+       \includegraphics[width=1\textwidth]{test4/sg_6600.png}
+       \vspace{1cm}
        \caption{Насыщенность $S_g$ в момент времени $t=6600$с}
     \end{minipage}
     \hfill  
