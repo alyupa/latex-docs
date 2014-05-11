@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{indentfirst}% Красная строка в первом абзаце
 \usepackage{tabularx}
+\usepackage{newclude}
 \usepackage[labelsep=period]{caption} % пакет для управления заголовка рисунков и таблиц
 \usepackage{subfig} % пакет для расположения нескольких под рисунков в одном окружении figure
 \usepackage{longtable}
@@ -62,7 +63,11 @@
 \include{physics}
 \include{math}
 \include{algorithm}
-\include{tests}
+\include*{tests}
+\include*{test_1D_flow}
+\include*{test_1D_relocation}
+\include*{test_2D}
+\include{test_3D}
 \include{calculations}
 \include{concl}
 

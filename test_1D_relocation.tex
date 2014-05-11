@@ -1,0 +1,86 @@
+\subsection{Задача о перераспределении фаз под действием силы тяжести}
+Рассмотрим одномерную модельную задачу фильтрации. Пористость и~
+абсолютная проницаемость породы постоянны во~ всем объеме:  $m$=0.4,\; $K=6.64\cdot 10^{-11}$ м$^2$.
+Начальные условия:\; $S_w=0.4$,\; $S_n=0.3$,\; $S_g=0.3$, 
+$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от~ верхнего края области);
+$T=285K$. Граничные условия:
+
+$\left.T\right|_{x=0}=320K, \left.T\right|_{x=1}=285K;$
+$\left.P\right|_{x=0}=P_{\text{атм}},\quad \Biggl.\dfrac{\partial{P_w}}{\partial{x}}\Biggr|_{x=1}=0;$
+$\left.S_w\right|_{x=0}=0.01,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=1}=0;$
+$\left.S_n\right|_{x=0}=0.01,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{x}}\Biggr|_{x=1}=0;$
+
+Результаты расчетов представлены в~ виде зависимостей профилей насыщенностей фаз,
+распределения давления и~ температуры от~ времени.
+
+По~ оси $x$ отложено расстояние по вертикали от дна резервуара. По~ оси $y$--
+значения насыщенностей каждой из~ фаз на~ расстоянии $x$ от~ дна резервуара
+в~ определенный момент расчетного времени.
+
+\begin{figure}
+\begin{center}
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend entries={$S_w$,$S_n$,$S_g$}, axis lines=left, ymax=1, ymin=0, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$S$}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=1] {\mytable};
+    \addplot [black, ultra thick] table [x expr=1-\thisrow{0}, y=2] {\mytable};
+    \addplot [red, ultra thick] table [x expr=1-\thisrow{0}, y=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенности в момент времени $t=4000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend entries={$S_w$,$S_n$,$S_g$}, axis lines=left, ymax=1, ymin=0, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$S$}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000010000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=1] {\mytable};
+    \addplot [black, ultra thick] table [x expr=1-\thisrow{0}, y=2] {\mytable};
+    \addplot [red, ultra thick] table [x expr=1-\thisrow{0}, y=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенности в момент времени $t=10000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, ymax=105000, ymin=100000, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$P$, Па}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Давление $P_w$ в момент времени $t=4000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, ymax=105000, ymin=100000, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$P$, Па}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000010000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Давление $P_w$ в момент времени $t=10000$с}
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, ymax=320, ymin=285, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$T$, К}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000004000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Температура в момент времени $t=4000$с}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, ymax=320, ymin=285, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$T$, К}]
+    \pgfplotstableread[skip first n=3]{data/test2/F-000000010000.tec}{\mytable}
+    \addplot [blue, ultra thick] table [x expr=1-\thisrow{0}, y=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Температура в момент времени $t=10000$с}
+\end{minipage}
+\end{center}
+\end{figure}
