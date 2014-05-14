@@ -1,26 +1,39 @@
 
 \subsection{Двухмерная задача просачивания с источником на границе}
-Рассмотрим двумерную область пористой среды, имеющую форму
-прямоугольника. Пористость и абсолютная проницаемость породы постоянны во всем
-объеме. Параметры модели такие же, как
-в первой тестовой задаче.
-Во всей области задаем следующее 
-начальное распределение: $S_w=0.4$,\; $S_n=0.35$,\; $S_g=0.25$, 
-$P_w=P_\text{атм}+\rho g h$($h$ - глубина, отсчитывается от верхнего края области).
-Пусть размер области -- $N_x\cdot N_y$.
-Граничную поверхность, кроме части верхней границы, считаем непроницаемой, 
-что может быть интерпретировано так,
-что среда огорожена непроницаемым резервуаром, имеющим сверху отверстие с
-координатами: $(N_x/3, N_y)$, $(2N_x/3, N_y)$. Через отверстие происходит обмен веществом между 
-резервуаром и окружающей средой. На отверстии заданы условия: $P_w=P_\text{атм}$,
+Рассмотрим двухмерную область пористой среды, имеющую форму
+прямоугольника. В начальный момент времени водой занято лишь
+10\% области, а для нефти и газа задано периодическое распределение. Ось $x$ направлена слева-направо,
+ось $y$ -- снизу-вверх. На левой границе в верхней половине области расположен источник воды.
+На правой границе задано постоянное значение давления. Через верхнюю, нижнюю границы, вторую половину левой границы
+может происходить просачивание. Учитывается влияние силы тяжести. Месторасположение источника нагревается. 
+Пусть число расчетных узлов -- $N_x\cdot N_y$.\\
+Начальные условия:
+\begin{equation}
+  \begin{aligned}
+    &S_w=0.1,\\
+    &S_n(x, y)=0.4 + 0.1 \cdot sin^2(x \cdot N_x + y \cdot N_y),\\
+    &S_g(x, y)=0.4 + 0.1 \cdot cos^2(x \cdot N_x + y \cdot N_y),\\
+    &P_w=P_\text{атм},\\
+    &T=285K.
+   \end{aligned}
+\end{equation}
+Граничные условия:
+\begin{equation}
+  \begin{aligned}
+    &\left.T\right|_{x=0,\ 0.5 < y < 1}=320K,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=1}=0,\\
+    &\Biggl.\dfrac{\partial{T}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{T}}{\partial{y}}\Biggr|_{y=1}=0;\\
+    &\left.P\right|_{x=0,\ 0.5 < y < 1}=1.1\cdot P_{\text{атм}},\quad \Biggl.\dfrac{\partial{P_w}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \left.{P_w}\right|_{x=1}=P_{\text{атм}},\\
+    &\Biggl.\dfrac{\partial{P_w}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{P_w}}{\partial{y}}\Biggr|_{y=1}=0;\\
+    &\left.S_w\right|_{x=0,\ 0.5 < y < 1}=0.6,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=1}=0,\\
+    &\Biggl.\dfrac{\partial{S_w}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{y}}\Biggr|_{y=1}=0;\\
+    &\left.S_n\right|_{x=0,\ 0.5 < y < 1}=0.15,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{x}}\Biggr|_{x=1}=0,\\
+    &\Biggl.\dfrac{\partial{S_n}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{S_n}}{\partial{y}}\Biggr|_{y=1}=0.
+  \end{aligned}
+\end{equation}
 
-$ \dfrac{\partial S_w}{\partial t}= 
-\begin{cases}
- q, \; S_w<S_{max}\\
- 0, \; \text{иначе}
-\end{cases}
-$,
-$ \dfrac{\partial S_n}{\partial t}=-q S_n$.
+Результаты расчетов изображены на Рис.~\ref{t3_pic_start} - Рис.~\ref{t3_pic_end}, приведены распределения давления, температуры
+и~ насыщенностей трех фаз в три различные момента времени. Можно видеть, что фронты источника распространяются по
+области и далее за ее границы, вода постепенно вытесняет нефть и газ.
 
 \begin{figure}
 \begin{center}
@@ -32,6 +45,7 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
   \end{axis}
 \end{tikzpicture}
 \caption{Давление $P_w$ в момент времени $t=100$с}
+\label{t3_pic_start}
 \end{minipage}
 \hfill
 \begin{minipage}[h]{0.48\textwidth}
@@ -179,6 +193,7 @@ $ \dfrac{\partial S_n}{\partial t}=-q S_n$.
   \end{axis}
 \end{tikzpicture}
 \caption{Насыщенность $S_g$ в момент времени $t=7000$с}
+\label{t3_pic_end}
 \end{minipage}
 \end{center}
 \end{figure}
