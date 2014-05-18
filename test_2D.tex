@@ -1,6 +1,6 @@
 
-\subsection{Двухмерная задача просачивания с источником на границе}
-Рассмотрим двухмерную область пористой среды, имеющую форму
+\subsection{Двумерная задача просачивания с источником на границе}
+Рассмотрим двумерную область пористой среды, имеющую форму
 прямоугольника. В начальный момент времени водой занято лишь
 10\% области, а для нефти и газа задано периодическое распределение. Ось $x$ направлена слева-направо,
 ось $y$ -- снизу-вверх. На левой границе в верхней половине области расположен источник воды.
@@ -22,7 +22,7 @@
   \begin{aligned}
     &\left.T\right|_{x=0,\ 0.5 < y < 1}=320K,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \Biggl.\dfrac{\partial{T}}{\partial{x}}\Biggr|_{x=1}=0,\\
     &\Biggl.\dfrac{\partial{T}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{T}}{\partial{y}}\Biggr|_{y=1}=0;\\
-    &\left.P\right|_{x=0,\ 0.5 < y < 1}=1.1\cdot P_{\text{атм}},\quad \Biggl.\dfrac{\partial{P_w}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \left.{P_w}\right|_{x=1}=P_{\text{атм}},\\
+    &\left.P_w\right|_{x=0,\ 0.5 < y < 1}=1.1\cdot P_{\text{атм}},\quad \Biggl.\dfrac{\partial{P_w}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \left.{P_w}\right|_{x=1}=P_{\text{атм}},\\
     &\Biggl.\dfrac{\partial{P_w}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{P_w}}{\partial{y}}\Biggr|_{y=1}=0;\\
     &\left.S_w\right|_{x=0,\ 0.5 < y < 1}=0.6,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=0,\ 0 < y < 0.5}=0,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{x}}\Biggr|_{x=1}=0,\\
     &\Biggl.\dfrac{\partial{S_w}}{\partial{y}}\Biggr|_{y=0}=0,\quad \Biggl.\dfrac{\partial{S_w}}{\partial{y}}\Biggr|_{y=1}=0;\\
@@ -55,7 +55,7 @@
     \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
   \end{axis}
 \end{tikzpicture}
-\caption{Температура в момент времени $t=1000$с}
+\caption{Температура в момент времени $t=100$с}
 \end{minipage}
 \vfill
 \begin{minipage}[h]{0.48\textwidth}

@@ -31,22 +31,22 @@
 \newblock {С.}~78–80.{}
 
 \bibitem{Pareng-2013}
-\selectlanguageifdefined{russian}
+\selectlanguageifdefined{english}
 {Application of Explicit Schemes for the Simulation of the Two and Three Phase
-  Filtration}~/ D.~N.~Morozov, A.~A.~Lyupa, N.~G.~Churbanova {[и~др.]}~//
+  Filtration}~/ D.~N.~Morozov, A.~A.~Lyupa, N.~G.~Churbanova et~al.~//
   {Proceedings of the Third International Conference on Parallel, Distributed,
   Grid and Cloud Computing for Engineering}.
 \newblock Stirlingshire, UK: Civil-Comp Press, 2013.{}
 
 \bibitem{CSE}
-\selectlanguageifdefined{russian}
+\selectlanguageifdefined{english}
 {Simulation of Multiphase Flows in the Subsurface on GPU-based
-  Supercomputers}~/ M.~A.~Trapeznikova, N.~G.~Churbanova, A.~A.~Lyupa
-  {[и~др.]}~// {Parallel Computing: Accelerating Computational Science and
-  Engineering (CSE)}.
+  Supercomputers}~/ M.~A.~Trapeznikova, N.~G.~Churbanova, A.~A.~Lyupa et~al.~//
+  {Parallel Computing: Accelerating Computational Science and Engineering
+  (CSE)}.
 \newblock IOS Press, 2014.
-\newblock Т.~25 {из} \BibEmph{{Advances in Parallel Computing}}.
-\newblock {С.}~324--333.{}
+\newblock Vol.~25 of \BibEmph{{Advances in Parallel Computing}}.
+\newblock P.~324--333.{}
 
 \bibitem{Mathmod-2014}
 \selectlanguageifdefined{russian}
