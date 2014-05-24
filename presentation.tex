@@ -5,60 +5,83 @@
 \usepackage{amssymb,amsfonts,amsmath,mathtext}
 \usepackage{cite,enumerate,float,indentfirst}
 \usepackage{graphicx}
-\usepackage{movie15}
+\usepackage{media9}
 \usepackage{hyperref}
 
 \graphicspath{{fig/}}
 
-% Тема презентации
-\usetheme[numbers, totalnumbers, minimal, nologo, nonav, compress]{Statmod}
-%\usetheme{Singapore}
-\usecolortheme{orchid}
-%%%%%%%%%%%%%%%%%%%
-%% Выбор шрифтов %%
+\usetheme{Boadilla}
+\usecolortheme{crane}
 \usefonttheme[onlylarge]{structurebold}
-
-% Привычный шрифт для математических формул
 \usefonttheme[onlymath]{serif}
-
-% Более крупный шрифт для подзаголовков титульного листа
 \setbeamerfont{institute}{size=\normalsize}
-%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%
-%%% Сокращения %%%
-% Синий цвет выделения
 \setbeamercolor{color1}{bg=blue!60!black,fg=white}
-%%%%%%%%%%%%%%%%%%
+\beamertemplatenavigationsymbolsempty
 
-\title{ВЫПУСКНАЯ РАБОТА БАКАЛАВРА\\
-\vspace{0.1cm}
-Математическое моделирование течения трехфазной жидкости в пористых средах с использованием гибридных суперкомпьютеров}
-\author{студент гр.871 Люпа А.А.}
+\makeatletter
+\defbeamertemplate*{footline}{my theme}{
+    \leavevmode
+    \hbox{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+        \insertframenumber{} / \inserttotalframenumber \hspace*{2ex}
+    \end{beamercolorbox}}
+}
+\makeatother
+
+
+\title{ Решение задач трехфазной неизотермической фильтрации \\
+на высокопроизводительных вычислительных системах}
+\author{Люпа Анастасия Александровна}
 \institute{Московский физико-технический институт \\
 (государственный университет)\\
 %\vspace{0.1cm}
 Факультет управления и прикладной математики \\
 Кафедра математического моделирования \\
     \vspace{0.2cm}
-    Научный руководитель:  к.ф.-м.н. Чурбанова Н.Г.\\
+    Научный руководитель: с.н.с., к.ф.-м.н. Чурбанова Н.Г.\\
 }
 \date{
-    Москва 2012г.
+    Москва 2014г.
 }
 
-% фоновый рисунок
-%\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{mipt-label.jpg}}
-
 \begin{document}
+
 \begin{frame}
-  % создаём титульный лист
   \maketitle
 \end{frame}
 
- \section{Введение}
+\section{Содержание}
 
- %% Цели и основные предположения
+\begin{frame}
+\begin{center}
+\frametitle{Содержание}
+\begin{itemize}
+\item {\large Введение}
+\vspace{0.3cm}
+\item {\large Цели работы}
+\vspace{0.3cm}
+\item {\large Математическая модель}
+\vspace{0.3cm}
+\item {\large Алгоритм расчета модели}
+\vspace{0.3cm}
+\item {\large Параллельная реализация алгоритма}
+\vspace{0.3cm}
+\item {\large Тестовые задачи}
+\vspace{0.3cm}
+\item {\large Анализ производительности вычислений}
+\vspace{0.3cm}
+\item {\large Заключение}
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Введение}
+
+\end{center}
+\end{frame}
+
 \begin{frame}
 \begin{center}
 \frametitle{Цели работы}
@@ -72,12 +95,10 @@
 \end{center}
 \end{frame}
 
- \section{Математическая модель}
-
-% Основные предположения
 \begin{frame}
 \begin{center}
-\frametitle{Основные предположения}
+\frametitle{Математическая модель}
+%\frametitle{Основные предположения}
 \begin{itemize}
 \item Трехфазные течения: вода, легкая нефть и газ
 \vspace{0.3cm}
@@ -91,70 +112,35 @@
 \vspace{0.3cm}
 \item Учитываются капиллярные силы и гравитационное поле
 \vspace{0.3cm}
-\item Не учитываются тепловые процессы
+\item Учитываются тепловые процессы
 \end{itemize}
 \end{center}
 \end{frame}
 
-%% Математическая модель
 \begin{frame}
 \begin{center}
 \frametitle{Математическая модель}
-Полная система уравнений для описания трехфазных течений
-при сделанных предположениях:
-\begin{equation*}
-\left\{
-  \begin{aligned}
-    &\overrightarrow{u_i}=-K \frac{k_i(S_i)}{{\mu}_i}(grad P_i - {\rho}_i\overrightarrow{g})\\
-    &m\frac{\partial (\rho_i S_i)}{\partial t}+ div(\rho_i \overrightarrow{u_i}) = 0 \\
-    &{\rho}_i = {\rho}_i(P_i) \\
-    &i=w,n,g\\
-    &P_n=P_w+P_{cnw}(S_w)\\
-    &P_g=P_w+P_{cnw}(S_w)+P_{cgn}(S_g)\\
-    &S_w + S_n + S_g=1
-  \end{aligned}
-\right.
-\end{equation*}
-В качестве независимых переменных выбраны $S_w$, $S_n$, $P_w$.
+
 \end{center}
 \end{frame}
 
-\section{Алгоритм расчетов}
-
-%% Алгоритм расчетов
 \begin{frame}
 \begin{center}
-\frametitle{Алгоритм расчетов}
-\begin{enumerate} 
-\item Вычисление давлнений $P_n$,
-$P_g$ через $P_w$ и капиллярные давления. 
-\item Вычисление плотностей фаз. 
-\item
-Нахождение относительных фазовых проницаемостей фаз. 
-\item Вычисление скоростей
-фаз независимо по всем измерениям. 
-\item 
-\label{roS} 
-Нахождение ${\rho}_iS_i$ на
-следующем шаге по времени из уравнения неразрывности явным численным методом.
-\item 
-\label
-{Newton} Решение системы трех нелинейных уравнений методом Ньютона,
-в результате чего находим $P_w$, $S_w$, $S_n$ на следующем шаге по времени.
-\item Применение граничных условий. 
-\item Сохранение полученных значений переменных в текстовый файл
-в формате, подходящем для визуализации(если нужно).
-\item Обмены данными при многопроцессорных вычислениях.
-\end{enumerate} 
+\frametitle{Алгоритм расчета модели}
+
 \end{center}
 \end{frame}
 
-\section{Программная реализация}
-
-%% Комплекс программ для моделирования процессов в подземном пространстве на гибридных суперкомпьютерах
 \begin{frame}
 \begin{center}
-\frametitle{Комплекс программ для моделирования процессов в пористых средах на гибридных суперкомпьютерах}
+\frametitle{Параллельная реализация алгоритма}
+
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Комплекс программ}
 \begin{itemize}
 \item Задачи в прямоугольных областях
 \item Ортогональные расчетные сетки
@@ -170,18 +156,17 @@ $P_g$ через $P_w$ и капиллярные давления.
 \end{center}
 \end{frame}
 
-\section{Тестовые расчеты}
+\begin{frame}
+\begin{center}
+\frametitle{Тестовые задачи}
+
+\end{center}
+\end{frame}
 
 \begin{frame}
 \frametitle{Задача перераспределения фаз}
 \begin{center}
- \includegraphics[width=8.5cm,height=3.5cm]{test1_1}
-\end{center}
-\begin{center}
- \includegraphics[width=8.5cm,height=3.5cm]{test1_4}
-\end{center}
-\begin{center}
- %\includegraphics[width=12cm,height=11cm]{test3}
+
 \end{center}
 \end{frame}
 
@@ -189,59 +174,25 @@ $P_g$ через $P_w$ и капиллярные давления.
 \begin{frame}
 \frametitle{Задача просачивания}
 \begin{center}
- \includegraphics[width=3cm,height=3cm]{test2_1Sw}
- \includegraphics[width=3cm,height=3cm]{test2_1Sn}
- \includegraphics[width=3cm,height=3cm]{test2_1Sg}
-\end{center}
-\begin{center}
-  \includegraphics[width=3cm,height=3cm]{test2_4Sw}
- \includegraphics[width=3cm,height=3cm]{test2_4Sn}
- \includegraphics[width=3cm,height=3cm]{test2_4Sg}
-\end{center}
-\begin{center}
- %\includegraphics[width=12cm,height=11cm]{test3}
-\end{center}
-\end{frame}
 
-%% Тестовые расчеты
-\begin{frame}
-\begin{center}
-\frametitle{Задача нефтедобычи}
-\begin{center}
- \includegraphics[width=8cm,height=7.5cm]{test3}
-\end{center}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \begin{center}
-\frametitle{Результаты совместного применения библиотек CUDA и MPI}
-\includegraphics[width=8cm]{sgpu.png} 
+\frametitle{Анализ производительности вычислений}
+
 \end{center}
 \end{frame}
 
 \section{Заключение}
-%% В дальнейшем планируется:
 \begin{frame}
 \begin{center}
 \frametitle{Заключение}
-{\Large В дальнейшем планируется:}
-\vspace{1.0cm}
-\begin{itemize}
-\item	{\large ставить и решать задачи трехфазной фильтрации в
-	неоднородных, анизотропных средах;}		
-\vspace{0.5cm}
-\item 	{\large улучшить геометрическое деление области при многопроцессорных
-	вычислениях;}
-\vspace{0.5cm}
-\item 	{\large оптимизировать использование графических плат;}
-\vspace{0.5cm}
-\item 	{\large применить разностные схемы с лучшими свойствами.}
-\end{itemize}
+
 \end{center}
 \end{frame}
 
-%% Спасибо за внимание
 \begin{frame}
 \begin{center}
 \frametitle{}
