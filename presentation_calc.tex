@@ -1,0 +1,54 @@
+\section{Анализ производительности вычислений}
+
+\begin{frame}
+\begin{center}
+\frametitle{Анализ производительности вычислений}
+\framesubtitle{Многопроцессорная система}
+\begin{figure}[!h]
+\begin{minipage}[h]{0.46\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=1.0\textwidth, height=0.7\textheight, xlabel={\textit{число процессоров}}, ylabel={\textit{ускорение}}]
+    \pgfplotstableread{data/mpi_times.txt}{\mytable}
+    \pgfplotstablegetelem{0}{Y}\of{\mytable}
+    \pgfmathsetmacro{\ay}{\pgfplotsretval}
+    \addplot [blue, mark=*] table [x=X, y expr=\ay/\thisrow{Y}] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+%\caption{Зависимость ускорения расчета тестовой задачи от числа процессоров}
+\label{mpi_speedup}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.46\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=1.0\textwidth, height=0.7\textheight, xlabel={\textit{число процессоров}}, ylabel={\textit{эффективность}}]
+    \pgfplotstableread{data/mpi_times.txt}{\mytable}
+    \pgfplotstablegetelem{0}{Y}\of{\mytable}
+    \pgfmathsetmacro{\ay}{\pgfplotsretval}
+    \addplot [blue,mark=*] table [x=X, y expr=\ay/\thisrow{Y}/\thisrow{X}] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+%\caption{Зависимость эффективности расчета тестовой задачи от числа процессоров}
+\label{mpi_eff}
+\end{minipage}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Анализ производительности вычислений}
+\framesubtitle{Графический ускоритель}
+\begin{figure}[!h]
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=0.6\textwidth, xlabel={\textit{число узлов сетки}}, ylabel={\textit{ускорение}}]
+    \pgfplotstableread[skip first n=1]{data/cpu_vs_gpu.txt}{\mytable}
+    \addplot [blue, mark=*] table [x=0, y expr=\thisrow{1}/\thisrow{2}] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{GPU vs CPU}
+\label{cuda_speedup}
+\end{center}
+\end{figure}
+\end{center}
+\end{frame}

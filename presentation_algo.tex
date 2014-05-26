@@ -1,0 +1,100 @@
+\section{Алгоритм расчета модели}
+
+\begin{frame}
+\begin{center}
+\frametitle{Алгоритм расчета модели}
+\framesubtitle{Общая структура}
+\begin{figure}
+\begin{tikzpicture}[]
+    \node (start) [startstop] {Старт};
+    \node (read) [io2, right of=start, xshift=2.9cm]{Считать начальные условия и~параметры};
+    \node (init) [process, right of=read, xshift=2.7cm] {t := $t_0$};
+    \node (tloop) [decision, below of=init, yshift=-1.5cm] {t < $t_n$};
+    \node (stop) [startstop, right of=tloop, xshift=1.8cm] {Стоп};
+    \node (increment) [process, left of=tloop, xshift=-2.5cm] {t := t + $\Delta{t}$};
+    \node (calc) [process, below of=tloop, right of=tloop, xshift=1cm, yshift=-2.0cm] {Применить граничные условия};
+    \node (bound) [process, left of=calc, xshift=-1.9cm] {Вычислить $T(t)$, $P_w(t)$, $S_i(t)$};
+    \node (net) [io, left of=bound, xshift=-2.1cm] {Передать данные по сети};
+    \node (ioenable) [decision, left of=net, xshift=-2.0cm] {flush(t)};
+    \node (save) [io, left of=increment, xshift=-2.5cm] {Сохранить в файл $T(t)$, $P_w(t)$, $S_i(t)$};
+
+    \draw [arrow] (start) -- (read);
+    \draw [arrow] (read) -- (init);
+    \draw [arrow] (init) -- (tloop);
+    \draw [arrow] (tloop) -- node[anchor=south] {Нет} (stop);
+    \draw [arrow] (tloop) -- node[anchor=east] {Да} (calc);
+    \draw [arrow] (calc) -- (bound);
+    \draw [arrow] (save) -- (increment);
+    \draw [arrow] (bound) -- (net);
+    \draw [arrow] (net) -- (ioenable);
+    \draw [arrow] (increment) -- (tloop);
+    \draw [arrow] (ioenable) -- node[anchor=east] {Да} (save);
+    \draw [arrow] (ioenable) -- node[anchor=west] {Нет} (increment);
+\end{tikzpicture}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\frametitle{Алгоритм расчета модели}
+\framesubtitle{Вычисления на сетке}
+\begin{figure}
+\begin{tikzpicture}[]
+    \node (start) [startstop] {Старт};
+    \node (init) [process, right of=start, xshift=4.0cm] {x := $x_0$};
+    \node (xloop) [decision, below of=init, yshift=-0.7cm] {x < $x_n$};
+    \node (stop) [startstop, right of=xloop, xshift=4.0cm] {Стоп};
+    \node (step) [process, left of=xloop, xshift=-3.0cm] {x := x + $\Delta{x}$};
+    \node (active) [decision, below of=xloop, yshift=-1.2cm] {active(x)};
+    \node (pressure) [process, right of=active, xshift=3.0cm] {Вычислить $P_n$, $P_g$ через $P_w$, $P_c$};
+    \node (density) [process, below of=pressure, yshift=-1.0cm] {Вычислить $\mu_i$, $k_i$, $\rho_i$};
+    \node (flux) [process2, left of=density, xshift=-3.0cm] {Вычислить $\rho_iS_i$ из уравнения неразрывности};
+    \node (energy) [process2, left of=flux, xshift=-3.0cm] {Вычислить $E$ из уравнения сохранения энергии};
+    \node (newton) [process2, below of=step, yshift=-1.0cm] {Найти с помощью метода Ньютона $T$, $P_w$, $S_i$};
+
+    \draw [arrow] (start) -- (init);
+    \draw [arrow] (init) -- (xloop);
+    \draw [arrow] (xloop) -- node[anchor=west] {Да} (active);
+    \draw [arrow] (active) -- node[anchor=north] {Да} (pressure);
+    \draw [arrow] (active) -- node[anchor=west] {Нет} (step);
+    \draw [arrow] (pressure) -- (density);
+    \draw [arrow] (density) -- (flux);
+    \draw [arrow] (flux) -- (energy);
+    \draw [arrow] (energy) -- (newton);
+    \draw [arrow] (xloop) -- node[anchor=south] {Нет} (stop);
+    \draw [arrow] (newton) -- (step);
+    \draw [arrow] (step) -- (xloop);
+\end{tikzpicture}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+\section{Параллельная реализация алгоритма}
+
+\begin{frame}
+\begin{center}
+\frametitle{Параллельная реализация алгоритма}
+\framesubtitle{\ }
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Параллельная реализация алгоритма}
+\framesubtitle{Комплекс программ}
+\begin{itemize}
+\item Геометрический параллелизм
+\item Автоматическое первоначальное разбиение области между процессорами
+\item Реализация 3D обменов данными на внутренних границах подобластей
+\item Язык программирования С/C++, технологии CUDA и MPI
+\item Модульная структура (вычислительные, коммуникационные и управляющие модули)
+\item Расчеты 1D, 2D и 3D задач
+\item Кроссплатформенность(Windows и Linux)
+\item Возможность задействовать любое число CPU и GPU
+\item Использование контроля версий: \textcolor{blue}{https://github.com/alyupa/multiphase-flow-modeling}
+\end{itemize}
+\end{center}
+\end{frame}
