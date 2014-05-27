@@ -44,13 +44,194 @@
 \end{center}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Тестовые задачи}
 \framesubtitle{Двумерная задача просачивания с источником на границе}
 \begin{center}
-
+\begin{figure}
+\begin{columns}[T]
+\begin{column}{.33\textwidth}
+\vspace*{-1.5mm}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, colorbar left, colorbar style={width=0.2cm}, width=1.0\textwidth, height=1.0\textwidth, point meta min=100000, point meta max=110000]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$\qquad \qquad \qquad P_w,\ t=100$с}
+\end{column}
+\hspace{10mm}
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=100000, point meta max=110000]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$P_w,\ t=1000$с}
+\end{column}
+\hfill
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=100000, point meta max=110000]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=5] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$P_w,\ t=7000$с}
+\end{column}
+\end{columns}
+\begin{columns}[T]
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, colorbar left, colorbar style={width=0.2cm}, width=1.0\textwidth, height=1.0\textwidth, point meta min=285, point meta max=320]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$\qquad \qquad \qquad T,\ t=100$с}
+\end{column}
+\hspace{10mm}
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=285, point meta max=320]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$T,\ t=1000$с}
+\end{column}
+\hfill
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=285, point meta max=320]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=6] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$T,\ t=7000$с}
+\end{column}
+\end{columns}
+\end{figure}
 \end{center}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{Тестовые задачи}
+\framesubtitle{Двумерная задача просачивания с источником на границе}
+\begin{center}
+\begin{figure}
+\begin{columns}[T]
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, colorbar left, colorbar style={width=0.2cm}, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$\qquad \qquad \qquad S_w,\ t=100$с}
+\end{column}
+\hspace{10mm}
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_w,\ t=1000$с}
+\end{column}
+\hfill
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=2] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_w,\ t=7000$с}
+\end{column}
+\end{columns}
+\begin{columns}[T]
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, colorbar left, colorbar style={width=0.2cm}, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$\qquad \qquad \qquad S_n,\ t=100$с}
+\end{column}
+\hspace{10mm}
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_n,\ t=1000$с}
+\end{column}
+\hfill
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=3] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_n,\ t=7000$с}
+\end{column}
+\end{columns}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Тестовые задачи}
+\framesubtitle{Двумерная задача просачивания с источником на границе}
+\begin{center}
+\begin{figure}
+\begin{columns}[T]
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, colorbar left, colorbar style={width=0.2cm}, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000000100.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$\qquad \qquad \qquad S_g,\ t=100$с}
+\end{column}
+\hspace{10mm}
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000001000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_g,\ t=1000$с}
+\end{column}
+\hfill
+\begin{column}{.33\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[view={0}{90}, enlargelimits=false, width=1.0\textwidth, height=1.0\textwidth, point meta min=0.1, point meta max=0.48]
+    \pgfplotstableread[skip first n=3]{data/test3/F-000000007000.tec}{\mytable}
+    \addplot3 [surf, shader=interp] table [x=0, y=1, z=4] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{$S_g,\ t=7000$с}
+\end{column}
+\end{columns}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+
 
 \begin{frame}
 \frametitle{Тестовые задачи}
