@@ -56,17 +56,29 @@
 
 \section{Цели работы}
 
+\tikzstyle{itembox} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=1.5cm, text centered, draw=black, fill=GreenYellow!50]
+
 \begin{frame}
 \begin{center}
 \frametitle{Цели работы}
 \framesubtitle{\ }
-\begin{itemize}
-\item {\large Построение математической модели трехфазной неизотермической фильтрации в пористой среде, допускающей реализацию явными методами\\}
-\vspace{0.5cm}
-\item {\large Создание алгоритмов и программ, ориентированных на гибридные кластеры с графическими ускорителями\\}
-\vspace{0.5cm}
-\item {\large Проведение тестовых расчетов}
-\end{itemize}
+\begin{figure}
+  \begin{minipage}[h]{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{aim.png}
+  \end{minipage}
+  \hspace{-1cm}
+  \begin{minipage}[h]{0.75\textwidth}
+    \begin{tikzpicture}[]
+      \node (item1) [itembox, xshift=5.0cm] {Математическая модель};
+      \node (item2) [itembox, right of=item1, xshift=4.5cm, yshift=-0.5cm]{Явные численные методы};
+      \node (item3) [itembox, below of=item1, xshift=2.0cm, yshift=-1.0cm] {Алгоритм};
+      \node (item4) [itembox, below of=item2, yshift=-1.0cm] {Программа};
+      \node (item5) [itembox, below of=item3, yshift=-1.0cm] {Многопроцессорные системы};
+      \node (item6) [itembox, left of=item5, xshift=-1.0cm, yshift=-2.0cm] {Графические ускорители};
+      \node (item7) [itembox, below of=item5, xshift=3.0cm, yshift=-1.0cm] {Тестовые расчеты};
+    \end{tikzpicture}
+  \end{minipage}
+\end{figure}
 \end{center}
 \end{frame}
 
