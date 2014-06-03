@@ -79,7 +79,6 @@
 \end{center}
 \end{frame}
 
-
 \section{Параллельная реализация алгоритма}
 
 \begin{frame}
@@ -182,27 +181,25 @@
 \begin{center}
 \frametitle{Параллельная реализация алгоритма}
 \framesubtitle{Комплекс программ}
+\begin{minipage}{0.5\textwidth}
 \begin{itemize}
-\item Геометрический параллелизм
-\item Автоматическое первоначальное разбиение области между процессорами
-\item Реализация 3D обменов данными на внутренних границах подобластей
-\item Язык программирования С/C++, технологии CUDA и MPI
-\item Модульная структура (вычислительные, коммуникационные и управляющие модули)
-\item Расчеты 1D, 2D и 3D задач
-\item Кроссплатформенность(Windows и Linux)
-\item Возможность задействовать любое число CPU и GPU
-\item Использование контроля версий: \textcolor{blue}{https://github.com/alyupa/multiphase-flow-modeling}
+\item Параллельное решение 1D, 2D и 3D задач на произвольном числе CPU и GPU
+\vspace{2mm}
+\item Управление параметрами модели с помощью файла конфигурации
+\vspace{2mm}
+\item Технологии С/C++, MPI, CUDA, VTK (визуализация)
+\vspace{2mm}
+\item Кроссплатформенная реализация (Windows и Linux)
+\vspace{2mm}
+\item Сайт проекта \textcolor{blue}{https://github.com/alyupa/multiphase-flow-modeling}
 \end{itemize}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{Параллельная реализация алгоритма}
-\framesubtitle{Свидетельство о регистрации программы}
-\begin{figure}
-\vspace{-2mm}
-\includegraphics[height=0.9\textheight]{sert.pdf}
-\end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \begin{figure}
+    \vspace{-2mm}
+    \includegraphics[height=0.9\textheight]{sert.pdf}
+  \end{figure}
+\end{minipage}
 \end{center}
 \end{frame}
