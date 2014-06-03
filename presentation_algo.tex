@@ -85,11 +85,18 @@
 \begin{center}
 \frametitle{Параллельная реализация алгоритма}
 \framesubtitle{Разбиение области по процессорам}
+
 \begin{figure}
 \begin{columns}[T]
-\newcommand{\edje}{0.63}
+
+\begin{column}{.33\textwidth}
+Алгоритм
+\end{column}
+\hfill
+
+\newcommand{\edje}{0.5}
 \newcommand{\cl}{blue}
-\begin{column}{.33\textwidth}
+\begin{column}{.2\textwidth}
 \begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
 \begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
   \shade[right color=\cl!10, left color=\cl!50] (0,0) rectangle +(3*\edje,3*\edje);
@@ -109,40 +116,10 @@
   \draw[\cl] (3*\edje,0) rectangle (6*\edje,3*\edje);
 \end{scope}
 \end{tikzpicture}
-\caption{Деление сетки в одном направлении}
-\end{column}
 
-\renewcommand{\cl}{purple}
-\begin{column}{.33\textwidth}
-\vspace{10mm}
-\begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
-\begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
-  \shade[right color=\cl!10, left color=\cl!50] (0,0) rectangle +(3*\edje,3*\edje);
-  \draw[\cl] (0.0, 1.0*\edje) -- (3.0*\edje, 1.0*\edje);
-  \draw[\cl] (0.0, 2.0*\edje) -- (3.0*\edje, 2.0*\edje);
-  \draw[\cl] (1.0*\edje, 0.0) -- (1.0*\edje, 3.0*\edje);
-  \draw[\cl] (2.0*\edje, 0.0) -- (2.0*\edje, 3.0*\edje);
-  \draw[\cl] (0,0) rectangle (3*\edje,3*\edje);
-\end{scope}
-\begin{scope}[every node/.append style={yslant=0.5},yslant=0.5]
-  \shade[right color=\cl!70,left color=\cl!10] (3*\edje,-3*\edje) rectangle +(3*\edje,3*\edje);
-  \draw[\cl] (3.0*\edje, -2.0*\edje) -- (6.0*\edje, -2.0*\edje);
-  \draw[\cl] (3.0*\edje, -1.0*\edje) -- (6.0*\edje, -1.0*\edje);
-  \draw[\cl] (3*\edje,-3*\edje) rectangle (6*\edje,0);
-\end{scope}
-\begin{scope}[every node/.append style={
-    yslant=0.5,xslant=-1},yslant=0.5,xslant=-1]
-  \shade[bottom color=\cl!10, top color=\cl!80] (6*\edje,3*\edje) rectangle +(-3*\edje,-3*\edje);
-  \draw[\cl] (3.0*\edje, 1.0*\edje) -- (6.0*\edje, 1.0*\edje);
-  \draw[\cl] (3.0*\edje, 2.0*\edje) -- (6.0*\edje, 2.0*\edje);
-  \draw[\cl] (3*\edje,0) rectangle (6*\edje,3*\edje);
-\end{scope}
-\end{tikzpicture}
-\caption{Деление сетки в двух направлениях}
-\end{column}
-
+\vspace{1mm}
 \renewcommand{\cl}{red}
-\begin{column}{.33\textwidth}
+
 \begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
 \begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
   \shade[right color=\cl!10, left color=\cl!50] (0,0) rectangle +(3*\edje,3*\edje);
@@ -170,8 +147,37 @@
   \draw[\cl] (3*\edje,0) rectangle (6*\edje,3*\edje);
 \end{scope}
 \end{tikzpicture}
-\caption{Деление сетки в трех направлениях}
+
 \end{column}
+
+\renewcommand{\cl}{purple}
+\begin{column}{.25\textwidth}
+\vspace{15mm}
+\begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
+\begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
+  \shade[right color=\cl!10, left color=\cl!50] (0,0) rectangle +(3*\edje,3*\edje);
+  \draw[\cl] (0.0, 1.0*\edje) -- (3.0*\edje, 1.0*\edje);
+  \draw[\cl] (0.0, 2.0*\edje) -- (3.0*\edje, 2.0*\edje);
+  \draw[\cl] (1.0*\edje, 0.0) -- (1.0*\edje, 3.0*\edje);
+  \draw[\cl] (2.0*\edje, 0.0) -- (2.0*\edje, 3.0*\edje);
+  \draw[\cl] (0,0) rectangle (3*\edje,3*\edje);
+\end{scope}
+\begin{scope}[every node/.append style={yslant=0.5},yslant=0.5]
+  \shade[right color=\cl!70,left color=\cl!10] (3*\edje,-3*\edje) rectangle +(3*\edje,3*\edje);
+  \draw[\cl] (3.0*\edje, -2.0*\edje) -- (6.0*\edje, -2.0*\edje);
+  \draw[\cl] (3.0*\edje, -1.0*\edje) -- (6.0*\edje, -1.0*\edje);
+  \draw[\cl] (3*\edje,-3*\edje) rectangle (6*\edje,0);
+\end{scope}
+\begin{scope}[every node/.append style={
+    yslant=0.5,xslant=-1},yslant=0.5,xslant=-1]
+  \shade[bottom color=\cl!10, top color=\cl!80] (6*\edje,3*\edje) rectangle +(-3*\edje,-3*\edje);
+  \draw[\cl] (3.0*\edje, 1.0*\edje) -- (6.0*\edje, 1.0*\edje);
+  \draw[\cl] (3.0*\edje, 2.0*\edje) -- (6.0*\edje, 2.0*\edje);
+  \draw[\cl] (3*\edje,0) rectangle (6*\edje,3*\edje);
+\end{scope}
+\end{tikzpicture}
+\end{column}
+
 \end{columns}
 \end{figure}
 \end{center}
