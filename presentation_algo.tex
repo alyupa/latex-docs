@@ -89,14 +89,37 @@
 \begin{figure}
 \begin{columns}[T]
 
-\begin{column}{.33\textwidth}
-Алгоритм
+\begin{column}{.4\textwidth}
+\begin{scriptsize}
+\begin{equation*}
+\begin{aligned}
+&for\ (s_1 = 1;\ s_1 \leq size\ \&\& \ s_1 < N_x;\ s_1++) \\
+&\ for\ (s_2 = 1;\ s_2 \leq size\ \&\& \ s_2 < N_y;\ s_2++) \\
+&\quad for\ (s_3 = 1;\ s_3 \leq size\ \&\& \ s_3 < N_z;\ s_3++) \\
+&\quad \left\{ \right.\\
+&\qquad T_{calc} = t_{calc}(\Bigl{\lceil} \frac{N_x}{s_1} \Bigr{\rceil} \cdot \Bigl{\lceil} \frac{N_y}{s_2} \Bigr{\rceil} \cdot \Bigl{\lceil} \frac{N_z}{s_3} \Bigr{\rceil});\\
+&\qquad T_{exch} = t_{exch}(N_x,N_y,N_z,s_1,s_2,s_3) \cdot N_{exch};\\
+&\qquad T = T_{calc} + T_{exch};\\
+&\qquad if\ (T < T_{min})\\
+&\qquad \left\{ \right.\\
+&\qquad \quad T_{min}=T;\\
+&\qquad \quad s_x = s_1;\\
+&\qquad \quad s_y=s_2;\\
+&\qquad \quad s_z=s_3;\\
+&\qquad \left. \right\} \\
+&\quad \left. \right\}
+\end{aligned}
+\end{equation*}
+\end{scriptsize}
+
+
+
 \end{column}
 \hfill
 
 \newcommand{\edje}{0.5}
 \newcommand{\cl}{blue}
-\begin{column}{.2\textwidth}
+\begin{column}{.22\textwidth}
 \begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
 \begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
   \shade[right color=\cl!10, left color=\cl!50] (0,0) rectangle +(3*\edje,3*\edje);
