@@ -11,7 +11,7 @@
 \selectlanguageifdefined{russian}
 Д.~Н.~Морозов, А.~А.~Люпа. {Решение задач
   фильтрации на гибридных
-  суперкомпьютерах}~// {Труды 55-й научной
+  суперкомпьютерах}~// {Труды 54-й научной
   конференции МФТИ. Управление и прикладная
   математика}.
 \newblock Т.~2.
@@ -46,7 +46,7 @@
   (CSE)}.
 \newblock IOS Press, 2014.
 \newblock Vol.~25 of \BibEmph{{Advances in Parallel Computing}}.
-\newblock P.~324--333.{}
+\newblock P.~324–333.{}
 
 \bibitem{Mathmod-2014}
 \selectlanguageifdefined{russian}
