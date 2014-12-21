@@ -1,0 +1,63 @@
+\documentclass[a4paper,14pt,russian]{extreport}
+
+\usepackage{extsizes}
+\usepackage{cmap} % поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{makeidx} % пакет для создания алфавитного указателя
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % эти пакеты необходимы для набора формул
+\usepackage{graphicx}
+\usepackage{indentfirst}% Красная строка в первом абзаце
+\usepackage{tabularx}
+\usepackage{newclude}
+\usepackage[labelsep=period]{caption} % пакет для управления заголовка рисунков и таблиц
+\usepackage{subfig} % пакет для расположения нескольких под рисунков в одном окружении figure
+\usepackage{longtable}
+\usepackage{cite}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{geometry} % Меняем поля страницы
+\geometry{left=2cm}% левое поле
+\geometry{right=2cm}% правое поле
+\geometry{top=2cm}% верхнее поле
+\geometry{bottom=2cm}% нижнее поле
+\sloppy % Избавляемся от переполнений
+\clubpenalty=10000 % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+\newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+%
+\linespread{1.0} % интервал
+\renewcommand{\rmdefault}{ftm} % Times New Roman
+\frenchspacing
+\graphicspath{{fig/}}
+
+\makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
+\frenchspacing %пробел после запятой не увеличивается - так принято в России
+\righthyphenmin=2 % можно оставлять два символа на строке при переносе
+
+%%==========================================================================================
+\begin{document}
+\pagenumbering{arabic}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfil}
+\makeatother
+
+\include{title}
+
+\tableofcontents
+\newpage
+
+\include{content}
+\newpage
+
+\addcontentsline{toc}{section}{Список литературы}
+\bibliographystyle{utf8gost705u.bst}
+\bibliography{report.bib}
+
+\end{document}
