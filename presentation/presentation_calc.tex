@@ -8,7 +8,7 @@
 \begin{minipage}[h]{0.48\textwidth}
 \begin{tikzpicture}
   \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=1.0\textwidth, height=0.7\textheight, xlabel={\textit{число процессоров}}, ylabel={\textit{ускорение}}]
-    \pgfplotstableread{data/mpi_times.txt}{\mytable}
+    \pgfplotstableread{../data/mpi_times.txt}{\mytable}
     \pgfplotstablegetelem{0}{Y}\of{\mytable}
     \pgfmathsetmacro{\ay}{\pgfplotsretval}
     \addplot [blue, mark=*] table [x=X, y expr=\ay/\thisrow{Y}] {\mytable};
@@ -22,7 +22,7 @@
 \hspace{-3mm}
 \begin{tikzpicture}
   \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=1.0\textwidth, height=0.7\textheight, xlabel={\textit{число процессоров}}, ylabel={\textit{эффективность}}]
-    \pgfplotstableread{data/mpi_times.txt}{\mytable}
+    \pgfplotstableread{../data/mpi_times.txt}{\mytable}
     \pgfplotstablegetelem{0}{Y}\of{\mytable}
     \pgfmathsetmacro{\ay}{\pgfplotsretval}
     \addplot [blue,mark=*] table [x=X, y expr=\ay/\thisrow{Y}/\thisrow{X}] {\mytable};
@@ -43,7 +43,7 @@
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[axis lines=left, enlargelimits=true, grid=major, width=0.6\textwidth, xlabel={\textit{число узлов сетки}}, ylabel={\textit{ускорение}}]
-    \pgfplotstableread[skip first n=1]{data/cpu_vs_gpu.txt}{\mytable}
+    \pgfplotstableread[skip first n=1]{../data/cpu_vs_gpu.txt}{\mytable}
     \addplot [blue, mark=*] table [x=0, y expr=\thisrow{1}/\thisrow{2}] {\mytable};
   \end{axis}
 \end{tikzpicture}
