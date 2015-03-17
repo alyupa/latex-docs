@@ -1,0 +1,217 @@
+Why Good Thoughts Block Better Ones
+
+In a classic 1942 experiment, American psychologist Abraham Luchins 
+asked volunteers to do some basic math by picturing water jugs in their 
+mind. Given three empty containers, for example, each with a different 
+capacity—21, 127 and three units of water — the participants had to 
+figure out how to transfer liquid between the containers to measure out
+precisely 100 units. They could fill and empty each jug as many times as
+they wanted, but they had to fill the vessels to their limits.
+The solution was to first fill the second jug to its capacity of 127 
+units, then empty it into the first to remove 21 units, leaving 106, and
+finally to fill the third jug twice to subtract six units for 
+a remainder of 100. Luchins presented his volunteers with several more 
+problems that could be solved with essentially the same three steps; 
+they made quick work of them. Yet when he gave them a problem with 
+a simpler and faster solution than the previous tasks, they failed
+to see it.
+
+This time, Luchins asked the participants to measure out 20
+units of water using containers that could hold 23, 49 and three
+liquid units. The solution is obvious, right? Simply fill the first
+jug and empty it into the third one: 23 – 3 = 20. Yet many people
+in Luchins’s experiment persisted to solve the easier problem the
+old way, emptying the second container into the first and then
+into the third twice: 49 – 23 – 3 – 3 = 20. And when Luchins gave
+them a problem that had a two-step solution—but could not be
+solved using the three-step method to which the volunteers had
+become accustomed—they gave up, saying it was impossible.
+The water jug experiment is one of the most famous examples of the 
+Einstellung effect: the human brain’s dogged tendency to stick with 
+a familiar solution to a problem—the one that first comes to mind—and 
+to ignore alternatives. Often this type of thinking is a useful 
+heuristic. Once you have hit on a successful method to, say, peel 
+garlic, there is no point in trying an ar­­ray of different techniques 
+every time you need a new clove. The trouble with this cognitive 
+shortcut, however, is that it sometimes blinds people to more efficient
+or appropriate solutions than the ones they already know.
+Building on Luchins’s early work, psychologists replicated
+the Einstellung effect in many different laboratory studies with
+both novices and experts exercising a range of mental abilities,
+but exactly how and why it happened was never clear. Recently,
+by recording the eye movements of highly skilled chess players,
+we have solved the mystery. It turns out that people under the
+influence of this cognitive shortcut are literally blind to certain
+details in their environment that could provide them with a
+more effective solution. New research also suggests that many
+different cognitive biases discovered by psychologists over the
+years—those in the courtroom and the hospital, for instance — are in 
+fact variations of the Einstellung effect.
+
+Back to Square One
+Since at least the early 1990 s, psychologists have studied the
+Einstellung effect by recruiting chess players of varying skill levels,
+from amateur to grand master. In such experiments, re­­searchers have 
+presented players with specific arrangements of chess pieces on virtual
+chessboards and asked them to achieve a checkmate in as few moves as 
+possible. Our own studies, for in­­stance, provided expert chess players
+with scenarios in which they could accomplish a checkmate using 
+a well-known sequence called “smothered mate.” In this five-step 
+maneuver, the queen is sacrificed to draw one of the opponent’s pieces
+onto a square to block off the king’s escape route. The players also
+had the option to checkmate the king in just three moves with a much 
+less fa­­miliar sequence. As in Luchins’s water jug studies, most of the
+players failed to find the more efficient solution. During some of these
+studies, we asked the players what was going through their mind. They
+said they had found the smothered mate solution and insisted they were 
+searching for a shorter one, to no avail. But the verbal reports offered
+no insight into why they could not find the swifter solution. In 2007 we
+decided to try something a little more objective: tracking eye movements
+with an infrared camera. Which part of the board people looked at and
+how long they looked at different areas would un­­equivocally tell us
+which aspects of the problem they were noticing and ignoring.
+In this experiment, we followed the gaze of five expert chess
+players as they examined a board that could be solved either with
+the longer smothered mate maneuver or with the shorter three-
+move sequence. After an average of 37 seconds, all the players
+insisted that the smothered mate was the speediest possible way
+to corner the king. When we presented them with a board that
+could be solved only with the three-sequence move, however, they
+found it with no problem. And when we told the players that this
+same swift checkmate had been possible in the previous chessboard, they
+were shocked. “No, it is impossible,” one player ex­­claimed. “It is a 
+different problem; it must be. I would have noticed
+such a simple solution.” Clearly, the mere possibility of the smothered
+mate move was stubbornly masking alternative solutions. In fact,
+the Einstellung effect was powerful enough to temporarily lower ex­­pert
+chess masters to the level of much weaker players.
+The infrared camera revealed that even when the players
+said they were looking for a faster solution—and indeed believed
+they were doing so—they did not actually shift their gaze away
+from the squares they had already identified as part of the
+smothered mate move. In contrast, when presented with the one-solution
+chessboard, players initially looked at the squares
+and pieces important for the smothered mate and, once they
+realized it would not work, directed their attention toward other 
+squares and soon hit on the shorter solution.
+
+Basis for bias
+This past October, Heather Sheridan of the University of South­
+ampton in England and Eyal M. Reingold of the University of
+Toronto published studies that corroborate and complement
+our eye-tracking experiments. They presented 17 novice and 17
+expert chess players with two different situations. In one scenario, 
+a familiar checkmate maneuver such as the smothered
+mate was advantageous but second best to a distinct and less
+ob­­­vious solution. In the second situation, the more familiar se­­
+quence would be a clear blunder. As in our experiments, once
+amateurs and master chess players locked onto the helpful fa­­miliar
+maneuver, their eyes rarely drifted to squares that would
+clue them in to the better solution. When the well-known se­­quence 
+was obviously a mistake, however, all the experts, and
+most of the novices, detected the alternative.
+The Einstellung effect is by no means limited to controlled
+experiments in the lab or even to mentally challenging games
+like chess. Rather it is the basis for many cognitive biases. English
+philosopher, scientist and essayist Francis Bacon was especially
+eloquent about one of the most common forms of cogni­­tive
+bias in his 1620 book Novum Organum: “The human un­­­­der­
+standing when it has once adopted an opinion ... draws all
+things else to support and agree with it. And though there be a
+greater number and weight of instances to be found on the other
+side, yet these it either neglects or despises, or else by some
+distinction sets aside and rejects.... Men ... mark the events where
+they are fulfilled, but where they fail, though this happen much
+oftener, neglect and pass them by. But with far more subtlety
+does this mischief insinuate itself into philosophy and the sciences,
+in which the first conclusion colours and brings into conformity with
+itself all that comes after.”
+In the 1960s English psychologist Peter Wason gave this particular 
+bias a name: “confirmation bias.” In controlled experiments, he
+demonstrated that even when people attempt to test theories in an
+objective way, they tend to seek evidence that confirms
+their ideas and to ignore anything that contradicts them.
+In The Mismeasure of Man, for example, Stephen Jay Gould
+of Harvard University reanalyzed data cited by researchers trying 
+to estimate the relative intelligence of different racial
+groups, social classes and sexes by measuring the volumes of
+their skulls or weighing their brains, on the assumption that
+intelligence was correlated with brain size. Gould uncovered
+massive data distortion. On discovering that French brains were
+on average smaller than their German counterparts, French
+neurologist Paul Broca explained away the discrepancy as a re­­
+sult of the difference in average body size between citizens of
+the two nations. After all, he could not accept that the French
+were less intelligent than the Germans. Yet when he found that
+women’s brains were smaller than those in men’s noggins, he
+did not apply the same correction for body size, because he did
+not have any problem with the idea that women were less intelligent than
+men. Somewhat surprisingly, Gould concluded that Broca and
+others like him were not as reprehensible as we might think. “In
+most cases discussed in this book we can be fairly certain that
+biases ... were unknowingly influential and that scientists be­­
+lieved they were pursuing unsullied truth,” Gould wrote. In oth-
+er words, just as we observed in our chess experiments, com-
+fortably familiar ideas blinded Broca and his contemporaries to
+the errors in their reasoning. Here is the real danger of
+the Einstellung effect. We may believe that we are thinking in an 
+openminded way, completely unaware that our brain is selectively
+directing attention away from aspects of our environment that
+could inspire new thoughts. Any data that do not fit the solution
+or theory we have already clung to are ignored or discarded.
+The surreptitious nature of confirmation bias has unfortunate
+consequences in everyday life, as documented in studies on
+decision making among doctors and juries. In a review of errors
+in medical thought, physician Jerome Groopman noted that in
+most cases of misdiagnosis, “the doctors didn’t stumble because
+of their ignorance of clinical facts; rather, they missed diagnoses
+because they fell into cognitive traps.” When doctors inherit a
+patient from another doctor, for example, the first clinician’s di­­
+agnosis can blind the second to important and contradictory
+de­­tails of the patient’s health that might change the diagnosis. It
+is easier to just accept the diagnosis—the “solution”—that is al­­
+ready in front of them than to rethink the entire situation. Similarly,
+radiologists examining chest x-rays often fixate on the first
+abnormality they find and fail to notice further signs of illness
+that should be obvious, such as a swelling that could indicate
+cancer. If those secondary details are presented alone, however,
+radiologists see them right away.
+Related studies have revealed that jurors begin to decide
+whether someone is innocent or guilty long before all the evidence
+has been presented. In turn, their initial impressions of
+the defendant change how they weigh subsequent evidence and
+even their memory of evidence they saw before. Likewise, if an
+interviewer finds a candidate to be physically attractive, he or
+she will automatically perceive that person’s intelligence and
+personality in a more positive light, and vice versa. These biases,
+too, are driven by the Einstellung effect. It is easier to make a de­­
+cision about someone if one maintains a consistent view of that
+person rather than sorting through contradictory evidence.
+Can we learn to resist the Einstellung effect? Perhaps. In our
+chess experiments and the follow-up experiments by Sheridan
+and Reingold, some exceptionally skilled experts, such as grand
+masters, did in fact spot the less obvious optimal solution even
+when a slower but more familiar sequence of moves was possible.
+This suggests that the more expertise someone has in their
+field—whether chess, science or medicine—the more immune they are 
+to cognitive bias.
+But no one is completely impervious; even the grand masters failed
+when we made the situation tricky enough. Actively
+remembering that you are susceptible to the Einstellung effect
+is another way to counteract it. When considering the evidence
+on, say, the relative contribution of man-made and naturally oc­­curring
+greenhouse gases to global temperature, remember that
+if you already think you know the answer, you will not judge the
+evidence objectively. Instead you will notice evidence that supports 
+the opinion you already hold, evaluate it as stronger than
+it really is and find it more memorable than evidence that does
+not support your view.
+We must try and learn to accept our errors if we sincerely want
+to improve our ideas. English naturalist Charles Darwin came up
+with a remarkably simple and effective technique to do just this.
+“I had ... during many years, followed a golden rule, namely, that
+whenever a published fact, a new observation or thought came
+across me, which was opposed by my general results, to make a
+memorandum of it without fail and at once,” he wrote. “For I
+had found by experience that such facts and thoughts were far
+more apt to escape from memory than favourable ones.”
