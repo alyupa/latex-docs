@@ -1,4 +1,4 @@
-porous-media-flow-diploma
+My Latex writing
 =========================
 
-Source files for my Master degree diploma.
+Source files for my diploma, reports, presentations.
