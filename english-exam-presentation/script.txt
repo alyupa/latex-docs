@@ -6,7 +6,7 @@ I’d like to thank you for attending this presentation.
 What I’d like to present to you today is Why Good Thoughts Block Better Ones.
 Have you ever noticed that when you know a solution of a typical problem and
 solve the similar but easier one, you use that known complex way instead
-of a much more simplier new solution?
+of a much more simpler new solution?
 That's why this topic is attractive for me and I believe that it will
 be entertaining for all of you too.
 My talk will take about ten minutes and if you have any questions,
