@@ -5,23 +5,124 @@ post-graduate student of MIPT, department of Control and Applied Mathematics.
 I’d like to thank you for attending this presentation.
 What I’d like to present to you today is Why Good Thoughts Block Better Ones.
 Have you ever noticed that when you know a solution of a typical problem and
-solve the similar but easier one, you use that known complex way instead of a much more 
-simplier new solution?
+solve the similar but easier one, you use that known complex way instead
+of a much more simplier new solution?
 That's why this topic is attractive for me and I believe that it will
 be entertaining for all of you too.
 My talk will take about ten minutes and if you have any questions,
 I’ll be happy to answer them at the end.
-
 I’ve divided my presentation into four parts.
-I’ll start with experiments that introduce the effect clearly. 
+I’ll start with an experiment that introduces the effect clearly. 
 Secondly, I'll describe its impact on reasoning. 
 After that I'll talk about ways to counteract it.
 To finish up I’ll make a conclusion.
 
+Let's begin with the classic experiment. In 1942, American
+psychologist Abraham Luchins asked volunteers to do some basic math by
+picturing water jugs in their mind. Given three empty containers,
+for example, each with a different capacity—21, 127 and 3 units of water
+— the participants had to figure out how to transfer liquid between
+the containers to measure out precisely 100 units. They could fill and
+empty each jug as many times as they wanted, but they had to fill the 
+vessels to their limits.
+The solution was to first fill the second jug to its capacity of 127 
+units, then empty it into the first to remove 21 units, leaving 106, and
+finally to fill the third jug twice to subtract six units for 
+a remainder of 100. Luchins presented his volunteers with several more 
+problems that could be solved with essentially the same three steps; 
+they made quick work of them. Yet when he gave them a problem with 
+a simpler and faster solution than the previous tasks, they failed
+to see it.
+This time, Luchins asked the participants to measure out 20
+units of water using containers that could hold 23, 49 and three
+liquid units. The solution is obvious, right? Simply fill the first
+jug and empty it into the third one: 23 – 3 = 20. Yet many people
+in Luchins’s experiment persisted to solve the easier problem the
+old way, emptying the second container into the first and then
+into the third twice: 49 – 23 – 3 – 3 = 20. And when Luchins gave
+them a problem that had a two-step solution—but could not be
+solved using the three-step method to which the volunteers had
+become accustomed—they gave up, saying it was impossible.
+The water jug experiment is one of the most famous examples of the 
+Einstellung effect: the human brain’s dogged tendency to stick with 
+a familiar solution to a problem—the one that first comes to mind—and 
+to ignore alternatives. Often this type of thinking is a useful 
+heuristic.
+The trouble with this cognitive 
+shortcut, however, is that it sometimes blinds people to more efficient
+or appropriate solutions than the ones they already know.
+Building on Luchins’s early work, psychologists replicated
+the Einstellung effect in many different laboratory studies with
+both novices and experts exercising a range of mental abilities,
+but exactly how and why it happened was never clear. Recently,
+by recording the eye movements of highly skilled chess players,
+the mystery was solved. It turns out that people under the
+influence of this cognitive shortcut are literally blind to certain
+details in their environment that could provide them with a
+more effective solution. That covers this point.
+
+Now I'd like to observe influence of this effect on thinking.
+In the 1960s English psychologist Peter Wason gave this particular 
+bias a name: “confirmation bias.” In controlled experiments, he
+demonstrated that even when people attempt to test theories in an
+objective way, they tend to seek evidence that confirms
+their ideas and to ignore anything that contradicts them.
+For example, there was an investigation of correlation between
+intelligence and brain size and weight. On discovering that French
+brains were on average smaller than their German counterparts, French
+neurologist Paul Broca explained away the discrepancy as a re­­sult of 
+the difference in average body size between citizens of
+the two nations. After all, he could not accept that the French
+were less intelligent than the Germans. Yet when he found that
+women’s brains were smaller than men’s ones, he
+did not apply the same correction for body size, because he did
+not have any problem with the idea that women were less intelligent than
+men. It shows that even if scientists be­­lieved they were pursuing
+unsullied truth, comfortably familiar ideas blinded Broca and his
+contemporaries to the errors in their reasoning. Here is the real danger of
+the Einstellung effect. We may believe that we are thinking in an 
+openminded way, completely unaware that our brain is selectively
+directing attention away from aspects of our environment that
+could inspire new thoughts. Any data that do not fit the solution
+or theory we have already clung to are ignored or discarded.
+The surreptitious nature of confirmation bias has unfortunate
+consequences in everyday life, as documented in studies on
+decision making among doctors and juries. When doctors inherit a
+patient from another doctor, it is easier to just accept the diagnosis—
+the “solution”—that is al­­ready in front of them than to rethink the 
+entire situation. Similarly, radiologists examining chest x-rays often
+fixate on the first abnormality they find and fail to notice further
+signs of illness that should be obvious, such as a swelling that
+could indicate cancer. If those secondary details are presented alone,
+however, radiologists see them right away. Jurors begin to decide
+whether someone is innocent or guilty long before all the evidence
+has been presented. In turn, their initial impressions of
+the defendant change how they weigh subsequent evidence and
+even their memory of evidence they saw before.
+These biases, too, are driven by the Einstellung effect.
+Here I'd like to finish the second point.
+
+Now I'm moving to the third part of my presentation.
+Can we learn to resist the Einstellung effect? Perhaps. In
+chess experiments some exceptionally skilled experts, such as grand
+masters, did in fact spot the less obvious optimal solution even
+when a slower but more familiar sequence of moves was possible.
+This suggests that the more expertise someone has in their
+field — whether chess, science or medicine — the more immune they are 
+to cognitive bias. But no one is completely impervious; even the grand
+masters failed when the situation is tricky enough. Actively
+remembering that you are susceptible to the Einstellung effect
+is another way to counteract it. If you already think you know the
+answer, you will not judge the evidence objectively. Instead you will 
+notice evidence that supports the opinion you already hold, evaluate it
+as stronger than it really is and find it more memorable than evidence
+that does not support your view. To conclude this point, we must try and
+learn to accept our errors if we sincerely want to improve our ideas.
+
 That brings me to the end of my presentation.
 To sum up, I've spoken about the Einstellung effect. It's about how our
 experience changes our points of view.
-Firstly, I've told you about curious experiments that show it.
+Firstly, I've told you about curious experiment that shows it.
 Secondly, I've shown how harmful this effect is.
 Lastly, I've introduced some ways to avoid its influence.
 In conclusion I would like to say that it's rather dangerous for researchers
