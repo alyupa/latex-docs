@@ -1,4 +1,4 @@
-\documentclass[a4paper,14pt,russian]{extreport}
+\documentclass[a4paper,14pt,russian]{article}
 
 \usepackage{extsizes}
 \usepackage{cmap} % поиск русских слов в полученном pdf-файле
@@ -29,7 +29,7 @@
 \newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
 %
-\linespread{1.0} % интервал
+\linespread{1.5} % интервал
 \renewcommand{\rmdefault}{ftm} % Times New Roman
 \frenchspacing
 \graphicspath{{fig/}}
@@ -41,8 +41,8 @@
 %%==========================================================================================
 \begin{document}
 \pagenumbering{arabic}
-\numberwithin{equation}{section}
-\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\contentsname}{Оглавление}
+\renewcommand{\thesection}{}
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.\hfil}
@@ -56,8 +56,9 @@
 \include{content}
 \newpage
 
-\addcontentsline{toc}{section}{Список литературы}
+\addcontentsline{toc}{section}{\hspace{7mm}Список литературы}
 \bibliographystyle{utf8gost705u.bst}
 \bibliography{report.bib}
+\nocite*{}
 
 \end{document}
