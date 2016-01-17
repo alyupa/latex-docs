@@ -1,3 +1,6 @@
+\newcommand*{\pd}[3][]{\ensuremath{\dfrac{\partial^{#1} #2}{\partial #3^{#1}}}}
+\newcommand*{\dd}[3][]{\ensuremath{\dfrac{\mathrm d^{#1} #2}{\mathrm d #3^{#1}}}}
+
 \section{Модель}
 \subsection{Классическая модель}
 \label{classic_model}
@@ -5,7 +8,7 @@
 имеет вид:
 \begin{subequations} \label{eq:classic_system}
   \begin{align}[left = \empheqlbrace\,]
-    &\frac{\partial (\phi \rho_i S_i)}{\partial t} + div(\rho_i \overrightarrow{u_i}) = q_i, \label{eq:classic_system1} \\
+    &\pd {(\phi \rho_i S_i)}{t} + div(\rho_i \overrightarrow{u_i}) = q_i, \label{eq:classic_system1} \\
     &\overrightarrow{u_i} = -\frac{K k_i}{\mu_i}(\nabla P_i - {\rho}_i g \nabla z), \label{eq:classic_system2} \\
     &P_n = P_w + P_{c}(\overline{S}_w), \label{eq:classic_system3} \\
     &S_w + S_n = 1, \label{eq:classic_system4} \\
@@ -37,8 +40,8 @@ $g$ -- ускорение свободного падения,
 \subsection{Принятые обозначения}
 \label{syms}
 Пусть $q_t = \dfrac{q_n}{\rho_n} + \dfrac{q_w}{\rho_w}$,
-$c_n = \dfrac{1}{\rho_n} \dfrac{d\rho_n}{dP_n}$,
-$c_w = \dfrac{1}{\rho_w} \dfrac{d\rho_w}{dP_w}$,
+$c_n = \dfrac{1}{\rho_n} \dd{\rho_n}{P_n}$,
+$c_w = \dfrac{1}{\rho_w} \dd{\rho_w}{P_w}$,
 $P_{avg} = \dfrac{P_n + P_w}{2}$,
 $P_n = P_{avg} + \dfrac{P_c}{2}$,
 $P_w = P_{avg} - \dfrac{P_c}{2}$,
@@ -46,7 +49,7 @@ $\lambda_n = -\dfrac{K k_n}{\mu_n}$,
 $\lambda_w = -\dfrac{K k_w}{\mu_w}$,
 $\overrightarrow{u_t} = \overrightarrow{u_n} + \overrightarrow{u_w}$,
 $f_w = \dfrac{\lambda_w}{\lambda_n + \lambda_w}$,
-$h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dfrac{dP_c}{dS_w}$.
+$h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
 
 
 \subsection{Разделение переменных}
@@ -61,8 +64,8 @@ $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dfrac{dP_c}{dS_w}$.
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg} + 
   \left[ \frac{1}{2\rho_n} div (\rho_n\lambda_n) + \frac{1}{2\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
-  & + q_t = \left[ \frac{d\phi}{dP_{avg}} + \phi (S_n c_n + S_w c_w) \right] \frac{\partial P_{avg}}{\partial t} +
-  \left[ \frac{\phi}{2} (S_n c_n - S_w c_w) \right] \frac{\partial P_{c}}{\partial t} \\
+  & + q_t = \left[ \dd{\phi}{P_{avg}} + \phi (S_n c_n + S_w c_w) \right] \pd{P_{avg}}{t} +
+  \left[ \frac{\phi}{2} (S_n c_n - S_w c_w) \right] \pd{P_{c}}{t} \\
   & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
  \end{aligned}
 \end{equation}
@@ -77,14 +80,14 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 Тогда
 \begin{equation} \label{eq:classic_saturation}
   div(\rho_w h_w \nabla S_w) - div(\rho_w f_w)[\overrightarrow{u_t} + \lambda_n(\rho_w - \rho_n)g \nabla z] + q_w 
-  = \frac{\partial (\phi \rho_w S_w)}{\partial t}
+  = \pd{(\phi \rho_w S_w)}{t}
 \end{equation} 
  
 \subsection{Модифицированная модель}
 
 Запишем модель ~\eqref{eq:classic_system} кратко в виде
 \begin{equation} \label{eq:short_system}
-   \frac{\partial (\phi \rho_i S_i)}{\partial t} + div \overrightarrow{Q_i} = q_i, i = w,n.
+   \pd{(\phi \rho_i S_i)}{t} + div \overrightarrow{Q_i} = q_i, i = w,n.
 \end{equation}
 
 Здесь $\overrightarrow{Q_i}$ -- поток фазы.
@@ -93,31 +96,63 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 Мы же введем релаксацию потока, положим 
 
 \begin{equation}
- \overrightarrow{Q_i} = \overrightarrow{Q_i^D} - \tau \dfrac{\partial \overrightarrow{Q_i}}{\partial t},
+ \overrightarrow{Q_i} = \overrightarrow{Q_i^D} - \tau \pd{\overrightarrow{Q_i}}{t},
 \end{equation}
 где $\tau$ -- параметр релаксации, довольно малая величина, характеризующая время установления равновесия в системе.
 
 Откуда следует, что
 \begin{equation} \label{eq:div_relax}
- div\overrightarrow{Q_i} = div\overrightarrow{Q_i^D} - \tau div\dfrac{\partial \overrightarrow{Q_i}}{\partial t}.
+ div\overrightarrow{Q_i} = div\overrightarrow{Q_i^D} - \tau div\pd{\overrightarrow{Q_i}}{t}.
 \end{equation}
 
 Продифференцируем по времени исходные уравнения системы ~\eqref{eq:short_system} и домножим на $\tau$, получим что
 
 \begin{equation}
-  \tau \frac{\partial^2 (\phi \rho_i S_i)}{\partial t^2} + \tau \frac{\partial (div \overrightarrow{Q_i})}{\partial t} = \tau \frac{\partial q_i}{\partial t}.
+  \tau \pd[2]{(\phi \rho_i S_i)}{t} + \tau \pd{(div \overrightarrow{Q_i})}{t} = \tau \pd{q_i}{t}.
 \end{equation}
 
 Откуда с учетом ~\eqref{eq:div_relax} от ~\eqref{eq:short_system} перейдем к конечному виду модифицированного уравнения неразрывности
 путем введения релаксации потока:
 
 \begin{equation} \label{eq:mod_system}
-  \tau \frac{\partial^2 (\phi \rho_i S_i)}{\partial t^2} + \frac{\partial (\phi \rho_i S_i)}{\partial t} + div \overrightarrow{Q_i^D} = q_i + \tau \frac{\partial q_i}{\partial t}.
+  \tau \pd[2]{(\phi \rho_i S_i)}{t} + \pd{(\phi \rho_i S_i)}{t} + div \overrightarrow{Q_i^D} = q_i + \tau \pd{q_i}{t}.
 \end{equation}
 
 
 
 \subsection{Разделение переменных в модифицированной модели}
+
+Сделаем некоторые вспомогательные выкладки:
+\begin{equation*}
+ \begin{aligned}
+  \pd[2]{\phi}{t} &= \dd[2]{\phi}{P_{avg}} \cdot {\left( \pd{P_{avg}}{t}\right) }^2 + \dd{\phi}{P_{avg}} \cdot \pd[2]{P_{avg}}{t}, \\
+  \pd[2]{\rho_i}{t} &= \dd[2]{\rho_i}{P_i} \cdot {\left( \pd{P_i}{t}\right) }^2 + \dd{\rho_i}{P_i} \cdot \pd[2]{P_i}{t}, \\
+  \pd[2]{(\phi \rho_i S_i)}{t} &= \rho_i S_i \pd[2]{\phi}{t} + \phi S_i \pd[2]{\rho_i}{t} + \phi \rho_i \pd[2]{S_i}{t} +
+  2S_i \pd{\phi}{t} \cdot \pd{\rho_i}{t} + 2\rho_i \pd{\phi}{t} \cdot \pd{S_i}{t} \\
+  &+ 2\phi \pd{\rho_i}{t} \cdot \pd{S_i}{t} = \rho_i S_i \left(  \dd[2]{\phi}{P_{avg}} \cdot {\left( \pd{P_{avg}}{t}\right) }^2 + \dd{\phi}{P_{avg}} \cdot \pd[2]{P_{avg}}{t} \right) \\
+  &+ \phi S_i \left( \dd[2]{\rho_i}{P_i} \cdot {\left( \pd{P_i}{t}\right) }^2 + \dd{\rho_i}{P_i} \cdot \pd[2]{P_i}{t} \right) + \phi \rho_i \pd[2]{S_i}{t} \\
+  &+ 2S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t} \cdot \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} + 2\rho_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t} \cdot \pd{S_i}{t} \\
+  &+ 2\phi \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} \cdot \pd{S_i}{t}.
+ \end{aligned}
+\end{equation}
+
+Проведя преобразования, аналогичные выполненным в ~\ref{var_division}, получим следующие уравнения для определения
+среднего давления и насыщенности водной фазы:
+
+\begin{equation} \label{eq:classic_pressure}
+ \begin{aligned}
+  &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg} + 
+  \left[ \frac{1}{2\rho_n} div (\rho_n\lambda_n) + \frac{1}{2\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
+  & + q_t = \left[ \dd{\phi}{P_{avg}} + \phi (S_n c_n + S_w c_w) \right] \pd{P_{avg}}{t} +
+  \left[ \frac{\phi}{2} (S_n c_n - S_w c_w) \right] \pd{P_{c}}{t} \\
+  & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
+ \end{aligned}
+\end{equation}
+
+\begin{equation} \label{eq:classic_saturation}
+  div(\rho_w h_w \nabla S_w) - div(\rho_w f_w)[\overrightarrow{u_t} + \lambda_n(\rho_w - \rho_n)g \nabla z] + q_w 
+  = \pd{(\phi \rho_w S_w)}{t} + \tau \pd[2]{(\phi \rho_w S_w)}{t} - \tau \pd{q_w}{t}
+\end{equation} 
 
 \subsection{Упрощение модели для проведения вычислительного эксперимента}
 
@@ -126,22 +161,22 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 с помощью введения релаксации потока в уравнения неразрывности ~\eqref{eq:classic_system1}, то на данном этапе
 будем исходить из дополнительных предположений, позволяющих значительно упростить уравнения для среднего давления
 и насыщенности, не изменяя существенно их характера в целом. В частности, пористость среды положим постояной ($\phi = const$),
-уравнения состояния - линейными, капиллярными эффектами пренебрежем ($P_w = P_n = P_{avg}$).
+уравнения состояния - линейными $\left( \dd[2]{\rho_i}{P_i} = 0 \right)$, капиллярными эффектами пренебрежем ($P_w = P_n = P_{avg}$).
 При перечисленных допущениях, действуя аналогично ~\ref{var_division}, получим уравнение для определения давления:
 \begin{equation} \label{eq:mod_pressure}
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg}
-  + q_t = \phi (S_n c_n + S_w c_w) \frac{\partial P_{avg}}{\partial t} \\
+  + q_t = \phi (S_n c_n + S_w c_w) \pd{P_{avg}}{t} \\
   & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
-  - \tau \left[ \frac{1}{\rho_n} \frac{\partial q_n}{\partial t} + \frac{1}{\rho_w} \frac{\partial q_w}{\partial t} \right] \\
-  & + \tau \phi (S_n c_n + S_w c_w) \frac{\partial^2 P_{avg}}{\partial t^2}
-  + 2 \tau \phi (c_n \frac{\partial S_n}{\partial t} + c_w\frac{\partial S_w}{\partial t}) \frac{\partial P_{avg}}{\partial t}.
+  - \tau \left[ \frac{1}{\rho_n} \pd{q_n}{t} + \frac{1}{\rho_w} \pd{q_w}{t} \right] \\
+  & + \tau \phi (S_n c_n + S_w c_w) \pd[2]{P_{avg}}{t}
+  + 2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}.
  \end{aligned}
 \end{equation}
 
 Несмотря на то, что полностью избавиться от насыщенности в уравнении не получилось, в силу малости слагаемого
-$2 \tau \phi (c_n \dfrac{\partial S_n}{\partial t} + c_w\dfrac{\partial S_w}{\partial t}) \dfrac{\partial P_{avg}}{\partial t}$
-при вычислениях будем считать допустимым задание $\dfrac{\partial S_i}{\partial t}$ явно, т.е. будем использовать данные
+$2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}$
+при вычислениях будем считать допустимым задание $\pd{S_i}{t}$ явно, т.е. будем использовать данные
 значения с предыдущего временного слоя.
 
 А для определения насыщенности достаточно использовать исходное уравнение неразрывности ~\eqref{eq:mod_system},
@@ -149,10 +184,10 @@ $2 \tau \phi (c_n \dfrac{\partial S_n}{\partial t} + c_w\dfrac{\partial S_w}{\pa
 
 \begin{equation} \label{eq:mod_saturation}
  \begin{aligned}
-  & div (\rho_w\lambda_w) \nabla P_{avg} + q_w = g \cdot div (\rho_w^2\lambda_w) \nabla z + \phi \rho_w S_w c_w  \frac{\partial P_{avg}}{\partial t}
-  + \phi \rho_w \frac{\partial S_w}{\partial t} \\
-  & + \tau \phi \rho_w \frac{\partial^2 S_w}{\partial t^2} + \tau \phi \rho_w S_w c_w \frac{\partial^2 P_{avg}}{\partial t^2}
-  + 2 \tau \phi \rho_w c_w \frac{\partial P_{avg}}{\partial t} \frac{\partial S_w}{\partial t} - \tau \frac{\partial q_w}{\partial t}.
+  & div (\rho_w\lambda_w) \nabla P_{avg} + q_w = g \cdot div (\rho_w^2\lambda_w) \nabla z + \phi \rho_w S_w c_w  \pd{P_{avg}}{t}
+  + \phi \rho_w \pd{S_w}{t} \\
+  & + \tau \phi \rho_w \pd[2]{S_w}{t} + \tau \phi \rho_w S_w c_w \pd[2]{P_{avg}}{t}
+  + 2 \tau \phi \rho_w c_w \pd{P_{avg}}{t} \pd{S_w}{t} - \tau \pd{q_w}{t}.
  \end{aligned}
 \end{equation}
 
