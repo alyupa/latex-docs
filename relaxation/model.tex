@@ -56,6 +56,11 @@ $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
 \label{var_division}
 Для дальнейшего использования метода IMPES (Implicit Pressure Explicit Saturation) -- метода неявного по давлению,
 явного по насыщенности, проводится преобразование уравнений модели ~\eqref{eq:classic_system}.
+Разложим член $\pd {(\phi \rho_i S_i)}{t}$ на сумму слагаемых:
+\begin{equation}
+ \pd {(\phi \rho_i S_i)}{t} = \rho_i S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t}
+ + \phi S_i \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} + \phi \rho_i \pd{S_i}{t}.
+\end{equation}
 Разделим уравнения неразрывности ~\eqref{eq:classic_system1} на $\rho_i$ 
 и сложим их. Также используем принятые в ~\ref{syms} обозначения.
 Получим следующее уравнение для определения среднего давления:
@@ -63,9 +68,9 @@ $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
 \begin{equation} \label{eq:classic_pressure}
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg} + 
-  \left[ \frac{1}{2\rho_n} div (\rho_n\lambda_n) + \frac{1}{2\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
+  \frac{1}{2} \left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
   & + q_t = \left[ \dd{\phi}{P_{avg}} + \phi (S_n c_n + S_w c_w) \right] \pd{P_{avg}}{t} +
-  \left[ \frac{\phi}{2} (S_n c_n - S_w c_w) \right] \pd{P_{c}}{t} \\
+  \frac{1}{2} \phi (S_n c_n - S_w c_w) \pd{P_{c}}{t} \\
   & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
  \end{aligned}
 \end{equation}
@@ -123,7 +128,7 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 \subsection{Разделение переменных в модифицированной модели}
 
 Сделаем некоторые вспомогательные выкладки:
-\begin{equation*}
+\begin{equation} \label{calcs1}
  \begin{aligned}
   \pd[2]{\phi}{t} &= \dd[2]{\phi}{P_{avg}} \cdot {\left( \pd{P_{avg}}{t}\right) }^2 + \dd{\phi}{P_{avg}} \cdot \pd[2]{P_{avg}}{t}, \\
   \pd[2]{\rho_i}{t} &= \dd[2]{\rho_i}{P_i} \cdot {\left( \pd{P_i}{t}\right) }^2 + \dd{\rho_i}{P_i} \cdot \pd[2]{P_i}{t}, \\
@@ -132,26 +137,38 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
   &+ 2\phi \pd{\rho_i}{t} \cdot \pd{S_i}{t} = \rho_i S_i \left(  \dd[2]{\phi}{P_{avg}} \cdot {\left( \pd{P_{avg}}{t}\right) }^2 + \dd{\phi}{P_{avg}} \cdot \pd[2]{P_{avg}}{t} \right) \\
   &+ \phi S_i \left( \dd[2]{\rho_i}{P_i} \cdot {\left( \pd{P_i}{t}\right) }^2 + \dd{\rho_i}{P_i} \cdot \pd[2]{P_i}{t} \right) + \phi \rho_i \pd[2]{S_i}{t} \\
   &+ 2S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t} \cdot \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} + 2\rho_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t} \cdot \pd{S_i}{t} \\
-  &+ 2\phi \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} \cdot \pd{S_i}{t}.
+  &+ 2\phi \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} \cdot \pd{S_i}{t}, \\
+  \pd{q_i}{t} &= \dd{q_i}{P_{avg}} \cdot \pd{P_{avg}}{t}.
  \end{aligned}
 \end{equation}
 
-Проведя преобразования, аналогичные выполненным в ~\ref{var_division}, получим следующие уравнения для определения
+Проведя преобразования, аналогичные выполненным в ~\ref{var_division}, получим с учетом результатов ~\eqref{calcs1} следующие уравнения для определения
 среднего давления и насыщенности водной фазы:
 
-\begin{equation} \label{eq:classic_pressure}
+\begin{equation} \label{eq:full_pressure}
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg} + 
-  \left[ \frac{1}{2\rho_n} div (\rho_n\lambda_n) + \frac{1}{2\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
-  & + q_t = \left[ \dd{\phi}{P_{avg}} + \phi (S_n c_n + S_w c_w) \right] \pd{P_{avg}}{t} +
-  \left[ \frac{\phi}{2} (S_n c_n - S_w c_w) \right] \pd{P_{c}}{t} \\
-  & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
+  \frac{1}{2} \left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_c \\
+  & + q_t = \left[ \dd{\phi}{P_{avg}} + \phi (S_n c_n + S_w c_w) \right] \left( \pd{P_{avg}}{t} + \tau \pd[2]{P_{avg}}{t} \right) \\
+  & + \frac{1}{2} \phi (S_n c_n - S_w c_w) \left( \pd{P_{c}}{t} + \tau \pd[2]{P_c}{t} \right)
+  + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z \\
+  & + \tau \left[ \dd[2]{\phi}{P_{avg}} + \phi \left( \frac{1}{\rho_n} S_n \dd[2]{\rho_n}{P_n} + \frac{1}{\rho_w} S_w \dd[2]{\rho_w}{P_w} \right)
+  + 2(S_n c_n + S_w c_w) \dd{\phi}{P_{avg}} \right] {\left( \pd{P_{avg}}{t}\right) }^2 \\
+  & + \tau \left[ \phi \left( \frac{1}{\rho_n} S_n \dd[2]{\rho_n}{P_n} - \frac{1}{\rho_w} S_w \dd[2]{\rho_w}{P_w} \right) 
+  + (S_n c_n - S_w c_w) \dd{\phi}{P_{avg}} \right] \pd{P_{avg}}{t} \cdot \pd{P_c}{t} \\
+  & + \frac{1}{4} \tau \phi \left( \frac{1}{\rho_n} S_n \dd[2]{\rho_n}{P_n} + \frac{1}{\rho_w} S_w \dd[2]{\rho_w}{P_w} \right) {\left( \pd{P_c}{t}\right) }^2 
+  - \tau \left(\frac{1}{\rho_n}\dd{q_n}{P_{avg}} + \frac{1}{\rho_w}\dd{q_w}{P_{avg}}\right) \pd{P_{avg}}{t} \\
+  & + 2 \tau \phi \left(c_n \pd{S_n}{t} + c_w \pd{S_w}{t} \right) \pd{P_{avg}}{t}+ \tau \phi \left(c_n \pd{S_n}{t} - c_w \pd{S_w}{t} \right) \pd{P_c}{t},
  \end{aligned}
 \end{equation}
 
-\begin{equation} \label{eq:classic_saturation}
-  div(\rho_w h_w \nabla S_w) - div(\rho_w f_w)[\overrightarrow{u_t} + \lambda_n(\rho_w - \rho_n)g \nabla z] + q_w 
-  = \pd{(\phi \rho_w S_w)}{t} + \tau \pd[2]{(\phi \rho_w S_w)}{t} - \tau \pd{q_w}{t}
+\begin{equation} \label{eq:full_saturation}
+ \begin{aligned}
+  &div(\rho_w h_w \nabla S_w) - div(\rho_w f_w)[\overrightarrow{u_t} + \lambda_n(\rho_w - \rho_n)g \nabla z] + q_w \\
+  & = \rho_i S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t}
+ + \phi S_i \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} + \phi \rho_i \pd{S_i}{t} \\
+  & + \tau \pd[2]{(\phi \rho_w S_w)}{t} - \tau \dd{q_w}{P_{avg}} \cdot \pd{P_{avg}}{t}.
+ \end{aligned}
 \end{equation} 
 
 \subsection{Упрощение модели для проведения вычислительного эксперимента}
@@ -166,11 +183,11 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 \begin{equation} \label{eq:mod_pressure}
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg}
-  + q_t = \phi (S_n c_n + S_w c_w) \pd{P_{avg}}{t} \\
-  & + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z
-  - \tau \left[ \frac{1}{\rho_n} \pd{q_n}{t} + \frac{1}{\rho_w} \pd{q_w}{t} \right] \\
-  & + \tau \phi (S_n c_n + S_w c_w) \pd[2]{P_{avg}}{t}
-  + 2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}.
+  + q_t \\
+  & = \phi (S_n c_n + S_w c_w) \left( \pd{P_{avg}}{t} + \tau \pd[2]{P_{avg}}{t} \right)
+  + g \left[ \frac{1}{\rho_n} div (\rho_n^2\lambda_n) + \frac{1}{\rho_w} div (\rho_w^2\lambda_w) \right] \nabla z \\
+  & -  \tau \left(\frac{1}{\rho_n}\dd{q_n}{P_{avg}} + \frac{1}{\rho_w}\dd{q_w}{P_{avg}}\right) \pd{P_{avg}}{t} \\
+  & + 2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}.
  \end{aligned}
 \end{equation}
 
@@ -187,7 +204,7 @@ $2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}$
   & div (\rho_w\lambda_w) \nabla P_{avg} + q_w = g \cdot div (\rho_w^2\lambda_w) \nabla z + \phi \rho_w S_w c_w  \pd{P_{avg}}{t}
   + \phi \rho_w \pd{S_w}{t} \\
   & + \tau \phi \rho_w \pd[2]{S_w}{t} + \tau \phi \rho_w S_w c_w \pd[2]{P_{avg}}{t}
-  + 2 \tau \phi \rho_w c_w \pd{P_{avg}}{t} \pd{S_w}{t} - \tau \pd{q_w}{t}.
+  + 2 \tau \phi \rho_w c_w \pd{P_{avg}}{t} \cdot \pd{S_w}{t} - \tau \dd{q_w}{P_{avg}} \cdot \pd{P_{avg}}{t}.
  \end{aligned}
 \end{equation}
 
