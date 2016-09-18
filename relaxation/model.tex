@@ -172,6 +172,7 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 \end{equation} 
 
 \subsection{Упрощение модели для проведения вычислительного эксперимента}
+\label{model_simplification}
 
 Поскольку целью данной работы является проверка возможности в принципе снизить ограничение на шаг по времени при
 использовании явного численного метода для решения уравнения для среднего давления
@@ -215,21 +216,21 @@ $2 \tau \phi (c_n \pd{S_n}{t} + c_w\pd{S_w}{t}) \pd{P_{avg}}{t}$
 \begin{equation*}
   k_{w}(\overline{S}_w)=
   \begin{cases}
-  &\overline{S}_w^\frac{1}{2} \left( 1-\left( 1-\overline{S}_w^\frac{n}{n-1} \right) ^\frac{n-1}{n} \right) ^2
-  \text{ , $0<\overline{S}_w<1$}\\
-  &1 \text{ , $\overline{S}_w\ge 1$}\\
-  &0 \text{ , $\overline{S}_w\le 0$}
+  &\overline{S}_w^\frac{1}{2} \left( 1-\left( 1-\overline{S}_w^\frac{n}{n-1} \right) ^\frac{n-1}{n} \right) ^2,
+  \, 0<\overline{S}_w<1 \\
+  &1, \,\overline{S}_w\ge 1\\
+  &0, \,\overline{S}_w\le 0
 \end{cases} 
 \end{equation*}
 \\
 \begin{equation*}
   k_{n}(\overline{S}_w)=
   \begin{cases}
-  &(1-\overline{S}_w)^\frac{1}{2} \left(1-\overline{S}_w^\frac{n}{n-1} \right) ^\frac{2(n-1)}{n}
-  \text{ , $0<\overline{S}_w<1$}\\
-  &1 \text{ , $\overline{S}_w\le 0$}\\
-  &0 \text{ , $\overline{S}_w\ge 1$}
-  \end{cases}\text { , }
+  &(1-\overline{S}_w)^\frac{1}{2} \left(1-\overline{S}_w^\frac{n}{n-1} \right) ^\frac{2(n-1)}{n},
+  \, 0<\overline{S}_w<1\\
+  &1, \,\overline{S}_w\le 0\\
+  &0, \, \overline{S}_w\ge 1
+  \end{cases}
 \end{equation*}
 
 $\overline{S}_w$ -- эффективная насыщенность водной фазы:
