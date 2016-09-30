@@ -53,6 +53,41 @@ $P_{avg}|_{\text{лев}} = 3.3\cdot 10^7$Па, $P_{avg}|_{\text{прав}} = 3.
 Дальнейшее уменьшение шага не привело к существенному изменению результатов. Детальные данные представлены в ~\ref{time_step_impes_cor}.
 Зависимости насыщенностей и давления от времени представлены на графиках. Видно постепенное вытеснение нефти водой вплоть до уровня источника.
 
+\newcommand{\printplotoned}[1]
+{
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[legend entries={$S_w$,$S_n$}, axis lines=left, xmax=5, xmin=0, ymax=1, ymin=0, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$S$}]
+    \pgfplotstableread[skip first n=1]{data/impes_#1.0s.out}{\mytable}
+    \addplot [blue, ultra thick] table [x=0, y=2] {\mytable};
+    \addplot [black, ultra thick] table [x=0, y expr=1-\thisrowno{2}] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Насыщенности, t=#1с}
+\label{t_10_s}
+\end{minipage}
+\hfill
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{tikzpicture}
+ \begin{axis}[axis lines=left, xmax=5, xmin=0, ymax=330, ymin=300, enlargelimits=true, grid=major, width=1\textwidth, xlabel={$x$, м}, ylabel={$P$, атм}]
+    \pgfplotstableread[skip first n=1]{data/impes_#1.0s.out}{\mytable}
+    \addplot [green, ultra thick] table [x=0, y=1] {\mytable};
+  \end{axis}
+\end{tikzpicture}
+\caption{Давление, t=#1с}
+\label{t_10_p}
+\end{minipage}
+\end{center}
+\end{figure}
+}
+
+\printplotoned{10}
+\printplotoned{100}
+\printplotoned{200}
+\printplotoned{500}
+
 \subsection{Зависимость точности IMPES-метода от шага по времени}
 \label{time_step_impes_cor}
 В таблице представлены погрешности расчета IMPES-методом в моменты времени t=30c, t=60c и t=90c. 
@@ -87,24 +122,30 @@ $5 \cdot 10^{-5}$ & $5.6  \cdot 10^{-10}, \, 5.6 \cdot 10^{-8}$ & $4.5  \cdot 10
 \subsection{Явная схема для модифицированной модели}
 \label{mod_model_explicit}
 Приведем разностную схему для модели ~\ref{eq:mod_system}.
-\begin{equation} \label{eq:mod_scheme_p}
- \begin{aligned}
-  & \dfrac{1}{dx^2} \left[\dfrac{1}{\rho_{n_i}} \left( \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}} (P_{i+1}^m - P_i^m) - 
-  - \rho_{n_{i-0.5}} \lambda_{n_{i-0.5}} (P_i^m - P_{i-1}^m)\right)
-  + \dfrac{1}{\rho_{w_i}} \left( \rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^m - P_i^m)
-  - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^m - P_{i-1}^m)\right)\right] + q_{t_i}
-  = \phi(S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1} - P_i^m}{dt}
-  + \dfrac{g}{dx} \left[\dfrac{1}{\rho_{n_i}} \left( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
-  - \rho_{n_{i-0.5}}^2 \lambda_{n_{i-0.5}} \right)
-  + \dfrac{1}{\rho_{w_i}} \left( \rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} 
-  - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \right)\right]
-  - \tau \dfrac{q_{t_i}^m-q_{t_i}^{m-1}}{dt}
-  + \tau \phi (S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{dt^2}
-  + 2 \tau \phi (c_{w_i}-c_{n_i}) \dfrac{S_{w_i}^m-S_{w_i}^{m-1}}{dt} \dfrac{P_i^{m+1}-P_i^m}{dt}
-%  &
-  &
- \end{aligned}
-\end{equation}
+\begin{eqnarray*} \label{eq:mod_scheme_p}
+  & \dfrac{1}{dx^2} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}} (P_{i+1}^m - P_i^m)
+  - \rho_{n_{i-0.5}} \lambda_{n_{i-0.5}} (P_i^m - P_{i-1}^m)\big) + \\
+  &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^m - P_i^m)
+  - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^m - P_{i-1}^m)\big)\bigg) + q_{t_i} = \\
+  &= \phi(S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1} - P_i^m}{dt}
+  + \dfrac{g}{dx} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
+  - \rho_{n_{i-0.5}}^2 \lambda_{n_{i-0.5}} \big) + \\
+  &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} 
+  - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \big)\bigg)
+  - \tau \dfrac{q_{t_i}^m-q_{t_i}^{m-1}}{dt} + \\
+  &+ \tau \phi (S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{dt^2} +\\
+  &+ 2 \tau \phi (c_{w_i}-c_{n_i}) \dfrac{S_{w_i}^m-S_{w_i}^{m-1}}{dt} \cdot \dfrac{P_i^{m+1}-P_i^m}{dt}
+\end{eqnarray*}
+\begin{eqnarray*} \label{eq:mod_scheme_p}
+  & \dfrac{1}{dx^2} \bigg(\rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
+  - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^{m+1} - P_{i-1}^{m+1}) \bigg) + q_{w_i} = \\
+  &= \phi\rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1} - P_i^m}{dt} + \phi\rho_{w_i} \dfrac{S_{w_i}^{m+1} - S_{w_i}^m}{dt} +\\ 
+  &+ \dfrac{g}{dx} \bigg(\rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \bigg)
+  - \tau \dfrac{q_{w_i}^m-q_{w_i}^{m-1}}{dt} + \\
+  &+ \tau \phi \rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{dt^2}
+  + \tau \phi \rho_{w_i} \dfrac{S_{w_i}^{m+1}-2S_{w_i}^m+S_{w_i}^{m-1}}{dt^2} \\
+  &+ 2 \tau \phi \rho_{w_i} c_{w_i} \dfrac{S_{w_i}^{m+1}-S_{w_i}^{m}}{dt} \cdot \dfrac{P_i^{m+1}-P_i^m}{dt}
+\end{eqnarray*}
 Где $i$ -- пространственный индекс, а $m$ -- временной. Опущенный временной индекс соответствует текущему шагу.
 Фазовые проницаемости определяются <<вверх по потоку>>.
 \begin{equation}
@@ -115,33 +156,31 @@ $5 \cdot 10^{-5}$ & $5.6  \cdot 10^{-10}, \, 5.6 \cdot 10^{-8}$ & $4.5  \cdot 10
  \end{cases}
 \end{equation}
 Аналогично вычисляется $k_{n_{i+0.5}}$.
-Из схем получим явные уравнения для давления и насыщенности. 
+Из схем получаем явные уравнения для давления $P_i^{m+1}$ и насыщенности $S_{w_i}^{m+1}$
+в каждом расчетном узле. 
 
 Для вычисления потока берем значения величин в <<полуцелых>> узлах как среднее арифметическое
 значений в узлах. Например, плотность на границе ячеек:
 $\rho_{i+0.5}=\dfrac{\rho_i+\rho_{i+1}}{2},\, \rho_{i-0.5}=\dfrac{\rho_i+\rho_{i-1}}{2}$.
 $k_i, \lambda_i$ вычисляются аналогично.
 
-%\begin{equation} \label{eq:mod_scheme_s}
-% \begin{aligned}
-%  & 
-%  &
-%  &
-% \end{aligned}
-%\end{equation}
-
-\subsection{Явная схема для классической модели}
-\label{classic_model_explicit}
 Разностная схема для модели ~\ref{eq:classic_system} совпадает с ~\ref{mod_model_explicit}, если положить $\tau=0$.
 
 \subsection{Результаты расчетов}
 \label{calc_results}
 Для проведения расчетов написана программа на языке Python с использованием научных библиотек NumPy, SciPy.
+Параметр $\tau$, при котором расчеты были бы устойчивы, подбирался эмпирически в зависимости от размера шага по времени.
+Результаты представлены в таблице ....
+
+Например, при $h=0.05$м явная двухслойная схема становится неустойчивой при $\delta t=000$, а явная
+трехслойная при $\delta t=000$, $\tau=0000$ позволяет проводить расчеты с приемлимой с точки зрения моделирования
+погрешностью $e_p=000\%$, $e_s=000\%$ на момент времени $t=100$с.
 
 \subsection{Выводы}
 \label{calc_conclusions}
 Результаты расчетов показывают, что, используя предложенную модификацию модели, удается существенно ускорить
 численное решение, а также сделать параллельные вычисления удобнее. При этом погрешность вычисений остается
-приемлимой. В частности, ... 
+приемлимой. В частности, на примере рассмотренной тестовой задачи удалось снизить на порядок ограничение на шаг по времени
+при расчетах явными методами.
 Также можно добиться линейного ускорения явного метода решения с помощью использования многопроцессорных систем. 
 Тогда как в случае IMPES-метода другими авторами были получены максимальные ускорения порядка ...
