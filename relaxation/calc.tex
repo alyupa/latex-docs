@@ -51,7 +51,82 @@ $P_{avg}|_{\text{лев}} = 3.3\cdot 10^7$Па, $P_{avg}|_{\text{прав}} = 3.
 В этом случае в качестве эталонного решения возьмем часто используемый и проверенный на практике IMPES-метод с расчетным шагом по
 времени $\Delta t = 10^{-4}\text{с}$. Величина шага подобрана с помощью сравнения результатов расчетов при различных шагах.
 Дальнейшее уменьшение шага не привело к существенному изменению результатов. Детальные данные представлены в ~\ref{time_step_impes_cor}.
-Зависимости насыщенностей и давления от времени представлены на графиках. Видно постепенное вытеснение нефти водой вплоть до уровня источника.
+
+С учетом упрощений тестовой задачи из уравнения ~\ref{eq:classic_pressure} получим неявное разностное уравнение для давления,
+а из ~\ref{eq:classic_saturation} -- явное для насыщенности.
+
+\begin{equation} \label{eq:scheme_p}
+ \begin{aligned} 
+  & \dfrac{1}{\Delta x^2} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
+  - \rho_{n_{i-0.5}} \lambda_{n_{i-0.5}} (P_i^{m+1} - P_{i-1}^{m+1})\big) + \\
+  &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
+  - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^{m+1} - P_{i-1}^{m+1})\big)\bigg) + \\
+  & + q_{t_i} = \phi(S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1} - P_i^m}{\Delta t}
+  + \dfrac{g}{\Delta x} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
+  - \rho_{n_{i-0.5}}^2 \lambda_{n_{i-0.5}} \big) + \\
+  &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} 
+  - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \big)\bigg)
+ \end{aligned}
+\end{equation}
+
+\begin{equation} \label{eq:scheme_s}
+ \begin{aligned} 
+  & S_{w_i}^{m+1} = S_{w_i}^{m} - S_{w_i}c_{w_i} (P_i^{m+1} - P_i^m) + \\
+  & + \dfrac{\Delta t}{\phi\rho_{w_i}}\Bigg( \dfrac{1}{\Delta x^2} \bigg(\rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
+  - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^{m+1} - P_{i-1}^{m+1}) \bigg) +\\
+  & + q_{w_i} - \dfrac{g}{\Delta x} \bigg(\rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \bigg) \Bigg)
+ \end{aligned}
+\end{equation}
+
+Запишем уравнение ~\ref{eq:scheme_p} в матричном виде:
+\begin{equation} \label{eq:scheme_p_matrix}
+A\overrightarrow{P^{m+1}} = \vec{b}
+\end{equation}
+
+\begin{equation} \label{eq:p_matrix}
+\begin{aligned}
+A = \begin{pmatrix}
+1 & 0 & 0 & 0 & \cdots & 0 & 0 \\
+a_{10} & a_{11} & a_{12} & 0 & \cdots & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots \\
+0 & \cdots & a_{ii-1} & a_{ii} & a_{ii+1} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
+0 & 0 & \cdots & 0 & a_{N-1 N-2} & a_{N-1 N-1} & a_{N-1 N} \\
+0 & 0 & \cdots & 0 & 0 & 0 & 1
+\end{pmatrix}, \;
+\vec{b} = \begin{pmatrix}
+P_{\text{лев}} \\
+b_1 \\
+\vdots \\
+b_i \\
+\vdots \\
+b_{N-1} \\
+P_{\text{прав}}
+\end{pmatrix}
+\end{aligned}
+\end{equation}
+
+\begin{equation} \label{eq:p_matrix_i}
+\begin{aligned}
+a_{ii-1} = & \dfrac{1}{\Delta x^2} \big(\dfrac{\rho_{n_{i-0.5}} \lambda_{n_{i-0.5}}}{\rho_{n_i}} + \dfrac{\rho_{w_{i-0.5}} \lambda_{w_{i-0.5}}}{\rho_{w_i}} \big) \\
+a_{ii} = & -\dfrac{1}{\Delta x^2} \big(\dfrac{\rho_{n_{i-0.5}} \lambda_{n_{i-0.5}} + \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}}}{\rho_{n_i}} 
++ \dfrac{\rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} + \rho_{w_{i+0.5}} \lambda_{w_{i+0.5}}}{\rho_{w_i}} \big) - \\
+& - \dfrac{\phi}{\Delta t} (S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \\
+a_{ii+1} = & \dfrac{1}{\Delta x^2} \big(\dfrac{\rho_{n_{i+0.5}} \lambda_{n_{i+0.5}}}{\rho_{n_i}} + \dfrac{\rho_{w_{i+0.5}} \lambda_{w_{i+0.5}}}{\rho_{w_i}} \big) \\
+b_i = & - \dfrac{\phi}{\Delta t} (S_{n_i}c_{n_i}+S_{w_i}c_{w_i})P_i^m - q_t + \dfrac{g}{\Delta x} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
+  - \rho_{n_{i-0.5}}^2 \lambda_{n_{i-0.5}} \big) + \\
+  &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} 
+  - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \big)\bigg)
+\end{aligned}
+\end{equation}
+
+В данном тестовом примере заданы граничные условия первого рода.
+Матрица коэффициентов трехдиагональная.
+Для решения полученной СЛАУ используется итерационный численный метод.
+
+
+Зависимости насыщенностей и давления от времени представлены на графиках.
+Видно постепенное вытеснение нефти водой вплоть до уровня источника.
 
 \newcommand{\printplotoned}[1]
 {
@@ -88,8 +163,6 @@ $P_{avg}|_{\text{лев}} = 3.3\cdot 10^7$Па, $P_{avg}|_{\text{прав}} = 3.
 \printplotoned{200}
 \printplotoned{500}
 
-\subsection{Зависимость точности IMPES-метода от шага по времени}
-\label{time_step_impes_cor}
 В таблице представлены погрешности расчета IMPES-методом в моменты времени t=30c, t=60c и t=90c. 
 при различных $\Delta t$ по сравнению с $\Delta t = 10^{-5}\text{с}$.
 Относительная ошибка между величинами $A$ и $B$ вычислялась следующим образом: $\varepsilon=\sqrt{\sum\limits_{i=1}^N\left({\frac{A_i-B_i}{A_i}}\right)^2} / N$.
@@ -122,38 +195,44 @@ $5 \cdot 10^{-5}$ & $5.6  \cdot 10^{-10}, \, 5.6 \cdot 10^{-8}$ & $4.5  \cdot 10
 \subsection{Явная схема для модифицированной модели}
 \label{mod_model_explicit}
 Приведем разностную схему для модели ~\ref{eq:mod_system}.
-\begin{eqnarray*} \label{eq:mod_scheme_p}
-  & \dfrac{1}{dx^2} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}} (P_{i+1}^m - P_i^m)
+Уравнению для давления ~\ref{eq:mod_pressure} соответствует следующее разностное уравнение:
+\begin{equation} \label{eq:mod_scheme_p}
+ \begin{aligned} 
+  & \dfrac{1}{\Delta x^2} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}} \lambda_{n_{i+0.5}} (P_{i+1}^m - P_i^m)
   - \rho_{n_{i-0.5}} \lambda_{n_{i-0.5}} (P_i^m - P_{i-1}^m)\big) + \\
   &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^m - P_i^m)
   - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^m - P_{i-1}^m)\big)\bigg) + q_{t_i} = \\
-  &= \phi(S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1} - P_i^m}{dt}
-  + \dfrac{g}{dx} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
+  &= \phi(S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1} - P_i^m}{\Delta t}
+  + \dfrac{g}{\Delta x} \bigg(\dfrac{1}{\rho_{n_i}} \big( \rho_{n_{i+0.5}}^2 \lambda_{n_{i+0.5}} 
   - \rho_{n_{i-0.5}}^2 \lambda_{n_{i-0.5}} \big) + \\
   &+ \dfrac{1}{\rho_{w_i}} \big( \rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} 
   - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \big)\bigg)
-  - \tau \dfrac{q_{t_i}^m-q_{t_i}^{m-1}}{dt} + \\
-  &+ \tau \phi (S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{dt^2} +\\
-  &+ 2 \tau \phi (c_{w_i}-c_{n_i}) \dfrac{S_{w_i}^m-S_{w_i}^{m-1}}{dt} \cdot \dfrac{P_i^{m+1}-P_i^m}{dt}
-\end{eqnarray*}
-\begin{eqnarray*} \label{eq:mod_scheme_p}
-  & \dfrac{1}{dx^2} \bigg(\rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
+  - \tau \dfrac{q_{t_i}^m-q_{t_i}^{m-1}}{\Delta t} + \\
+  &+ \tau \phi (S_{n_i}c_{n_i}+S_{w_i}c_{w_i}) \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{\Delta t^2} +\\
+  &+ 2 \tau \phi (c_{w_i}-c_{n_i}) \dfrac{S_{w_i}^m-S_{w_i}^{m-1}}{\Delta t} \cdot \dfrac{P_i^{m+1}-P_i^m}{\Delta t}
+ \end{aligned}
+\end{equation}
+А уравнению ~\ref{eq:mod_saturation} -- разностное уравнение:
+\begin{equation} \label{eq:mod_scheme_s}
+ \begin{aligned} 
+  & \dfrac{1}{\Delta x^2} \bigg(\rho_{w_{i+0.5}} \lambda_{w_{i+0.5}} (P_{i+1}^{m+1} - P_i^{m+1})
   - \rho_{w_{i-0.5}} \lambda_{w_{i-0.5}} (P_i^{m+1} - P_{i-1}^{m+1}) \bigg) + q_{w_i} = \\
-  &= \phi\rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1} - P_i^m}{dt} + \phi\rho_{w_i} \dfrac{S_{w_i}^{m+1} - S_{w_i}^m}{dt} +\\ 
-  &+ \dfrac{g}{dx} \bigg(\rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \bigg)
-  - \tau \dfrac{q_{w_i}^m-q_{w_i}^{m-1}}{dt} + \\
-  &+ \tau \phi \rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{dt^2}
-  + \tau \phi \rho_{w_i} \dfrac{S_{w_i}^{m+1}-2S_{w_i}^m+S_{w_i}^{m-1}}{dt^2} \\
-  &+ 2 \tau \phi \rho_{w_i} c_{w_i} \dfrac{S_{w_i}^{m+1}-S_{w_i}^{m}}{dt} \cdot \dfrac{P_i^{m+1}-P_i^m}{dt}
-\end{eqnarray*}
+  &= \phi\rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1} - P_i^m}{\Delta t} + \phi\rho_{w_i} \dfrac{S_{w_i}^{m+1} - S_{w_i}^m}{\Delta t} +\\ 
+  &+ \dfrac{g}{\Delta x} \bigg(\rho_{w_{i+0.5}}^2 \lambda_{w_{i+0.5}} - \rho_{w_{i-0.5}}^2 \lambda_{w_{i-0.5}} \bigg)
+  - \tau \dfrac{q_{w_i}^m-q_{w_i}^{m-1}}{\Delta t} + \\
+  &+ \tau \phi \rho_{w_i}S_{w_i}c_{w_i} \dfrac{P_i^{m+1}-2P_i^m+P_i^{m-1}}{\Delta t^2}
+  + \tau \phi \rho_{w_i} \dfrac{S_{w_i}^{m+1}-2S_{w_i}^m+S_{w_i}^{m-1}}{\Delta t^2} \\
+  &+ 2 \tau \phi \rho_{w_i} c_{w_i} \dfrac{S_{w_i}^{m+1}-S_{w_i}^{m}}{\Delta t} \cdot \dfrac{P_i^{m+1}-P_i^m}{\Delta t}
+ \end{aligned}
+\end{equation}
 Где $i$ -- пространственный индекс, а $m$ -- временной. Опущенный временной индекс соответствует текущему шагу.
 Фазовые проницаемости определяются <<вверх по потоку>>.
 \begin{equation}
 k_{w_{i+0.5}} =
  \begin{cases}
-  &k_w(S_{w_i}),\, P_{i+1}-P_i-\rho_{w_i}g\,dx \le 0
+  &k_w(S_{w_i}),\, P_{i+1}-P_i-\rho_{w_i}g\,\Delta x \le 0
   \\
-  &k_w(S_{w_{i+1}}),\, P_{i+1}-P_i-\rho_{w_i}g\,dx > 0
+  &k_w(S_{w_{i+1}}),\, P_{i+1}-P_i-\rho_{w_i}g\,\Delta x > 0
  \end{cases}
 \end{equation}
 Аналогично вычисляется $k_{n_{i+0.5}}$.
@@ -196,13 +275,17 @@ k_{w_{i+0.5}} =
 $\rho_{i+0.5}=\dfrac{\rho_i+\rho_{i+1}}{2},\, \rho_{i-0.5}=\dfrac{\rho_i+\rho_{i-1}}{2}$.
 $k_i, \lambda_i$ вычисляются аналогично.
 
-Отметим, что разностная схема для модели ~\ref{eq:classic_system} совпадает с ~\ref{mod_model_explicit}, если положить $\tau=0$.
+Отметим, что, если положить $\tau=0$, модель ~\ref{mod_model_explicit} совпадает с моделью ~\ref{eq:classic_system},
+а представленная явная трехслойная разностная схема для модели ~\ref{mod_model_explicit} совпадает с явной двухслойной
+для расчетов по модели ~\ref{eq:classic_system}.
 
 \subsection{Результаты расчетов}
 \label{calc_results}
-Для проведения расчетов написана программа на языке Python с использованием научных библиотек NumPy, SciPy.
+Для проведения расчетов по моделям ~\ref{eq:classic_system}, ~\ref{mod_model_explicit} написана программа на языке Python с использованием научных библиотек NumPy, SciPy.
 Параметр $\tau$, при котором расчеты были бы устойчивы, подбирался эмпирически в зависимости от размера шага по времени.
-Результаты представлены в таблице ~\ref{tabular:results}
+Проведено сравнение решения IMPES-методом модели ~\ref{eq:classic_system} и решения трехслойной явной разностной схемой
+модели ~\ref{mod_model_explicit}.
+Результаты представлены в таблице ~\ref{tabular:results}.
 
 \begin{table}[H]
 \caption{Погрешность явной схемы относительно эталонного решения при различных $\tau$ при при t=10с}
@@ -224,6 +307,6 @@ $0.001$ & $0.025$ & $ 5 \cdot 10^{-4}$ & $ 0.03 $ \\
 \end{center}
 \end{table}
 
-Например, при $h=0.05$м явная двухслойная схема становится неустойчивой при $\Delta t \ge 5 \cdot 10^{-5}$с, а явная
+Например, при $\Delta x=0.05$м явная двухслойная схема становится неустойчивой при $\Delta t \ge 5 \cdot 10^{-5}$с, а явная
 трехслойная при $\Delta t=0.001$с, $\tau=0.025$с позволяет проводить расчеты с приемлимой с точки зрения моделирования
 погрешностью $\varepsilon_p=0.0005$, $\varepsilon_s=0.03$ на момент времени $t=10$с.
