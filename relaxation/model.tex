@@ -5,7 +5,7 @@
 \subsection{Классическая модель}
 \label{classic_model}
 Система уравнений для описания двухфазной неизотермической фильтрации в пористой среде
-имеет вид:
+может быть представлена в виде ~\cite{Aziz-Settari}, ~\cite{Basniev}:
 \begin{subequations} \label{eq:classic_system}
   \begin{align}[left = \empheqlbrace\,]
     &\pd {(\phi \rho_i S_i)}{t} + div(\rho_i \overrightarrow{u_i}) = q_i, \label{eq:classic_system1} \\
@@ -26,7 +26,7 @@ ${\rho}_i$ -- плотность фазы,
 $q_i$ -- источниковые члены,
 $K$ -- абсолютная проницаемость среды,
 $\phi$ -- пористость среды,
-$\overrightarrow{u_i}$ -- фазовая скорость,
+$\overrightarrow{u_i}$ -- скорость фильтрации фазы,
 $\mu_i$ -- вязкость фазы,
 $k_i$ -- относительная фазовая проницаемость,
 $g$ -- ускорение свободного падения,
@@ -53,14 +53,14 @@ $f_w = \dfrac{\lambda_w}{\lambda_n + \lambda_w}$,
 $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
 
 Для дальнейшего использования метода IMPES (Implicit Pressure Explicit Saturation) -- метода неявного по давлению,
-явного по насыщенности, проводится преобразование уравнений модели ~\eqref{eq:classic_system}.
+явного по насыщенности, проводится преобразование уравнений модели ~\eqref{eq:classic_system} \cite{Peaceman}.
 Разложим член $\pd {(\phi \rho_i S_i)}{t}$ на сумму слагаемых:
 \begin{equation}
  \pd {(\phi \rho_i S_i)}{t} = \rho_i S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t}
  + \phi S_i \dd{\rho_i}{P_i} \cdot \pd{P_i}{t} + \phi \rho_i \pd{S_i}{t}.
 \end{equation}
 Разделим уравнения неразрывности ~\eqref{eq:classic_system1} на $\rho_i$ 
-и сложим их. Также используем принятые в ~\ref{syms} обозначения.
+и сложим их. Также используем принятые выше обозначения.
 Получим следующее уравнение для определения среднего давления:
 
 \begin{equation} \label{eq:classic_pressure}
@@ -73,13 +73,14 @@ $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
  \end{aligned}
 \end{equation}
 
-Обратим внимание, что оператор $div$ действует на всю правую часть слагаемого, к которому он применяется.
+%%%% Написать комментарий относительно формы записи оператора дивергенции
+%%%% Обратим внимание, что оператор $div$ действует на всю правую часть слагаемого, к которому он применяется.
 
 Получим уравнение для нахождения насыщенности $S_w$, исходя из предположения,
 что давление $P_{avg}$ к этому моменту уже известно.
 Из ~\eqref{eq:classic_system3} следует, что $\nabla P_c = \nabla P_n - \nabla P_w$ или
 $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_w\nabla P_w$.
-Используем ~\eqref{eq:classic_system1}, ~\eqref{eq:classic_system2} и принятые в ~\ref{syms} обозначения.
+Используем ~\eqref{eq:classic_system1}, ~\eqref{eq:classic_system2} и принятые обозначения.
 Тогда
 \begin{equation} \label{eq:classic_saturation}
   div(\rho_w h_w \nabla S_w) - div(\rho_w f_w)[\overrightarrow{u_t} + \lambda_n(\rho_w - \rho_n)g \nabla z] + q_w 
@@ -88,7 +89,7 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
  
 \subsection{Модифицированная модель}
 
-Запишем модель ~\eqref{eq:classic_system} кратко в виде
+Запишем уравнение~\eqref{eq:classic_system1} кратко в виде
 \begin{equation} \label{eq:short_system}
    \pd{(\phi \rho_i S_i)}{t} + div \overrightarrow{Q_i} = q_i, i = w,n.
 \end{equation}
@@ -108,13 +109,13 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
  div\overrightarrow{Q_i} = div\overrightarrow{Q_i^D} - \tau div\pd{\overrightarrow{Q_i}}{t}.
 \end{equation}
 
-Продифференцируем по времени исходные уравнения системы ~\eqref{eq:short_system} и домножим на $\tau$, получим что
+Продифференцируем по времени уравнения ~\eqref{eq:short_system} и домножим на $\tau$, получим что
 
 \begin{equation}
   \tau \pd[2]{(\phi \rho_i S_i)}{t} + \tau \pd{(div \overrightarrow{Q_i})}{t} = \tau \pd{q_i}{t}.
 \end{equation}
 
-Откуда с учетом ~\eqref{eq:div_relax} от ~\eqref{eq:short_system} перейдем к конечному виду модифицированного уравнения неразрывности
+С учетом ~\eqref{eq:div_relax} от ~\eqref{eq:short_system} перейдем к конечному виду модифицированного уравнения неразрывности
 путем введения релаксации потока:
 
 \begin{equation} \label{eq:mod_system}
@@ -140,7 +141,7 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
  \end{aligned}
 \end{equation}
 
-Проведя преобразования, аналогичные выполненным в ~\ref{var_division}, получим с учетом результатов ~\eqref{calcs1} следующие уравнения для определения
+Проведя преобразования, аналогичные выполненным в разделе ~\ref{var_division}, получим с учетом результатов ~\eqref{calcs1} следующие уравнения для определения
 среднего давления и насыщенности водной фазы:
 
 \begin{equation} \label{eq:full_pressure}
@@ -178,7 +179,7 @@ $\lambda_n\lambda_w\nabla P_c = \lambda_n\lambda_w\nabla P_n - \lambda_n\lambda_
 будем исходить из дополнительных предположений, позволяющих значительно упростить уравнения для среднего давления
 и насыщенности, не изменяя существенно их характера в целом. В частности, пористость среды положим постояной ($\phi = const$),
 уравнения состояния - линейными $\left( \dd[2]{\rho_i}{P_i} = 0 \right)$, капиллярными эффектами пренебрежем ($P_w = P_n = P_{avg}$).
-При перечисленных допущениях, действуя аналогично ~\ref{var_division}, получим уравнение для определения давления:
+При перечисленных допущениях, действуя как в разделе ~\ref{var_division}, получим уравнение для определения давления:
 \begin{equation} \label{eq:mod_pressure}
  \begin{aligned}
   &\left[ \frac{1}{\rho_n} div (\rho_n\lambda_n) + \frac{1}{\rho_w} div (\rho_w\lambda_w) \right] \nabla P_{avg}
