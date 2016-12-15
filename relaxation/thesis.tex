@@ -1,5 +1,4 @@
-\documentclass[a4paper, draft]{article}
-\usepackage[14pt]{extsizes}
+\documentclass[a4paper, 14pt]{extarticle}
 \usepackage{cmap} % поиск русских слов в полученном pdf-файле
 \usepackage[T2A]{fontenc} % Поддержка русских букв
 \usepackage[utf8]{inputenc}
@@ -17,7 +16,6 @@
 \usepackage{cite}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\usepackage{auto-pst-pdf}
 \usepackage{wrapfig}
 \usepackage{minted}
 \usepackage[overload]{empheq}
@@ -30,22 +28,29 @@
 \geometry{right=2cm}% правое поле
 \geometry{top=3cm}% верхнее поле
 \geometry{bottom=2cm}% нижнее поле
+\geometry{headheight=18pt}
 \sloppy % Избавляемся от переполнений
 \clubpenalty=10000 % Запрещаем разрыв страницы после первой строки абзаца
 \widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
 \captionsetup{figurewithin=none}
 \linespread{1.0} % интервал
-\graphicspath{{fig/}}
+\graphicspath{{./}{./src/}{./build/}}
 \makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
 \frenchspacing %пробел после запятой не увеличивается - так принято в России
 \righthyphenmin=2 % можно оставлять два символа на строке при переносе
 \tolerance=400
 \pagenumbering{arabic}
+\setlength\parindent{10mm}
+
+\pgfplotsset{compat=1.13}
 
 \DeclareCaptionLabelFormat{labelright}{\hfill {#1}{ }#2}
 \captionsetup[table]{position=top, name={Таблица}, labelfont=it, labelsep = newline, labelformat=labelright, aboveskip=0px, belowskip=0px, justification=centering}
 \captionsetup[figure]{name={Рис.}, labelfont=it, aboveskip=6px, belowskip=15px}
 
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
 
 %%==========================================================================================
 \begin{document}
@@ -53,18 +58,20 @@
 \newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
 \newcommand{\figref}[1]{рис.~\ref{#1}}
 
-\renewcommand{\contentsname}{\hfill Оглавление \hfill}
+\renewcommand{\contentsname}{\centering Оглавление }
 \renewcommand{\refname}{Библиографический список}
 
 \pagestyle{empty}
-\include{title}
+\include*{title}
+\tableofcontents
+\newpage
+\setcounter{page}{3}
 \include*{intro}
 \include*{model}
 \include*{calc}
 \include*{concl}
 \bibliographystyle{utf8gost705u.bst}
 \bibliography{kbib-utf8.bib}
-%\nocite*{}
-\tableofcontents
+
 
 \end{document}

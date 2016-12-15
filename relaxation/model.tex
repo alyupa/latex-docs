@@ -40,7 +40,6 @@ $g$ -- ускорение свободного падения,
 
 \newpage
 %%%% отсюда начинаем нумерацию страниц
-\setcounter{page}{4}
 \pagestyle{fancy} % смена стиля оформления страниц
 \fancyhf{} % очистка текущих значений
 \fancyhead[C]{\thepage} % установка верхнего колонтитула
@@ -59,8 +58,9 @@ $\overrightarrow{u_t} = \overrightarrow{u_n} + \overrightarrow{u_w}$,
 $f_w = \dfrac{\lambda_w}{\lambda_n + \lambda_w}$,
 $h_w = - \dfrac{\lambda_n\lambda_w}{\lambda_n + \lambda_w} \dd{P_c}{S_w}$.
 
-Для дальнейшего использования метода IMPES (Implicit Pressure Explicit Saturation) -- метода неявного по давлению,
-явного по насыщенности, проводится преобразование уравнений модели~\eqref{eq:classic_system}~\cite{Peaceman}.
+Для последующего использования численного метода IMPES (Implicit Pressure Explicit Saturation) --- метода неявного по давлению,
+явного по насыщенности, проводится преобразование уравнений модели~\eqref{eq:classic_system} ~\cite{Peaceman}.
+
 Разложим член $\pd {(\phi \rho_i S_i)}{t}$ на сумму слагаемых:
 \begin{equation}
  \pd {(\phi \rho_i S_i)}{t} = \rho_i S_i \dd{\phi}{P_{avg}} \cdot \pd{P_{avg}}{t}
@@ -123,7 +123,7 @@ $\lambda_n\lambda_w\grad{ P_c} = \lambda_n\lambda_w\grad{ P_n} - \lambda_n\lambd
 
 \begin{equation} \label{eq:mod_system}
   \tau \pd[2]{(\phi \rho_i S_i)}{t} + \pd{(\phi \rho_i S_i)}{t} + \diver{ \overrightarrow{Q_i^D}} = q_i + \tau \pd{q_i}{t}.
-\end{equation}\\
+\end{equation}
 
 Сделаем некоторые вспомогательные выкладки:
 \begin{equation} \label{eq:calcs1}
