@@ -487,10 +487,10 @@ FUNCTION {bbl.ppages}%    { "\bblPp." }
 
 FUNCTION {bbl.ppage}  %   { "\bblP." }
 {  curlanguage "english" =
-    {"P."}
+    {"p."}
     { curlanguage "ukrainian" = curlanguage "russian" = or
-           {"{С.}"}
-           {"language is not defined: " language  "P." * * warning$ "P."}
+           {"{с.}"}
+           {"language is not defined: " language  "p." * * warning$ "p."}
       if$}
   if$
 }
@@ -597,7 +597,7 @@ FUNCTION {format.names.rev}
 FUNCTION {format.authors}
 { author empty$
     { "" }
-    { author format.names.rev}
+    { author format.names}
   if$
 }
 
@@ -853,9 +853,8 @@ FUNCTION {format.pages}%%%%Поправлено (P вместо pp и p вмес
 { pages empty$
     { "" }
     { pages multi.page.check
-        { bbl.ppage pages n.dashify tie.connect }
-%        { bbl.page pages tie.connect }   % поправлено 16.3.2012
-        { bbl.ppage pages tie.connect }   % поправлено 16.3.2012
+        { pages bbl.ppage n.dashify tie.connect }
+        { pages bbl.ppage tie.connect }
       if$
     }
   if$
