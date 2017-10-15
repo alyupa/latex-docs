@@ -1,0 +1,85 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{cmap} % поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
+\usepackage[english,russian]{babel}
+\usepackage{makeidx} % пакет для создания алфавитного указателя
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % эти пакеты необходимы для набора формул
+\usepackage{graphicx}
+\usepackage{indentfirst}% Красная строка в первом абзаце
+\usepackage{tabularx}
+\usepackage{newclude}
+\usepackage[labelsep=period]{caption} % пакет для управления заголовка рисунков и таблиц
+\usepackage{subfig} % пакет для расположения нескольких под рисунков в одном окружении figure
+\usepackage{longtable}
+\usepackage{cite}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage[overload]{empheq}
+\usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr} % пакет для установки колонтитулов
+\usepackage{geometry} % Меняем поля страницы
+\usepackage{caption}
+\usepackage[]{hyperref}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\justifying
+\geometry{left=2cm}% левое поле
+\geometry{right=2cm}% правое поле
+\geometry{top=3cm}% верхнее поле
+\geometry{bottom=2cm}% нижнее поле
+\geometry{headheight=18pt}
+\sloppy % Избавляемся от переполнений
+\captionsetup{figurewithin=none}
+\linespread{1.0} % интервал
+\graphicspath{{./}{./src/}{./build/}}
+\makeindex % сделаем именной указатель, но печатаем его отдельной командой(если печатаем)
+\frenchspacing %пробел после запятой не увеличивается - так принято в России
+\righthyphenmin=10000 % можно оставлять два символа на строке при переносе
+\hyphenpenalty=10000 %  частота переносов
+\tolerance=10000
+\pagenumbering{arabic}
+\setlength\parindent{10mm}
+
+\pgfplotsset{compat=1.13}
+
+\DeclareCaptionLabelFormat{labelright}{\hfill {#1}{ }#2}
+\captionsetup[table]{name={Таблица}, position=bottom, labelfont=small, textfont=small, aboveskip=0px, belowskip=0px, justification=centering}
+\captionsetup[figure]{name={Рис.}, labelfont=small, textfont=small, aboveskip=6px, belowskip=15px}
+
+\pagestyle{fancy}     
+\fancyhead{}
+\fancyhead[L]{\fontsize{10}{12} \selectfont Times New Roman}
+
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
+
+\titleformat{\section}
+{\normalfont\normalsize\bfseries\filcenter}{\thesection}{1em}{}
+
+%%==========================================================================================
+\begin{document}
+
+\newcommand{\includepic}[2][]{\includegraphics[#1]{#2.png}}
+\newcommand{\figref}[1]{рис.~\ref{#1}}
+\renewcommand{\refname}{\textbf{Литература}}
+\renewcommand{\arraystretch}{1.3}
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfil}
+\makeatother
+
+\pagestyle{empty}
+\include*{title}
+\setcounter{page}{3}
+\include*{intro}
+\include*{model}
+\include*{calc}
+\include*{concl}
+\bibliographystyle{utf8gost705u.bst}
+{\small \bibliography{kbib-utf8.bib}}
+
+
+\end{document}
