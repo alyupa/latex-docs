@@ -1,18 +1,19 @@
 \documentclass[11pt,a4paper]{moderncv}
-\moderncvtheme[blue]{classic}
+\moderncvtheme[burgundy]{classic}
+\moderncvhead{1}
+\moderncvbody{1}
 \usepackage[utf8]{inputenc}
 \usepackage[scale=0.9]{geometry}
 \definecolor{linkcol}{rgb}{0,0.2,0.6}
 \usepackage[unicode,colorlinks,breaklinks,urlcolor=linkcol,linkcolor=linkcol]{hyperref}
 
-
 \firstname{Anastasia}
 \familyname{Lyupa}
-\address{Moscow, Russia}{}
-\mobile{+7 915 0615350}
+\address{11 Dirizhabelnaya st., apt. 24, Moscow region, Russia}{}
+\mobile{+7 915 061-53-50}
 \email{anastasiya.lyupa@gmail.com}
 \homepage{linkedin.com/in/anastasia-lyupa-27656680}
-%\photo[92pt][0.4pt]{photo.jpg}
+\photo[92pt][0.4pt]{photo.jpg}
 
 \makeatletter
 \renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
@@ -22,59 +23,91 @@
 \maketitle
 
 \section{Objective}
-\cvitem {} {I am an experienced software engineer seeking employment with a company solving non-standard tasks. 
-My major activity -- C/C++ development. Also I have experience in Python and research.}
+\cvitem {} {I am a skilled software engineer seeking employment with a company solving non-standard tasks.
+I've been working in a variety of projects from Linux kernel modules to Unreal Engine based simulator development. 
+My major language is C/C++. Also I have Python programming experience.
+Besides I have research experience. I'm opened to new opportunities and challenges.}
 \section{Experience}
+\cvitem {Feb 2013 -- still here}{\large{Samsung Research Russia}}
 \cventry
-  {2013 - still here}
-  {}
-  {}
-  {}
-  {}
-  {}
-\cventry
-  {2014 - 2017}
-  {}
-  {}
-  {}
-  {}
+  {2019}
+  {Engineer, Software Analysis Engineering}
+  {Sensor Data Part}
+  {Development of a simulator for Robot Vacuum Cleaner. Writing map editor mode for the simulator}
+  {C++, Unreal Engine 4}
   {}
 \cventry
-  {2013 - 2014}
-  {}
-  {}
-  {}
-  {}
-  {}
+  {2018}
+  {Engineer, Software Analysis Engineering}
+  {AI Tools Lab}
+  {Development of a tool for combining several repositories into firmware. Setting up and maintaining CI}
+  {Python}
+  {\url{https://github.com/Samsung/combirepo}}
 \cventry
-  {Feb 2012 - 2013}
-  {}
-  {}
-  {}
-  {}
-  {}
+  {2017}
+  {Software Engineer}
+  {SW Tools Lab}
+  {Investigating issues in Tizen OS with ASan, SVACE. Fixing issues in system libraries.
+  Preparation of reports and documentation}
+  {C/C++}
+  {\url{https://www.tizen.org/}}
+\cventry
+  {2013 -- 2016}
+  {Junior Software Engineer}
+  {Tizen Platform Lab}
+  {Low level profiling tool development for Tizen OS. Tizen bugs fixing and optimization}
+  {C, Linux}
+  {\url{https://www.tizen.org/}}
 
 \section{Development skills}
 \subsection{Programming Languages}
-\cvitem
-  {Intermediate}{C, C++}
-\cvitem
-  {Basic}{Unreal Engine 4, Python}
-
+\cvitem{Intermediate}{C, C++}
+\cvitem{Intermediate}{Python}
 \subsection{Frameworks and tools}
-\cvitem{Development} {Build system related tools, shell scripting, the GNU tool set built around
-  traditional *nix software development.}
-
+\cvitem{Unreal Engine 4}{Writing applications based on game engine}
+\cvitem{Development} {Using build system related tools, shell scripting, Linix software development tools}
+\cvitem {CI}{Setting up and maintaining Jenkins server, prepare docker containers}
 \cvitem{VCS}{git}
-\cvitem {General}{Setting up and maintaining CI.}
+\cvitem{Latex}{Scientific writing}
 \section{Publications}
+\cvitem{}{My research topic is multiphase flow simulation.
+Publications are listed in my Research Gate profile.
+Some of them are indexed by Scopus and Web of Science.}
+\cvitem{Research Gate}{\url{https://www.researchgate.net/profile/Anastasia_Lyupa/publications}}
+
+\newpage
+
 \section{Education}
   \cventry
-    {2008 - 2014}
-    {Applied Mathematics}
-    {Moscow Institute of Physics and Technology} {}
+    {2014 -- 2019}
+    {Computer Science and Computer Engineering}
+    {Moscow Institute of Physics and Technology}
     {Department of Control and Applied Mathematics}
-    {M.Sc. in Applied Mathematics and Physics}
+    {Postgraduate education, Reseacher}{}
+  \cventry
+    {2012 -- 2014}
+    {Applied Mathematics and Physics}
+    {Moscow Institute of Physics and Technology}
+    {Department of Control and Applied Mathematics}
+    {Master's degree}
+    {GPA 4.8}
+  \cventry
+    {2008 -- 2012}
+    {Applied Mathematics and Physics}
+    {Moscow Institute of Physics and Technology}
+    {Department of Control and Applied Mathematics}
+    {Bachelor's degree}
+    {GPA 4.8}
+
+\section{Special skills}
+\subsection{Languages}
+\cvitem {Native}{Russian}
+\cvitem {Advanced}{English}
+\cvitem {Elementary}{Spanish}
+\subsection{Other skills}
+\cvitem {Driving License}{Category B}
+\cvitem {Hobbies}{Sports activities}
+
 \end{document}
 
 %%% Local Variables:
