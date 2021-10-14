@@ -1,19 +1,19 @@
 \documentclass[11pt,a4paper]{moderncv}
-\moderncvtheme[burgundy]{classic}
+\moderncvtheme[blue]{classic}
 \moderncvhead{1}
 \moderncvbody{1}
 \usepackage[utf8]{inputenc}
 \usepackage[scale=0.9]{geometry}
 \definecolor{linkcol}{rgb}{0,0.2,0.6}
 \usepackage[unicode,colorlinks,breaklinks,urlcolor=linkcol,linkcolor=linkcol]{hyperref}
+\setlength{\hintscolumnwidth}{4cm}
 
 \firstname{Anastasia}
 \familyname{Lyupa}
-\address{11 Dirizhabelnaya st., apt. 24, Moscow region, Russia}{}
+\address{Moscow, Russia}{}
 \mobile{+7 915 061-53-50}
 \email{anastasiya.lyupa@gmail.com}
 \homepage{linkedin.com/in/anastasia-lyupa-27656680}
-\photo[95pt][0.4pt]{photo.jpg}
 
 \makeatletter
 \renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
@@ -22,63 +22,67 @@
 \begin{document}
 \maketitle
 
-\section{Objective}
-\cvitem {} {I am a skilled software engineer seeking employment with a company solving non-standard tasks.
-I've been working in a variety of projects from Linux kernel modules to Unreal Engine based simulator development. 
-My major language is C/C++. Also I have Python programming experience.
-Besides I have research experience. I'm opened to new opportunities and challenges.}
+\section{Summary}
+\cvitem {} {Skilled and results-oriented Software Engineer with more than 7 years of experience working in a variety of environments with a breadth of programs and technologies. Seeking the position of C++ Software Engineer.}
 \section{Experience}
-\cvitem {Feb 2013 -- still here}{\large{Samsung Research Russia}}
+\cvitem {\large{Feb 2013 -- present}}{\large\textbf{Samsung Research Russia}}
+\cventry
+  {2021}
+  {Software Engineer}
+  {Platform Lab}
+  {\newline Android runtime and compiler optimization, decreasing application launch time. Working with existing code, feature development, bug fixing, shell scripting, adding Google unit tests to project}
+  {\newline Tech stack: C++, Linux, AOSP}
+  {}
+\cventry
+  {2020}
+  {Project Leader}
+  {Sensor Data Part}
+  {\newline Development of a sensors simulation for robots. Communication with customers / stack holders, planning, tasks distribution, preparation of project documentation, feature development, bug fixing}
+  {\newline Tech stack: C++, Unreal Engine 4}
+  {}
 \cventry
   {2019}
-  {Engineer, Software Analysis Engineering}
+  {Software Engineer}
   {Sensor Data Part}
-  {Development of a simulator for Robot Vacuum Cleaner. Writing map editor mode for the simulator}
-  {C++, Unreal Engine 4}
+  {\newline Development of a simulator for Robot Vacuum Cleaner. Design and implementation of map editor mode for the simulator}
+  {\newline Tech stack: C++, Unreal Engine 4}
   {}
 \cventry
   {2018}
-  {Engineer, Software Analysis Engineering}
+  {Software Engineer}
   {AI Tools Lab}
-  {Development of a tool for combining several repositories into firmware. Setting up and maintaining CI}
-  {Python}
+  {\newline Development of a tool for combining several repositories into firmware. Working with existing code, feature development, bug fixing, setting up and maintaining CI}
+  {\newline Tech stack: Python}
   {\url{https://github.com/Samsung/combirepo}}
 \cventry
   {2017}
   {Software Engineer}
   {SW Tools Lab}
-  {Investigating issues in Tizen OS with ASan, SVACE. Fixing issues in system libraries.
-  Preparation of reports and documentation}
-  {C/C++}
+  {\newline Investigating issues in Tizen OS with ASan, SVACE, Valgrind. Static code analysis, memory profiling, fixing issues in system libraries, preparation of reports and documentation}
+  {\newline Tech stack: C/C++, Linux}
   {\url{https://www.tizen.org/}}
 \cventry
-  {2013 -- 2016}
+  {2016}
+  {Maternity leave}
+  {}
+  {}
+  {}
+  {}
+\cventry
+  {2013 -- 2015}
   {Junior Software Engineer}
   {Tizen Platform Lab}
-  {Low level profiling tool development for Tizen OS. Tizen bugs fixing and optimization}
-  {C, Linux}
+  {\newline Low level profiling tool development for Tizen OS which became a part of Tizen Studio. Working with Tizen Studio, feature development, bug fixing and optimization, testing on devices and emulators}
+  {\newline Tech stack: C, Linux}
   {\url{https://www.tizen.org/}}
-
-\section{Development skills}
-\subsection{Programming Languages}
-\cvitem{Advanced}{C, C++}
-\cvitem{Intermediate}{Python}
-\subsection{Frameworks and tools}
-\cvitem{Unreal Engine 4}{Writing applications based on game engine}
-\cvitem{Development} {Using build system related tools, shell scripting, Linix software development tools}
-\cvitem {CI}{Setting up and maintaining Jenkins server, prepare docker containers}
-\cvitem{VCS}{git}
-\cvitem{Latex}{Scientific writing}
-\cvitem{HPC computing}{Using MPI, CUDA technologies for numerical simulation}
 
 \newpage
 
-\section{Publications}
-\cvitem{}{My research topic is multiphase flow simulation.
-Publications are listed in my Research Gate profile.
-Some of them are indexed by Scopus and Web of Science.}
-\cvitem{Research Gate}{\url{https://www.researchgate.net/profile/Anastasia_Lyupa/publications}}
-
+\section{Skills}
+\cvitem{Programming Languages}{C, C++, Python}
+\cvitem{IDE/Build systems}{Visual Studio, Eclipse, CMake, Soong}
+\cvitem{CI}{Git, Gerrit, Jenkins, Docker}
+\cvitem{Documentation}{Latex, Markdown}
 
 \section{Education}
   \cventry
@@ -102,14 +106,16 @@ Some of them are indexed by Scopus and Web of Science.}
     {Bachelor's degree}
     {GPA 4.8}
 
-\section{Special skills}
-\subsection{Languages}
-\cvitem {Native}{Russian}
-\cvitem {Advanced}{English}
-\cvitem {Elementary}{Spanish}
-\subsection{Other skills}
-\cvitem {Driving License}{Category B}
-\cvitem {Hobbies}{Sports activities}
+\section{Research}
+\cvitem{}{My research topic is multiphase flow simulation.
+Publications are listed in my Research Gate profile.
+Some of them are indexed by Scopus and Web of Science.}
+\cvitem{Research Gate}{\url{https://www.researchgate.net/profile/Anastasia_Lyupa/publications}}
+\cvitem{Project}{\url{https://github.com/alyupa/multiphase-flow-modeling}}
+
+\section{Languages}
+\cvitem {Russian}{Native}
+\cvitem {English}{Upper-Intermediate}
 
 \end{document}
 
